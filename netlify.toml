@@ -1,11 +1,9 @@
-# Netlify configuration for TanStack Start (SSR via Nitro `netlify` preset).
-# Nitro emits `.netlify/functions-internal/server` and static assets under `dist/`.
-# Netlify's build system detects the Nitro output automatically, so no
-# functions/redirects wiring is required here.
+# Netlify configuration for TanStack Start (SSR via @netlify/vite-plugin-tanstack-start).
+# The build plugin emits static assets to `dist/client` and SSR functions to `.netlify/v1/functions/server.mjs`.
 
 [build]
   command = "npm run build"
-  publish = "dist"
+  publish = "dist/client"
 
 [build.environment]
   NODE_VERSION = "20"
