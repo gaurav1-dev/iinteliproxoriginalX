@@ -10,6 +10,8 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { SITE, absoluteUrl } from "@/lib/site";
+import { CookieConsent } from "@/components/cookie-consent";
 
 function NotFoundComponent() {
   return (
@@ -84,19 +86,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "iinteliprox" },
       { property: "og:site_name", content: "iinteliprox" },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE.url },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#fefdfc" },
       { property: "og:title", content: "iinteliprox — AI Automation, Web Development & Digital Marketing" },
       { name: "twitter:title", content: "iinteliprox — AI Automation, Web Development & Digital Marketing" },
       { property: "og:description", content: "iinteliprox helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide." },
       { name: "twitter:description", content: "iinteliprox helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide." },
-      { property: "og:image", content: "/ip-logo.png" },
-      { name: "twitter:image", content: "/ip-logo.png" },
+      { property: "og:image", content: absoluteUrl("/og-image.svg") },
+      { property: "og:image:alt", content: "iinteliprox — Intelligence, in motion." },
+      { name: "twitter:image", content: absoluteUrl("/og-image.svg") },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/ip-logo.png" },
+      { rel: "canonical", href: SITE.url },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "apple-touch-icon", href: "/ip-logo.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "mask-icon", href: "/favicon.svg", color: "#e88aab" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -109,6 +117,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
+          "@graph": [{
           "@type": "Organization",
           name: "iinteliprox",
           description:
@@ -124,6 +133,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           telephone: "+91 78304 34069",
           areaServed: ["India", "Worldwide"],
           founder: { "@type": "Person", name: "Gaurav Tiwari" },
+          url: SITE.url,
+          logo: absoluteUrl("/ip-logo.png"),
+        },
+        { "@type": "WebSite", name: "iinteliprox", url: SITE.url, description: SITE.description },
+        { "@type": "LocalBusiness", name: "iinteliprox", url: SITE.url, telephone: "+91 78304 34069", email: "gauravdev11@outlook.com", address: { "@type": "PostalAddress", addressLocality: "Lucknow", addressRegion: "Uttar Pradesh", addressCountry: "IN" }, areaServed: ["India", "Worldwide"] }],
         }),
       },
     ],
@@ -142,6 +156,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <CookieConsent />
         <Scripts />
       </body>
     </html>

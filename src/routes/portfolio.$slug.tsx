@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PROJECTS, projectBySlug } from "@/lib/portfolio";
-import { SITE, whatsappLink } from "@/lib/site";
+import { SITE, whatsappLink, absoluteUrl } from "@/lib/site";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
 import { ArrowLeft, ArrowUpRight, ExternalLink, MessageCircle } from "lucide-react";
@@ -22,7 +22,9 @@ export const Route = createFileRoute("/portfolio/$slug")({
         { property: "og:title", content: `${p.title} — iinteliprox Case Study` },
         { property: "og:description", content: p.summary },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: absoluteUrl(`/portfolio/${p.slug}`) },
       ],
+      links: [{ rel: "canonical", href: absoluteUrl(`/portfolio/${p.slug}`) }],
     };
   },
   notFoundComponent: NotFound,

@@ -5,6 +5,7 @@ import { SectionCTA } from "@/components/section-cta";
 import { SERVICES_DATA } from "@/lib/services-data";
 import { ArrowUpRight } from "lucide-react";
 import { Toaster } from "sonner";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -22,9 +23,9 @@ export const Route = createFileRoute("/services/")({
           "AI automation, web development, mobile apps, digital marketing, SEO, UI/UX, branding and business automation services from iinteliprox.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/services" },
+      { property: "og:url", content: absoluteUrl("/services") },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/services") }],
   }),
   component: ServicesIndexPage,
 });

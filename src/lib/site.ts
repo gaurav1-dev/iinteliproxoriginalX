@@ -1,6 +1,7 @@
 // Business constants — single source of truth for contact info, CTAs and links.
 export const SITE = {
   name: "iinteliprox",
+  url: "https://iinteliprox.com",
   fullName: "iinteliprox — AI Automation & Digital Growth",
   tagline: "Intelligence, in motion.",
   description:
@@ -32,6 +33,8 @@ export const SITE = {
     github: "#",
   },
 } as const;
+
+export const absoluteUrl = (path = "/") => new URL(path, SITE.url).toString();
 
 export const WHATSAPP_DEFAULT_MESSAGE =
   "Hello iinteliprox, I visited your website and I'm interested in your services. Can we discuss my project?";

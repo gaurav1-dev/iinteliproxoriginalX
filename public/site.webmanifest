@@ -1,0 +1,9 @@
+{
+  "name": "iinteliprox — AI Automation & Digital Growth",
+  "short_name": "iinteliprox",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fefdfc",
+  "theme_color": "#e88aab",
+  "icons": [{ "src": "/ip-logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }]
+}

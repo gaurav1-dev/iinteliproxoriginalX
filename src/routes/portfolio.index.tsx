@@ -4,6 +4,7 @@ import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
 import { SectionCTA } from "@/components/section-cta";
 import { Portfolio } from "@/components/sections/portfolio";
 import { Toaster } from "sonner";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/portfolio/")({
   head: () => ({
@@ -21,9 +22,9 @@ export const Route = createFileRoute("/portfolio/")({
           "Case studies of web development, AI automation, e-commerce, SaaS and design work by iinteliprox.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/portfolio" },
+      { property: "og:url", content: absoluteUrl("/portfolio") },
     ],
-    links: [{ rel: "canonical", href: "/portfolio" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/portfolio") }],
   }),
   component: PortfolioPage,
 });

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
-import { SITE, whatsappLink } from "@/lib/site";
+import { SITE, whatsappLink, absoluteUrl } from "@/lib/site";
 import { Calendar, MessageCircle, Mail, ArrowUpRight } from "lucide-react";
 import { Toaster } from "sonner";
 
@@ -48,12 +48,12 @@ export const Route = createFileRoute("/founder")({
           "Full-stack web developer and AI automation expert. Founder of iinteliprox — Lucknow, India.",
       },
       { property: "og:type", content: "profile" },
-      { property: "og:url", content: "/founder" },
-      { property: "og:image", content: FOUNDER_PHOTO },
+      { property: "og:url", content: absoluteUrl("/founder") },
+      { property: "og:image", content: absoluteUrl(FOUNDER_PHOTO) },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: FOUNDER_PHOTO },
+      { name: "twitter:image", content: absoluteUrl(FOUNDER_PHOTO) },
     ],
-    links: [{ rel: "canonical", href: "/founder" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/founder") }],
     scripts: [
       {
         type: "application/ld+json",

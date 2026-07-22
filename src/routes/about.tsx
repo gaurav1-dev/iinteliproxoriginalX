@@ -5,6 +5,7 @@ import { SectionCTA } from "@/components/section-cta";
 import { SERVICES_DATA } from "@/lib/services-data";
 import { ArrowUpRight } from "lucide-react";
 import { Toaster } from "sonner";
+import { absoluteUrl } from "@/lib/site";
 
 const VALUES = [
   { t: "Client-first", d: "We win when you win. Every decision is filtered through the outcome for your business." },
@@ -41,9 +42,9 @@ export const Route = createFileRoute("/about")({
           "Story, mission, values, team and technology behind iinteliprox — an AI-first agency based in Lucknow, India serving clients worldwide.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: absoluteUrl("/about") },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/about") }],
     scripts: [
       {
         type: "application/ld+json",

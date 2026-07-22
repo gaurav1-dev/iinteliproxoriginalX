@@ -93,8 +93,8 @@ export function SiteFooter() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} iinteliprox. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link to="/" className="hover:text-foreground">Privacy Policy</Link>
-            <Link to="/" className="hover:text-foreground">Terms of Service</Link>
+            <Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-foreground">Terms of Service</Link>
           </div>
         </div>
       </div>

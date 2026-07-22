@@ -1,2 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /_server/
+Disallow: /api/
+
+Sitemap: https://iinteliprox.com/sitemap.xml

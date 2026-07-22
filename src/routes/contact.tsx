@@ -6,6 +6,7 @@ import { SITE } from "@/lib/site";
 import { Calendar, MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/site";
 import { Toaster } from "sonner";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -23,9 +24,9 @@ export const Route = createFileRoute("/contact")({
           "Book an appointment, WhatsApp or email iinteliprox. AI automation, web development, digital marketing agency in Lucknow, India.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: absoluteUrl("/contact") },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
     scripts: [
       {
         type: "application/ld+json",

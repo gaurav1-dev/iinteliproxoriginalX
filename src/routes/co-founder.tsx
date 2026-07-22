@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
-import { SITE, whatsappLink } from "@/lib/site";
+import { SITE, whatsappLink, absoluteUrl } from "@/lib/site";
 import { Calendar, MessageCircle, Mail, ArrowUpRight } from "lucide-react";
 import { Toaster } from "sonner";
 
@@ -30,12 +30,12 @@ export const Route = createFileRoute("/co-founder")({
           "Co-Founder & Data Analytics Specialist at iinteliprox. Business intelligence, dashboards and data visualization.",
       },
       { property: "og:type", content: "profile" },
-      { property: "og:url", content: "/co-founder" },
-      { property: "og:image", content: "/images/cofounder.jpg" },
+      { property: "og:url", content: absoluteUrl("/co-founder") },
+      { property: "og:image", content: absoluteUrl("/images/cofounder.jpg") },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/images/cofounder.jpg" },
+      { name: "twitter:image", content: absoluteUrl("/images/cofounder.jpg") },
     ],
-    links: [{ rel: "canonical", href: "/co-founder" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/co-founder") }],
     scripts: [
       {
         type: "application/ld+json",

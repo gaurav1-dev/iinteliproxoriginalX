@@ -3,7 +3,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
 import { SectionCTA } from "@/components/section-cta";
 import { serviceBySlug, SERVICES_DATA, type Service } from "@/lib/services-data";
-import { SITE, whatsappLink } from "@/lib/site";
+import { SITE, whatsappLink, absoluteUrl } from "@/lib/site";
 import {
   Accordion,
   AccordionContent,
@@ -37,12 +37,12 @@ export const Route = createFileRoute("/services/$slug")({
         { property: "og:title", content: s.seoTitle },
         { property: "og:description", content: s.seoDescription },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: `/services/${s.slug}` },
+        { property: "og:url", content: absoluteUrl(`/services/${s.slug}`) },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: s.seoTitle },
         { name: "twitter:description", content: s.seoDescription },
       ],
-      links: [{ rel: "canonical", href: `/services/${s.slug}` }],
+      links: [{ rel: "canonical", href: absoluteUrl(`/services/${s.slug}`) }],
       scripts: [
         {
           type: "application/ld+json",
@@ -293,4 +293,3 @@ function ServiceDetailPage() {
     </div>
   );
 }
-

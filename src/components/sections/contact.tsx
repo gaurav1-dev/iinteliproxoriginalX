@@ -17,6 +17,7 @@ const schema = z.object({
   service: z.string().min(1, "Please pick a service"),
   budget: z.string().min(1, "Please pick a budget range"),
   details: z.string().trim().min(10, "Please share a few details").max(2000),
+  website: z.string().max(0).optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -41,10 +42,12 @@ export function Contact() {
     defaultValues: {
       fullName: "", company: "", email: "", phone: "",
       country: "", service: "", budget: "", details: "",
+      website: "",
     },
   });
 
   const onSubmit = (data: FormValues) => {
+    if (data.website) return;
     setSubmitting(true);
     const message = [
       "New project inquiry via iinteliprox.com",
@@ -144,6 +147,10 @@ export function Contact() {
           className="lg:col-span-7 card-surface p-8 md:p-10"
           noValidate
         >
+          <div className="sr-only" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input id="website" tabIndex={-1} autoComplete="off" {...register("website")} />
+          </div>
           <h3 className="font-display text-2xl">Inquire about a project</h3>
           <p className="text-sm text-muted-foreground mt-2">
             Submitting delivers your inquiry to our team on WhatsApp with every
@@ -153,8 +160,8 @@ export function Contact() {
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             <div className="sm:col-span-1">
               <label className={labelCls} htmlFor="fullName">Full Name *</label>
-              <input id="fullName" autoComplete="name" className={inputCls} {...register("fullName")} />
-              {errors.fullName && <p className="text-xs text-destructive mt-1">{errors.fullName.message}</p>}
+              <input id="fullName" autoComplete="name" aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? "fullName-error" : undefined} className={inputCls} {...register("fullName")} />
+              {errors.fullName && <p id="fullName-error" role="alert" className="text-xs text-destructive mt-1">{errors.fullName.message}</p>}
             </div>
             <div className="sm:col-span-1">
               <label className={labelCls} htmlFor="company">Company Name</label>
@@ -162,8 +169,8 @@ export function Contact() {
             </div>
             <div className="sm:col-span-1">
               <label className={labelCls} htmlFor="email">Email Address *</label>
-              <input id="email" type="email" autoComplete="email" className={inputCls} {...register("email")} />
-              {errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}
+              <input id="email" type="email" autoComplete="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} className={inputCls} {...register("email")} />
+              {errors.email && <p id="email-error" role="alert" className="text-xs text-destructive mt-1">{errors.email.message}</p>}
             </div>
             <div className="sm:col-span-1">
               <label className={labelCls} htmlFor="phone">Phone Number *</label>
@@ -208,7 +215,7 @@ export function Contact() {
           </button>
           <p className="text-xs text-muted-foreground mt-3">
             By submitting, you&apos;ll be redirected to WhatsApp with your inquiry
-            pre-filled to {SITE.whatsapp.display}.
+            pre-filled to {SITE.whatsapp.display}. See our <a href="/privacy" className="underline underline-offset-2 hover:text-foreground">Privacy Policy</a>.
           </p>
         </form>
       </div>

@@ -14,7 +14,9 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CoFounderRouteImport } from './routes/co-founder'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FounderRouteImport } from './routes/founder'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
 import { Route as PortfolioSlugRouteImport } from './routes/portfolio.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -45,9 +47,19 @@ const FounderRoute = FounderRouteImport.update({
   path: '/founder',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
@@ -77,7 +89,9 @@ export interface FileRoutesByFullPath {
   '/co-founder': typeof CoFounderRoute
   '/contact': typeof ContactRoute
   '/founder': typeof FounderRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/portfolio/': typeof PortfolioIndexRoute
@@ -89,7 +103,9 @@ export interface FileRoutesByTo {
   '/co-founder': typeof CoFounderRoute
   '/contact': typeof ContactRoute
   '/founder': typeof FounderRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/portfolio': typeof PortfolioIndexRoute
@@ -102,7 +118,9 @@ export interface FileRoutesById {
   '/co-founder': typeof CoFounderRoute
   '/contact': typeof ContactRoute
   '/founder': typeof FounderRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/portfolio/': typeof PortfolioIndexRoute
@@ -116,7 +134,9 @@ export interface FileRouteTypes {
     | '/co-founder'
     | '/contact'
     | '/founder'
+    | '/privacy'
     | '/sitemap.xml'
+    | '/terms'
     | '/portfolio/$slug'
     | '/services/$slug'
     | '/portfolio/'
@@ -128,7 +148,9 @@ export interface FileRouteTypes {
     | '/co-founder'
     | '/contact'
     | '/founder'
+    | '/privacy'
     | '/sitemap.xml'
+    | '/terms'
     | '/portfolio/$slug'
     | '/services/$slug'
     | '/portfolio'
@@ -140,7 +162,9 @@ export interface FileRouteTypes {
     | '/co-founder'
     | '/contact'
     | '/founder'
+    | '/privacy'
     | '/sitemap.xml'
+    | '/terms'
     | '/portfolio/$slug'
     | '/services/$slug'
     | '/portfolio/'
@@ -153,7 +177,9 @@ export interface RootRouteChildren {
   CoFounderRoute: typeof CoFounderRoute
   ContactRoute: typeof ContactRoute
   FounderRoute: typeof FounderRoute
+  PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
   PortfolioSlugRoute: typeof PortfolioSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   PortfolioIndexRoute: typeof PortfolioIndexRoute
@@ -197,11 +223,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FounderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio/': {
@@ -241,7 +281,9 @@ const rootRouteChildren: RootRouteChildren = {
   CoFounderRoute: CoFounderRoute,
   ContactRoute: ContactRoute,
   FounderRoute: FounderRoute,
+  PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
   PortfolioSlugRoute: PortfolioSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   PortfolioIndexRoute: PortfolioIndexRoute,

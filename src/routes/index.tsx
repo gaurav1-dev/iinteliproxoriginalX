@@ -7,6 +7,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
 import { LoadingSplash } from "@/components/loading-splash";
 import { Toaster } from "sonner";
+import { absoluteUrl } from "@/lib/site";
 
 const HOME_TITLE =
   "AI Automation, Web Development & Digital Marketing Agency | iinteliprox";
@@ -26,12 +27,12 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: HOME_TITLE },
       { property: "og:description", content: HOME_DESC },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: absoluteUrl() },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: HOME_TITLE },
       { name: "twitter:description", content: HOME_DESC },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: absoluteUrl() }],
   }),
   component: HomePage,
 });
