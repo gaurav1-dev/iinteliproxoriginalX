@@ -84,6 +84,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "iinteliprox helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide.",
       },
       { name: "author", content: "iinteliprox" },
+      {
+  name: "google-site-verification",
+  content: "dpeZSdprhqXw8WrEj85NmFBIxeQjTOIPGmtcHy_coIc",
+},
       { property: "og:site_name", content: "iinteliprox" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE.url },
