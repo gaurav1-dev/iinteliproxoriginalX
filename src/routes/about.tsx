@@ -162,19 +162,11 @@ function AboutPage() {
             <h2 className="font-display text-3xl sm:text-5xl mt-4 tracking-tight max-w-3xl">
               Leadership
             </h2>
-            <div className="mt-14 grid gap-6 sm:grid-cols-2">
-              <Link to="/founder" className="group card-surface p-8 hover:border-brand/40 transition-colors flex items-center justify-between gap-6">
+            <div className="mt-14">
+              <Link to="/team" className="group card-surface p-8 hover:border-brand/40 transition-colors flex items-center justify-between gap-6">
                 <div>
                   <div className="eyebrow">Founder & CEO</div>
-                  <h3 className="font-display text-3xl mt-2">Gaurav Tiwari</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Full-stack developer, AI automation expert, UI/UX designer.</p>
-                </div>
-                <ArrowUpRight className="h-6 w-6 text-muted-foreground group-hover:text-brand transition-colors shrink-0" />
-              </Link>
-              <Link to="/co-founder" className="group card-surface p-8 hover:border-brand/40 transition-colors flex items-center justify-between gap-6">
-                <div>
-                  <div className="eyebrow">Co-Founder</div>
-                  <h3 className="font-display text-3xl mt-2">Vishal Shrivastava</h3>
+                  <h3 className="font-display text-3xl mt-2">Vishal Srivastava</h3>
                   <p className="mt-2 text-sm text-muted-foreground">Data analytics & business intelligence specialist.</p>
                 </div>
                 <ArrowUpRight className="h-6 w-6 text-muted-foreground group-hover:text-brand transition-colors shrink-0" />

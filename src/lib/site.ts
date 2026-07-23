@@ -17,9 +17,9 @@ export const SITE = {
     display: "+91 78304 34069",
   },
   email: {
-    business: "gauravdev11@outlook.com",
-    backup: "gauravdev11@outlook.com",
-    team: "vsrivastava315@gmail.com",
+    business: "vsrivastava315@gmail.com",
+    backup: "vsrivastava315@gmail.com",
+    team: "gauravdev11@outlook.com",
   },
   address: {
     line1: "Hazratganj, Lucknow",
@@ -31,6 +31,7 @@ export const SITE = {
     linkedin: "#",
     twitter: "#",
     github: "#",
+    instagram: "https://instagram.com/iinteliprox",
   },
 } as const;
 

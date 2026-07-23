@@ -7,8 +7,7 @@ import { SITE } from "@/lib/site";
 const NAV = [
   { label: "Home", to: "/" as const },
   { label: "Services", to: "/services" as const },
-  { label: "Founder", to: "/founder" as const },
-  { label: "Co-Founder", to: "/co-founder" as const },
+  { label: "Team", to: "/team" as const },
   { label: "About", to: "/about" as const },
   { label: "Portfolio", to: "/portfolio" as const },
   { label: "Contact", to: "/contact" as const },

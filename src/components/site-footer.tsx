@@ -41,8 +41,7 @@ export function SiteFooter() {
           <ul className="space-y-2 text-sm">
             <li><Link to="/" className="text-muted-foreground hover:text-foreground">Home</Link></li>
             <li><Link to="/about" className="text-muted-foreground hover:text-foreground">About</Link></li>
-            <li><Link to="/founder" className="text-muted-foreground hover:text-foreground">Founder</Link></li>
-            <li><Link to="/co-founder" className="text-muted-foreground hover:text-foreground">Co-Founder</Link></li>
+            <li><Link to="/team" className="text-muted-foreground hover:text-foreground">Team</Link></li>
             <li><Link to="/portfolio" className="text-muted-foreground hover:text-foreground">Portfolio</Link></li>
             <li><Link to="/contact" className="text-muted-foreground hover:text-foreground">Contact</Link></li>
           </ul>
