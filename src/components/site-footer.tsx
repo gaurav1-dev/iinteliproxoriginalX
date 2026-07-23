@@ -71,13 +71,8 @@ export function SiteFooter() {
             {SITE.address.line2}
           </p>
           <p className="mt-4 text-sm">
-            <a className="hover:text-foreground text-muted-foreground" href={`mailto:${SITE.email.business}`}>
-              {SITE.email.business}
-            </a>
-          </p>
-          <p className="mt-1 text-sm">
-            <a className="hover:text-foreground text-muted-foreground" href={`mailto:${SITE.email.team}`}>
-              {SITE.email.team}
+            <a className="hover:text-foreground text-muted-foreground" href="mailto:intelepro@gmail.com">
+              intelepro@gmail.com
             </a>
           </p>
           <p className="mt-1 text-sm">

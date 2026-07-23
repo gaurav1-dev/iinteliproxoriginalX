@@ -43,7 +43,7 @@ export const Route = createFileRoute("/team")({
   head: () => ({
     meta: [
       { title: "Team | iinteliprox" },
-      { name: "description", content: "Meet Vishal Srivastava, Founder & CEO, and Gaurav Tiwari, Co-Founder & CTO, of iinteliprox." },
+      { name: "description", content: "Meet Vishal Srivastava, Founder & CEO, and Gaurav Tiwari, Co-Founder, of iinteliprox." },
       { property: "og:title", content: "Team | iinteliprox" },
       { property: "og:description", content: "Meet the leadership team behind iinteliprox." },
       { property: "og:type", content: "website" },
@@ -57,7 +57,7 @@ export const Route = createFileRoute("/team")({
       "@context": "https://schema.org", "@type": "ItemList", name: "iinteliprox Team",
       itemListElement: [
         { "@type": "Person", position: 1, name: "Vishal Srivastava", jobTitle: "Founder & CEO", email: "vsrivastava315@gmail.com", image: absoluteUrl(VISHAL_PHOTO), alumniOf: ["University of Petroleum and Energy Studies (UPES)", "Woolf University, Malta"], worksFor: { "@type": "Organization", name: "iinteliprox" } },
-        { "@type": "Person", position: 2, name: "Gaurav Tiwari", jobTitle: "Co-Founder & CTO", email: "gauravdev11@outlook.com", image: absoluteUrl(GAURAV_PHOTO), worksFor: { "@type": "Organization", name: "iinteliprox" } },
+        { "@type": "Person", position: 2, name: "Gaurav Tiwari", jobTitle: "Co-Founder", email: "gauravdev11@outlook.com", image: absoluteUrl(GAURAV_PHOTO), worksFor: { "@type": "Organization", name: "iinteliprox" } },
       ],
     }) }],
   }),
