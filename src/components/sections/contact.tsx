@@ -72,61 +72,61 @@ export function Contact() {
   };
 
   const inputCls =
-    "w-full bg-background border border-hairline rounded-lg px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand transition";
+    "w-full bg-background border border-hairline rounded-xl px-4 py-3 min-h-[48px] text-base sm:text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand transition";
   const labelCls =
     "block font-mono text-[10px] tracking-[0.24em] uppercase text-muted-foreground mb-2";
 
   return (
-    <section id="contact" className="py-24 sm:py-32 hairline-t">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 grid gap-12 lg:grid-cols-12">
+    <section id="contact" className="py-16 sm:py-24 md:py-32 hairline-t">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <BrandLogo size={30} className="mb-6" />
           <div className="eyebrow">Get in touch</div>
-          <h2 className="font-display text-3xl sm:text-5xl mt-4 tracking-tight">
+          <h2 className="font-display text-2xl xs:text-3xl sm:text-5xl mt-3 sm:mt-4 tracking-tight">
             Let&apos;s build something intelligent
           </h2>
-          <p className="mt-6 text-muted-foreground leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-muted-foreground leading-relaxed">
             iinteliprox is headquartered in Lucknow, India. Fill out the form or
             reach us directly — every submission arrives on our team WhatsApp
             instantly.
           </p>
 
-          <ul className="mt-10 space-y-6">
+          <ul className="mt-8 sm:mt-10 space-y-6">
             <li className="flex items-start gap-4">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-surface-2">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-2 border border-hairline">
                 <Phone className="h-4 w-4 text-brand" />
               </span>
               <div>
                 <div className="eyebrow">Call us</div>
-                <a href={SITE.phone.primaryHref} className="block mt-1 hover:text-brand">
+                <a href={SITE.phone.primaryHref} className="block mt-1 hover:text-brand text-sm sm:text-base font-medium">
                   {SITE.phone.primary}
                 </a>
-                <a href={`https://wa.me/${SITE.whatsapp.number}`} target="_blank" rel="noreferrer" className="block text-sm text-muted-foreground hover:text-foreground">
+                <a href={`https://wa.me/${SITE.whatsapp.number}`} target="_blank" rel="noreferrer" className="block text-xs sm:text-sm text-muted-foreground hover:text-foreground">
                   WhatsApp {SITE.whatsapp.display}
                 </a>
               </div>
             </li>
             <li className="flex items-start gap-4">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-surface-2">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-2 border border-hairline">
                 <Mail className="h-4 w-4 text-brand" />
               </span>
               <div>
                 <div className="eyebrow">Email us</div>
-                <a href={`mailto:${SITE.email.business}`} className="block mt-1 hover:text-brand">
+                <a href={`mailto:${SITE.email.business}`} className="block mt-1 hover:text-brand text-sm sm:text-base font-medium">
                   {SITE.email.business}
                 </a>
-                <a href={`mailto:${SITE.email.team}`} className="block text-sm text-muted-foreground hover:text-foreground">
+                <a href={`mailto:${SITE.email.team}`} className="block text-xs sm:text-sm text-muted-foreground hover:text-foreground">
                   {SITE.email.team}
                 </a>
               </div>
             </li>
             <li className="flex items-start gap-4">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-surface-2">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-2 border border-hairline">
                 <MapPin className="h-4 w-4 text-brand" />
               </span>
               <div>
                 <div className="eyebrow">Location</div>
-                <div className="mt-1">{SITE.address.full}</div>
+                <div className="mt-1 text-sm sm:text-base">{SITE.address.full}</div>
               </div>
             </li>
           </ul>
@@ -135,7 +135,7 @@ export function Contact() {
             href={whatsappLink("Hi iinteliprox, I'd like to discuss a project.")}
             target="_blank"
             rel="noreferrer"
-            className="btn-primary mt-10"
+            className="btn-primary mt-8 sm:mt-10 w-full sm:w-auto min-h-[48px]"
           >
             <MessageCircle className="h-4 w-4" />
             Chat on WhatsApp
@@ -144,7 +144,7 @@ export function Contact() {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="lg:col-span-7 card-surface p-8 md:p-10"
+          className="lg:col-span-7 card-surface p-6 sm:p-8 md:p-10"
           noValidate
         >
           <div className="sr-only" aria-hidden="true">
@@ -209,7 +209,7 @@ export function Contact() {
             </div>
           </div>
 
-          <button type="submit" disabled={submitting} className="btn-primary mt-8 w-full sm:w-auto">
+          <button type="submit" disabled={submitting} className="btn-primary mt-8 w-full sm:w-auto min-h-[50px]">
             <MessageCircle className="h-4 w-4" />
             Send via WhatsApp
           </button>

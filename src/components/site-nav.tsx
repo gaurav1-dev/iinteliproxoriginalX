@@ -25,16 +25,28 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* Lock body scroll when mobile menu is open */
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+    return () => {
+      document.body.classList.remove("menu-open");
+    };
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-xl bg-background/85 border-b border-hairline"
+        scrolled || open
+          ? "backdrop-blur-xl bg-background/90 border-b border-hairline"
           : "bg-background/60 backdrop-blur-sm"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link to="/" className="flex items-center shrink-0" aria-label="iinteliprox — home">
+        <Link to="/" className="flex items-center shrink-0 min-h-[44px] min-w-[44px]" aria-label="iinteliprox — home">
           <BrandLogo size={32} />
         </Link>
 
@@ -65,29 +77,29 @@ export function SiteNav() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle navigation"
+            aria-label="Toggle navigation menu"
             aria-expanded={open}
-            className="lg:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border border-hairline"
+            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-hairline bg-surface/80 text-foreground transition-colors hover:bg-surface-2 active:scale-95"
           >
-            <span className="sr-only">Menu</span>
-            <div className="flex flex-col gap-1.5">
-              <span className="block h-px w-4 bg-foreground" />
-              <span className="block h-px w-4 bg-foreground" />
+            <span className="sr-only">Toggle navigation</span>
+            <div className="flex flex-col gap-1.5 items-center justify-center">
+              <span className={`block h-0.5 w-4 bg-foreground transition-transform duration-200 ${open ? "rotate-45 translate-y-1" : ""}`} />
+              <span className={`block h-0.5 w-4 bg-foreground transition-transform duration-200 ${open ? "-rotate-45 -translate-y-1" : ""}`} />
             </div>
           </button>
         </div>
       </div>
 
       {open ? (
-        <div className="lg:hidden border-t border-hairline bg-background/95 backdrop-blur-xl">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-col gap-1">
+        <div className="lg:hidden border-t border-hairline bg-background/95 backdrop-blur-xl transition-all duration-200">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-col gap-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
             {NAV.map((n) => (
               <Link
                 key={n.label}
                 to={n.to}
                 activeOptions={{ exact: n.to === "/" }}
                 onClick={() => setOpen(false)}
-                className="py-2 text-sm text-muted-foreground hover:text-foreground data-[status=active]:text-foreground data-[status=active]:font-medium"
+                className="flex items-center min-h-[44px] px-3 rounded-lg text-base text-muted-foreground hover:text-foreground hover:bg-surface-2 transition-all data-[status=active]:text-brand data-[status=active]:font-semibold data-[status=active]:bg-surface-2/60"
               >
                 {n.label}
               </Link>
@@ -97,9 +109,9 @@ export function SiteNav() {
               target="_blank"
               rel="noreferrer"
               onClick={() => setOpen(false)}
-              className="btn-primary mt-3 !py-2 !text-xs"
+              className="btn-primary mt-3 w-full !min-h-[48px] !text-sm"
             >
-              <Calendar className="h-3.5 w-3.5" />
+              <Calendar className="h-4 w-4" />
               Book Appointment
             </a>
           </div>
@@ -108,3 +120,4 @@ export function SiteNav() {
     </header>
   );
 }
+

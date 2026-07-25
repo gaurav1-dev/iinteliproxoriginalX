@@ -518,11 +518,11 @@ export function ChatBot() {
 
         #iip-launch-btn {
           position: fixed;
-          bottom: 88px;
-          right: 24px;
+          bottom: max(1.5rem, calc(1rem + env(safe-area-inset-bottom, 0px)));
+          right: max(1.5rem, calc(1rem + env(safe-area-inset-right, 0px)));
           z-index: 9999;
-          width: 60px;
-          height: 60px;
+          width: 58px;
+          height: 58px;
           border-radius: 50%;
           border: none;
           cursor: pointer;
@@ -561,7 +561,7 @@ export function ChatBot() {
         }
 
         #iip-launch-btn:hover {
-          transform: scale(1.1);
+          transform: scale(1.08);
           animation-play-state: paused;
           box-shadow:
             0 0 0 1px rgba(255,255,255,0.3),
@@ -604,8 +604,8 @@ export function ChatBot() {
         /* Chat panel */
         #iip-chat-panel {
           position: fixed;
-          bottom: 164px;
-          right: 24px;
+          bottom: max(5.5rem, calc(5rem + env(safe-area-inset-bottom, 0px)));
+          right: max(1.5rem, calc(1rem + env(safe-area-inset-right, 0px)));
           z-index: 9998;
           width: 380px;
           height: 580px;
@@ -798,18 +798,18 @@ export function ChatBot() {
 
         @media (max-width: 480px) {
           #iip-launch-btn {
-            bottom: 80px;
-            right: 16px;
-            width: 54px;
-            height: 54px;
+            bottom: max(1.25rem, calc(1rem + env(safe-area-inset-bottom, 0px)));
+            right: max(1rem, calc(0.75rem + env(safe-area-inset-right, 0px)));
+            width: 52px;
+            height: 52px;
           }
           #iip-chat-panel {
-            bottom: 150px;
+            bottom: max(4.75rem, calc(4.25rem + env(safe-area-inset-bottom, 0px)));
             right: 8px;
             left: 8px;
             width: auto;
-            height: 75vh;
-            max-height: 560px;
+            height: 72vh;
+            max-height: 520px;
           }
         }
       `}</style>
