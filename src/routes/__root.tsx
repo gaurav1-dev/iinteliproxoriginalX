@@ -84,17 +84,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "iinteliProX helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide.",
       },
-<<<<<<< HEAD
-      { name: "author", content: "iinteliprox" },
-      {
-  name: "google-site-verification",
-  content: "dpeZSdprhqXw8WrEj85NmFBIxeQjTOIPGmtcHy_coIc",
-},
-      { property: "og:site_name", content: "iinteliprox" },
-=======
       { name: "author", content: "iinteliProX" },
+      {
+        name: "google-site-verification",
+        content: "dpeZSdprhqXw8WrEj85NmFBIxeQjTOIPGmtcHy_coIc",
+      },
       { property: "og:site_name", content: "iinteliProX" },
->>>>>>> 644eb2e (Update AI chatbot knowledge base, sales rules, services, and website content)
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE.url },
       { name: "twitter:card", content: "summary_large_image" },
