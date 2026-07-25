@@ -32,7 +32,10 @@ export function Portfolio() {
                   <img
                     src={p.image}
                     alt={`Homepage screenshot of ${p.title}`}
+                    width={1400}
+                    height={900}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.28em] uppercase text-foreground/80 bg-background/85 backdrop-blur-sm rounded-full px-2.5 py-1 border border-hairline">

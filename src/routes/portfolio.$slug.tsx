@@ -128,6 +128,10 @@ function ProjectPage() {
               <img
                 src={project.image}
                 alt={`${project.title} homepage screenshot`}
+                width={1400}
+                height={900}
+                loading="eager"
+                decoding="async"
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -176,7 +180,7 @@ function ProjectPage() {
                   <div className="eyebrow">Gallery</div>
                   <div className="mt-4 grid gap-4">
                     {project.screenshots.map((s, i) => (
-                      <img key={i} src={s} alt={`${project.title} screenshot ${i + 1}`} className="rounded-xl border border-hairline" />
+                      <img key={i} src={s} alt={`${project.title} screenshot ${i + 1}`} width={1400} height={900} loading="lazy" decoding="async" className="rounded-xl border border-hairline" />
                     ))}
                   </div>
                 </section>

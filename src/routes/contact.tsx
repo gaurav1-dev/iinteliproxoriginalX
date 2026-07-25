@@ -11,17 +11,17 @@ import { absoluteUrl } from "@/lib/site";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact iinteliprox | Book Appointment, WhatsApp & Email" },
+      { title: "Contact iinteliProX | Book Appointment, WhatsApp & Email" },
       {
         name: "description",
         content:
-          "Contact iinteliprox — book a free strategy call, chat on WhatsApp or send us a message. Based in Hazratganj, Lucknow, India. Serving clients worldwide.",
+          "Contact iinteliProX — book a free strategy call, chat on WhatsApp or send us a message. Based in Lucknow, Uttar Pradesh — Pan India. Serving clients worldwide.",
       },
-      { property: "og:title", content: "Contact iinteliprox" },
+      { property: "og:title", content: "Contact iinteliProX" },
       {
         property: "og:description",
         content:
-          "Book an appointment, WhatsApp or email iinteliprox. AI automation, web development, digital marketing agency in Lucknow, India.",
+          "Book an appointment, WhatsApp or email iinteliProX. AI automation, web development, digital marketing agency in Lucknow, India.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: absoluteUrl("/contact") },
@@ -33,15 +33,15 @@ export const Route = createFileRoute("/contact")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          name: "Contact iinteliprox",
+          name: "Contact iinteliProX",
           mainEntity: {
             "@type": "Organization",
-            name: "iinteliprox",
+            name: "iinteliProX",
             email: SITE.email.business,
             telephone: SITE.phone.primary,
             address: {
               "@type": "PostalAddress",
-              streetAddress: "Hazratganj",
+              streetAddress: "Lucknow",
               addressLocality: "Lucknow",
               addressRegion: "Uttar Pradesh",
               addressCountry: "IN",

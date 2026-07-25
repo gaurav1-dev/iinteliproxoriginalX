@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SITE, absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({ meta: [{ title: "Privacy Policy | iinteliprox" }, { name: "description", content: "How iinteliprox handles personal information, cookies and inquiries." }, { property: "og:url", content: absoluteUrl("/privacy") }], links: [{ rel: "canonical", href: absoluteUrl("/privacy") }] }),
+  head: () => ({ meta: [{ title: "Privacy Policy | iinteliprox" }, { name: "description", content: "How iinteliprox handles personal information, cookies and inquiries." }, { property: "og:title", content: "Privacy Policy | iinteliprox" }, { property: "og:description", content: "How iinteliprox handles personal information, cookies and inquiries." }, { property: "og:type", content: "website" }, { property: "og:url", content: absoluteUrl("/privacy") }, { name: "twitter:card", content: "summary_large_image" }, { name: "twitter:title", content: "Privacy Policy | iinteliprox" }, { name: "twitter:description", content: "How iinteliprox handles personal information, cookies and inquiries." }], links: [{ rel: "canonical", href: absoluteUrl("/privacy") }] }),
   component: PrivacyPage,
 });
 

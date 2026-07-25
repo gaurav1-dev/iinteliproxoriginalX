@@ -19,16 +19,28 @@ const VISHAL_EXPERTISE = [
   },
   {
     title: "Dashboard Development",
-    desc: "Interactive dashboards in Power BI, Metabase and custom-built stacks.",
+    desc: "Interactive dashboards in Tableau, Power BI and custom-built stacks.",
   },
   {
     title: "Data Visualization",
     desc: "Clear, honest charts that tell the story hidden inside the data.",
   },
-  { title: "SQL & Modeling", desc: "Data warehousing, transformations and analytical modeling." },
+  { title: "SQL & Data Modeling", desc: "Data warehousing, transformations and analytical modeling." },
   {
     title: "Market Analysis",
     desc: "Competitive intelligence and market sizing for strategic decisions.",
+  },
+  {
+    title: "Lead Generation",
+    desc: "Building and operating systems that consistently fill the top of the sales funnel.",
+  },
+  {
+    title: "Product Management",
+    desc: "Translating business goals into prioritized roadmaps and shipped features.",
+  },
+  {
+    title: "Brand Building",
+    desc: "Positioning, storytelling and identity systems that make companies memorable.",
   },
 ];
 
@@ -171,14 +183,14 @@ const GAURAV_JOURNEY = [
 export const Route = createFileRoute("/team")({
   head: () => ({
     meta: [
-      { title: "Team | iinteliprox" },
+      { title: "Team | iinteliProX" },
       {
         name: "description",
         content:
-          "Meet Vishal Srivastava, Founder & CEO, and Gaurav Tiwari, Co-Founder, of iinteliprox.",
+          "Meet Vishal Srivastava, Founder & CEO, and Gaurav Tiwari, Co-Founder, of iinteliProX.",
       },
-      { property: "og:title", content: "Team | iinteliprox" },
-      { property: "og:description", content: "Meet the leadership team behind iinteliprox." },
+      { property: "og:title", content: "Team | iinteliProX" },
+      { property: "og:description", content: "Meet the leadership team behind iinteliProX." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: absoluteUrl("/team") },
       { property: "og:image", content: absoluteUrl(VISHAL_PHOTO) },
@@ -192,7 +204,7 @@ export const Route = createFileRoute("/team")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: "iinteliprox Team",
+          name: "iinteliProX Team",
           itemListElement: [
             {
               "@type": "Person",
@@ -205,7 +217,7 @@ export const Route = createFileRoute("/team")({
                 "University of Petroleum and Energy Studies (UPES)",
                 "Woolf University, Malta",
               ],
-              worksFor: { "@type": "Organization", name: "iinteliprox" },
+              worksFor: { "@type": "Organization", name: "iinteliProX" },
             },
             {
               "@type": "Person",
@@ -214,7 +226,7 @@ export const Route = createFileRoute("/team")({
               jobTitle: "Co-Founder",
               email: "gauravdev11@outlook.com",
               image: absoluteUrl(GAURAV_PHOTO),
-              worksFor: { "@type": "Organization", name: "iinteliprox" },
+              worksFor: { "@type": "Organization", name: "iinteliProX" },
             },
           ],
         }),
@@ -293,12 +305,19 @@ function TeamPage() {
                 </h2>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {[
-                    "Data Analytics",
-                    "Business Intelligence",
+                    "Tableau",
                     "Power BI",
                     "SQL",
-                    "Dashboards",
-                    "Market Analysis",
+                    "Advanced Excel",
+                    "Data Analysis",
+                    "Data Visualization",
+                    "Google Colab",
+                    "Jupyter Notebook",
+                    "Business Analysis",
+                    "Lead Generation",
+                    "SEO",
+                    "Product Management",
+                    "Brand Building",
                   ].map((item) => (
                     <span
                       key={item}
@@ -309,10 +328,11 @@ function TeamPage() {
                   ))}
                 </div>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  I lead data analytics at iinteliprox â€” designing dashboards, reporting systems
+                  I lead data analytics at iinteliProX — designing dashboards, reporting systems
                   and business intelligence infrastructures that turn scattered operational data
-                  into confident decisions. From SQL warehouses to Power BI, my job is making the
-                  numbers make sense.
+                  into confident decisions. From SQL and Power BI to Tableau and Google Colab,
+                  my job is making the numbers make sense — and translating insights into
+                  growth through lead generation, brand building and product strategy.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-3">
                   <a href={`mailto:${SITE.email.business}`} className="btn-primary">
@@ -321,7 +341,7 @@ function TeamPage() {
                   </a>
                   <a
                     href={whatsappLink(
-                      "Hi iinteliprox, I'd like to discuss data analytics and BI.",
+                      "Hi iinteliProX, I'd like to discuss data analytics and BI.",
                     )}
                     target="_blank"
                     rel="noreferrer"
@@ -336,7 +356,7 @@ function TeamPage() {
                 <div className="relative mx-auto aspect-[4/5] w-full max-w-lg overflow-hidden rounded-3xl border border-hairline bg-surface-2 shadow-[0_20px_60px_-20px_oklch(0.18_0.015_275/25%)]">
                   <img
                     src={VISHAL_PHOTO}
-                    alt="Vishal Srivastava, Founder & CEO of iinteliprox"
+                    alt="Vishal Srivastava, Founder & CEO of iinteliProX"
                     className="h-full w-full object-cover"
                     width={800}
                     height={1000}
@@ -405,7 +425,7 @@ function TeamPage() {
                 </div>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
                   I build custom websites, mobile apps and AI automations for businesses that want
-                  to grow. As co-founder of iinteliprox I lead engineering, design and strategy â€”
+                  to grow. As co-founder of iinteliProX I lead engineering, design and strategy —
                   pairing modern React and Node.js with production-grade AI to ship systems that
                   compound.
                 </p>
@@ -436,7 +456,7 @@ function TeamPage() {
             <section className="mt-20 border-t border-hairline pt-16">
               <div className="eyebrow">Expertise</div>
               <h3 className="mt-4 font-display text-3xl sm:text-5xl">
-                What I lead across iinteliprox
+                What I lead across iinteliProX
               </h3>
               <Expertise items={GAURAV_EXPERTISE} />
             </section>

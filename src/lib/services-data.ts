@@ -189,6 +189,23 @@ export const SERVICES_DATA: Service[] = [
     whyUs: SHARED_WHY_US,
     faqs: SHARED_FAQS,
   },
+  {
+    slug: "lead-generation",
+    name: "Lead Generation",
+    short: "B2B lead generation, cold outbound pipelines and automated prospect qualification.",
+    hero: "B2B Lead Generation & Outbound Automation",
+    seoTitle: "B2B Lead Generation Agency in Lucknow | Prospecting & Sales Pipeline | iinteliProX",
+    seoDescription: "Targeted B2B lead generation services, cold outreach automation, list building and sales qualification. Grow your customer pipeline with iinteliProX.",
+    keywords: ["Lead Generation Agency", "B2B Lead Generation", "Cold Outreach Automation", "Sales Prospecting", "Outbound Lead Gen", "Lead Generation Company Lucknow"],
+    what: "End-to-end lead generation engines combining data-driven prospecting, multi-channel outreach (Email, LinkedIn, WhatsApp) and automated lead qualification so your sales team talks only to ready buyers.",
+    why: "Without a predictable lead pipeline, revenue growth remains random. Automated lead generation ensures a continuous flow of qualified sales opportunities into your CRM every single week.",
+    who: "B2B companies, agencies, SaaS platforms and high-ticket service providers looking to predictably scale outbound sales.",
+    features: ["Target Ideal Customer Profiling", "Verified B2B Prospect Data", "Cold Email Sequences", "LinkedIn Automation", "WhatsApp Prospecting", "Lead Enrichment & Scoring", "CRM Integration", "Inbox Deliverability Setup", "A/B Copy Testing", "Monthly Pipeline Reports"],
+    process: ["ICP Alignment", "List Prospecting", "Copywriting", "Domain & Inbox Warmup", "Campaign Launch", "Qualification & Booking"],
+    technologies: ["Apollo.io", "LinkedIn Sales Navigator", "Instantly", "Smartlead", "n8n", "HubSpot", "Zapier", "OpenAI"],
+    whyUs: SHARED_WHY_US,
+    faqs: SHARED_FAQS,
+  },
 ];
 
 export const serviceBySlug = (slug: string) =>

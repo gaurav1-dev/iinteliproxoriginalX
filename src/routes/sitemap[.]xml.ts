@@ -2,10 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { PROJECTS } from "@/lib/portfolio";
 import { SERVICES_DATA } from "@/lib/services-data";
+import { BLOGS } from "@/lib/blogs";
 import { absoluteUrl } from "@/lib/site";
 
 type SitemapEntry = {
   path: string;
+  lastModified: string;
   changefreq: "weekly" | "monthly" | "yearly";
   priority: string;
 };
@@ -27,12 +29,14 @@ function pathFromRouteFile(file: string): string | null {
   return pathSegments.length ? `/${pathSegments.join("/")}` : "/";
 }
 
-function metadataFor(path: string): Omit<SitemapEntry, "path"> {
+function metadataFor(path: string): Omit<SitemapEntry, "path" | "lastModified"> {
   if (path === "/") return { changefreq: "weekly", priority: "1.0" };
   if (path === "/services" || path === "/portfolio") return { changefreq: "monthly", priority: "0.9" };
   if (path.startsWith("/services/")) return { changefreq: "monthly", priority: "0.8" };
   if (["/about", "/team", "/contact"].includes(path)) return { changefreq: "monthly", priority: "0.7" };
   if (path.startsWith("/portfolio/")) return { changefreq: "monthly", priority: "0.6" };
+  if (path === "/blog") return { changefreq: "weekly", priority: "0.8" };
+  if (path.startsWith("/blog/")) return { changefreq: "monthly", priority: "0.7" };
   if (["/privacy", "/terms"].includes(path)) return { changefreq: "yearly", priority: "0.4" };
   return { changefreq: "monthly", priority: "0.7" };
 }
@@ -45,15 +49,17 @@ function xmlEscape(value: string) {
 
 function buildEntries(): SitemapEntry[] {
   const staticPaths = ROUTE_FILES.map(pathFromRouteFile).filter((path): path is string => Boolean(path));
-  const dynamicPaths = [
-    ...SERVICES_DATA.map((service) => `/services/${service.slug}`),
-    ...PROJECTS.map((project) => `/portfolio/${project.slug}`),
-  ];
+  const paths = new Map<string, string>(staticPaths.map((path) => [path, LAST_MODIFIED]));
 
-  return [...new Set([...staticPaths, ...dynamicPaths])]
-    .filter((path) => path !== "/sitemap.xml")
-    .sort()
-    .map((path) => ({ path, ...metadataFor(path) }));
+  for (const service of SERVICES_DATA) paths.set(`/services/${service.slug}`, LAST_MODIFIED);
+  for (const project of PROJECTS) paths.set(`/portfolio/${project.slug}`, LAST_MODIFIED);
+  for (const article of BLOGS) paths.set(`/blog/${article.slug}`, article.updatedAt);
+
+  return [...paths]
+    .map(([path, lastModified]) => ({ path, lastModified }))
+    .filter(({ path }) => path !== "/sitemap.xml")
+    .sort((a, b) => a.path.localeCompare(b.path))
+    .map(({ path, lastModified }) => ({ path, lastModified, ...metadataFor(path) }));
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -62,7 +68,7 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: () => {
         const urls = buildEntries().map((entry) => `  <url>
     <loc>${xmlEscape(absoluteUrl(entry.path))}</loc>
-    <lastmod>${LAST_MODIFIED}</lastmod>
+    <lastmod>${entry.lastModified}</lastmod>
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
   </url>`);

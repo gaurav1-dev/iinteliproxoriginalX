@@ -182,3 +182,27 @@ export function Testimonials() {
     </section>
   );
 }
+
+export function InsightsPreview() {
+  return (
+    <section className="py-24 sm:py-32 hairline-t">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-12 md:items-end">
+        <div className="md:col-span-8">
+          <div className="eyebrow">Insights & Guides</div>
+          <h2 className="mt-4 max-w-3xl font-display text-3xl tracking-tight sm:text-5xl">
+            Practical knowledge for the next growth decision
+          </h2>
+          <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">
+            Explore clear guidance on AI automation, high-performing websites,
+            mobile products and digital transformation.
+          </p>
+        </div>
+        <div className="md:col-span-4 md:text-right">
+          <Link to="/blog" className="btn-ghost">
+            Explore insights <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

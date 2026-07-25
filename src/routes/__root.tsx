@@ -12,6 +12,7 @@ import { type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { SITE, absoluteUrl } from "@/lib/site";
 import { CookieConsent } from "@/components/cookie-consent";
+import { ChatBot } from "@/components/ChatBot";
 
 function NotFoundComponent() {
   return (
@@ -77,28 +78,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "iinteliprox — AI Automation, Web Development & Digital Marketing" },
+      { title: "iinteliProX — AI Automation, Web Development & Digital Marketing" },
       {
         name: "description",
         content:
-          "iinteliprox helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide.",
+          "iinteliProX helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide.",
       },
+<<<<<<< HEAD
       { name: "author", content: "iinteliprox" },
       {
   name: "google-site-verification",
   content: "dpeZSdprhqXw8WrEj85NmFBIxeQjTOIPGmtcHy_coIc",
 },
       { property: "og:site_name", content: "iinteliprox" },
+=======
+      { name: "author", content: "iinteliProX" },
+      { property: "og:site_name", content: "iinteliProX" },
+>>>>>>> 644eb2e (Update AI chatbot knowledge base, sales rules, services, and website content)
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE.url },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#fefdfc" },
-      { property: "og:title", content: "iinteliprox — AI Automation, Web Development & Digital Marketing" },
-      { name: "twitter:title", content: "iinteliprox — AI Automation, Web Development & Digital Marketing" },
-      { property: "og:description", content: "iinteliprox helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide." },
-      { name: "twitter:description", content: "iinteliprox helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide." },
+      { property: "og:title", content: "iinteliProX — AI Automation, Web Development & Digital Marketing" },
+      { name: "twitter:title", content: "iinteliProX — AI Automation, Web Development & Digital Marketing" },
+      { property: "og:description", content: "iinteliProX helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide." },
+      { name: "twitter:description", content: "iinteliProX helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Lucknow, India — serving worldwide." },
       { property: "og:image", content: absoluteUrl("/og-image.svg") },
-      { property: "og:image:alt", content: "iinteliprox — Intelligence, in motion." },
+      { property: "og:image:alt", content: "iinteliProX — Intelligence, in motion." },
       { name: "twitter:image", content: absoluteUrl("/og-image.svg") },
     ],
     links: [
@@ -123,12 +129,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@graph": [{
           "@type": "Organization",
-          name: "iinteliprox",
+          name: "iinteliProX",
           description:
             "AI automation, web development, mobile app development and digital marketing agency based in Lucknow, India.",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Hazratganj",
+            streetAddress: "Lucknow",
             addressLocality: "Lucknow",
             addressRegion: "Uttar Pradesh",
             addressCountry: "IN",
@@ -141,8 +147,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           logo: absoluteUrl("/ip-logo.png"),
           sameAs: ["https://instagram.com/iinteliprox"],
         },
-        { "@type": "WebSite", name: "iinteliprox", url: SITE.url, description: SITE.description },
-        { "@type": "LocalBusiness", name: "iinteliprox", url: SITE.url, telephone: "+91 78304 34069", email: "vsrivastava315@gmail.com", sameAs: ["https://instagram.com/iinteliprox"], address: { "@type": "PostalAddress", addressLocality: "Lucknow", addressRegion: "Uttar Pradesh", addressCountry: "IN" }, areaServed: ["India", "Worldwide"] }],
+        { "@type": "WebSite", name: "iinteliProX", url: SITE.url, description: SITE.description },
+        { "@type": "LocalBusiness", name: "iinteliProX", url: SITE.url, telephone: "+91 78304 34069", email: "vsrivastava315@gmail.com", sameAs: ["https://instagram.com/iinteliprox"], address: { "@type": "PostalAddress", addressLocality: "Lucknow", addressRegion: "Uttar Pradesh", addressCountry: "IN" }, areaServed: ["India", "Worldwide"] }],
         }),
       },
     ],
@@ -162,6 +168,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <body>
         {children}
         <CookieConsent />
+        <ChatBot />
         <Scripts />
       </body>
     </html>

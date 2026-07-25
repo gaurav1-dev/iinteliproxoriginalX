@@ -1,11 +1,11 @@
 // Business constants — single source of truth for contact info, CTAs and links.
 export const SITE = {
-  name: "iinteliprox",
+  name: "iinteliProX",
   url: "https://iinteliprox.com",
-  fullName: "iinteliprox — AI Automation & Digital Growth",
+  fullName: "iinteliProX — AI Automation & Digital Growth",
   tagline: "Intelligence, in motion.",
   description:
-    "iinteliprox helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Based in Lucknow, India — serving clients across India and worldwide.",
+    "iinteliProX helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Based in Lucknow, India — serving clients across India and worldwide.",
   phone: {
     primary: "+91 78304 34069",
     primaryHref: "tel:+917830434069",
@@ -22,9 +22,9 @@ export const SITE = {
     team: "gauravdev11@outlook.com",
   },
   address: {
-    line1: "Hazratganj, Lucknow",
-    line2: "Uttar Pradesh, India",
-    full: "Hazratganj, Lucknow, Uttar Pradesh, India",
+    line1: "Lucknow, Uttar Pradesh",
+    line2: "Pan India",
+    full: "Lucknow, Uttar Pradesh — Pan India",
   },
   calendly: "https://calendly.com/gauravwork/",
   social: {

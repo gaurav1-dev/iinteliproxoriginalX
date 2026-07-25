@@ -50,7 +50,7 @@ export function Contact() {
     if (data.website) return;
     setSubmitting(true);
     const message = [
-      "New project inquiry via iinteliprox.com",
+      "New project inquiry via iinteliProX.com",
       "",
       `Name: ${data.fullName}`,
       `Company: ${data.company || "—"}`,

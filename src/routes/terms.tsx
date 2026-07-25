@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SITE, absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({ meta: [{ title: "Terms of Service | iinteliprox" }, { name: "description", content: "Terms governing iinteliprox services and website use." }, { property: "og:url", content: absoluteUrl("/terms") }], links: [{ rel: "canonical", href: absoluteUrl("/terms") }] }),
+  head: () => ({ meta: [{ title: "Terms of Service | iinteliprox" }, { name: "description", content: "Terms governing iinteliprox services and website use." }, { property: "og:title", content: "Terms of Service | iinteliprox" }, { property: "og:description", content: "Terms governing iinteliprox services and website use." }, { property: "og:type", content: "website" }, { property: "og:url", content: absoluteUrl("/terms") }, { name: "twitter:card", content: "summary_large_image" }, { name: "twitter:title", content: "Terms of Service | iinteliprox" }, { name: "twitter:description", content: "Terms governing iinteliprox services and website use." }], links: [{ rel: "canonical", href: absoluteUrl("/terms") }] }),
   component: TermsPage,
 });
 

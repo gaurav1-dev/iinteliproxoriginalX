@@ -27,7 +27,7 @@ export function BrandLogo({ size = 28, withWordmark = true, className }: Props) 
           className="font-semibold tracking-tight text-foreground"
           style={{ fontSize: size * 0.62, letterSpacing: "-0.01em" }}
         >
-          iinteliprox
+          iinteliPro<span style={{ color: "var(--brand)" }}>X</span>
         </span>
       ) : null}
     </span>

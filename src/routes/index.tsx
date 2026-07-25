@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/sections/hero";
-import { Services, Process, Metrics, About, Testimonials } from "@/components/sections/content-sections";
+import { Services, Process, Metrics, About, Testimonials, InsightsPreview } from "@/components/sections/content-sections";
 import { Portfolio } from "@/components/sections/portfolio";
 import { Contact } from "@/components/sections/contact";
 import { SiteNav } from "@/components/site-nav";
@@ -50,6 +50,7 @@ function HomePage() {
         <Process />
         <Metrics />
         <Testimonials />
+        <InsightsPreview />
         <Contact />
       </main>
       <SiteFooter />

@@ -3,6 +3,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
 import { SectionCTA } from "@/components/section-cta";
 import { serviceBySlug, SERVICES_DATA, type Service } from "@/lib/services-data";
+import { BLOGS } from "@/lib/blogs";
 import { SITE, whatsappLink, absoluteUrl } from "@/lib/site";
 import {
   Accordion,
@@ -38,9 +39,11 @@ export const Route = createFileRoute("/services/$slug")({
         { property: "og:description", content: s.seoDescription },
         { property: "og:type", content: "website" },
         { property: "og:url", content: absoluteUrl(`/services/${s.slug}`) },
+        { property: "og:image", content: absoluteUrl("/og-image.svg") },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: s.seoTitle },
         { name: "twitter:description", content: s.seoDescription },
+        { name: "twitter:image", content: absoluteUrl("/og-image.svg") },
       ],
       links: [{ rel: "canonical", href: absoluteUrl(`/services/${s.slug}`) }],
       scripts: [
@@ -48,21 +51,43 @@ export const Route = createFileRoute("/services/$slug")({
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Service",
-            name: s.name,
-            serviceType: s.name,
-            description: s.seoDescription,
-            provider: {
-              "@type": "Organization",
-              name: "iinteliprox",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Lucknow",
-                addressRegion: "Uttar Pradesh",
-                addressCountry: "IN",
+            "@graph": [
+              {
+                "@type": "Service",
+                name: s.name,
+                serviceType: s.name,
+                description: s.seoDescription,
+                url: absoluteUrl(`/services/${s.slug}`),
+                provider: {
+                  "@type": "Organization",
+                  name: "iinteliprox",
+                  url: SITE.url,
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Lucknow",
+                    addressRegion: "Uttar Pradesh",
+                    addressCountry: "IN",
+                  },
+                },
+                areaServed: ["Lucknow", "Uttar Pradesh", "India", "Worldwide"],
               },
-            },
-            areaServed: ["India", "Worldwide"],
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+                  { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+                  { "@type": "ListItem", position: 3, name: s.name, item: absoluteUrl(`/services/${s.slug}`) },
+                ],
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: s.faqs.map((faq) => ({
+                  "@type": "Question",
+                  name: faq.q,
+                  acceptedAnswer: { "@type": "Answer", text: faq.a },
+                })),
+              },
+            ],
           }),
         },
       ],
@@ -256,6 +281,23 @@ function ServiceDetailPage() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </section>
+
+        <section className="py-20 sm:py-24 hairline-t">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="eyebrow">Related insights</div>
+            <h2 className="mt-4 font-display text-3xl tracking-tight sm:text-5xl">Learn before you build</h2>
+            <ul className="mt-10 grid gap-4 md:grid-cols-3">
+              {BLOGS.filter((article) => article.relatedServices.includes(s.slug)).slice(0, 3).map((article) => (
+                <li key={article.slug}>
+                  <Link to="/blog/$slug" params={{ slug: article.slug }} className="group flex h-full items-center justify-between card-surface p-5 transition-colors hover:border-brand/40">
+                    <span className="font-medium">{article.title}</span>
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
