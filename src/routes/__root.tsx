@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { SITE, absoluteUrl } from "@/lib/site";
 import { CookieConsent } from "@/components/cookie-consent";
 import { ChatBot } from "@/components/ChatBot";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 function NotFoundComponent() {
   return (
@@ -110,6 +111,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", href: "/ip-logo.png" },
       { rel: "manifest", href: "/site.webmanifest" },
       { rel: "mask-icon", href: "/favicon.svg", color: "#e88aab" },
+      { rel: "preconnect", href: "https://www.googletagmanager.com" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -161,6 +163,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <GoogleAnalytics />
         {children}
         <CookieConsent />
         <ChatBot />
