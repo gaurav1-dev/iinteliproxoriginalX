@@ -4,7 +4,7 @@ import { useLocation } from "@tanstack/react-router";
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
-const GA_ID = "G-FH16V7QHH3";
+const GA_ID = "G-HW5XVTNZWF";
 
 // ---------------------------------------------------------------------------
 // TypeScript declarations — proper types, no `any`
