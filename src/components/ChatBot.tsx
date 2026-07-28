@@ -53,14 +53,18 @@ function loadHistory(): ChatMessage[] {
   try {
     const raw = sessionStorage.getItem(HISTORY_KEY);
     if (raw) return JSON.parse(raw) as ChatMessage[];
-  } catch { /* ignore */ }
+  } catch {
+    /* ignore */
+  }
   return [WELCOME];
 }
 
 function saveHistory(msgs: ChatMessage[]) {
   try {
     sessionStorage.setItem(HISTORY_KEY, JSON.stringify(msgs));
-  } catch { /* ignore */ }
+  } catch {
+    /* ignore */
+  }
 }
 
 /* ─── Icons ──────────────────────────────────────────────────────────────── */
@@ -68,12 +72,133 @@ function saveHistory(msgs: ChatMessage[]) {
 function SparkleIcon({ size = 24 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 2L13.09 8.26L19 9L13.09 9.74L12 16L10.91 9.74L5 9L10.91 8.26L12 2Z"
-        fill="white" stroke="white" strokeWidth="0.5" strokeLinejoin="round" />
-      <path d="M19 2L19.5 4.5L22 5L19.5 5.5L19 8L18.5 5.5L16 5L18.5 4.5L19 2Z"
-        fill="white" opacity="0.7" />
-      <path d="M5 17L5.4 18.6L7 19L5.4 19.4L5 21L4.6 19.4L3 19L4.6 18.6L5 17Z"
-        fill="white" opacity="0.5" />
+      <path
+        d="M12 2L13.09 8.26L19 9L13.09 9.74L12 16L10.91 9.74L5 9L10.91 8.26L12 2Z"
+        fill="white"
+        stroke="white"
+        strokeWidth="0.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19 2L19.5 4.5L22 5L19.5 5.5L19 8L18.5 5.5L16 5L18.5 4.5L19 2Z"
+        fill="white"
+        opacity="0.7"
+      />
+      <path
+        d="M5 17L5.4 18.6L7 19L5.4 19.4L5 21L4.6 19.4L3 19L4.6 18.6L5 17Z"
+        fill="white"
+        opacity="0.5"
+      />
+    </svg>
+  );
+}
+
+function RobotMascotIcon() {
+  return (
+    <svg
+      className="iip-robot-mascot"
+      viewBox="0 0 96 96"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <linearGradient
+          id="iip-robot-head"
+          x1="18"
+          y1="18"
+          x2="78"
+          y2="68"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#82B2FF" />
+          <stop offset="0.48" stopColor="#4F7FF0" />
+          <stop offset="1" stopColor="#294EC8" />
+        </linearGradient>
+        <linearGradient
+          id="iip-robot-body"
+          x1="34"
+          y1="65"
+          x2="63"
+          y2="91"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#6A98FF" />
+          <stop offset="1" stopColor="#3158D1" />
+        </linearGradient>
+        <linearGradient
+          id="iip-robot-arm"
+          x1="17"
+          y1="66"
+          x2="30"
+          y2="83"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#5C8BFA" />
+          <stop offset="1" stopColor="#2447B7" />
+        </linearGradient>
+        <filter id="iip-robot-glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <path d="M29 63L18 68L15 79L22 82L28 73L34 69Z" fill="url(#iip-robot-arm)" />
+      <path d="M67 63L78 68L81 79L74 82L68 73L62 69Z" fill="url(#iip-robot-arm)" />
+      <path
+        d="M36 62H60C65 62 68 67 67 73L64 85C63 90 33 90 32 85L29 73C28 67 31 62 36 62Z"
+        fill="url(#iip-robot-body)"
+      />
+      <path
+        d="M38 87V92H46V88M58 87V92H50V88"
+        stroke="#2749B8"
+        strokeWidth="5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M29 23C29 16 35 12 42 12H54C61 12 67 16 67 23"
+        stroke="#709FFF"
+        strokeWidth="6"
+        strokeLinecap="round"
+      />
+      <rect x="17" y="25" width="62" height="43" rx="18" fill="url(#iip-robot-head)" />
+      <rect
+        x="22"
+        y="30"
+        width="52"
+        height="33"
+        rx="12"
+        fill="#10265D"
+        stroke="#96C5FF"
+        strokeOpacity="0.52"
+        strokeWidth="2"
+      />
+      <path
+        d="M31 46L36 50L31 54"
+        stroke="#97EBFF"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        filter="url(#iip-robot-glow)"
+      />
+      <path
+        d="M58 53H64"
+        stroke="#97EBFF"
+        strokeWidth="3.5"
+        strokeLinecap="round"
+        filter="url(#iip-robot-glow)"
+      />
+      <path
+        d="M43 73C46 75 50 75 53 73"
+        stroke="#BDE6FF"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.86"
+      />
+      <circle cx="38" cy="78" r="1.5" fill="#D9ECFF" opacity="0.9" />
+      <circle cx="58" cy="78" r="1.5" fill="#D9ECFF" opacity="0.9" />
     </svg>
   );
 }
@@ -81,8 +206,20 @@ function SparkleIcon({ size = 24 }: { size?: number }) {
 function SendIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M22 2L11 13"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M22 2L15 22L11 13L2 9L22 2Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -100,40 +237,56 @@ function CloseXIcon() {
 function MessageBubble({ msg }: { msg: ChatMessage }) {
   const isUser = msg.role === "user";
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: isUser ? "flex-end" : "flex-start",
-      marginBottom: "12px",
-    }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: isUser ? "flex-end" : "flex-start",
+        marginBottom: "12px",
+      }}
+    >
       {!isUser && (
-        <div style={{
-          width: 28, height: 28, borderRadius: "50%",
-          background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          flexShrink: 0, marginRight: 8, marginTop: 2,
-          boxShadow: "0 2px 8px rgba(99,102,241,0.4)",
-        }}>
+        <div
+          style={{
+            width: 28,
+            height: 28,
+            borderRadius: "50%",
+            background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            marginRight: 8,
+            marginTop: 2,
+            boxShadow: "0 2px 8px rgba(99,102,241,0.4)",
+          }}
+        >
           <SparkleIcon size={14} />
         </div>
       )}
-      <div style={{
-        maxWidth: "80%",
-        padding: "10px 14px",
-        borderRadius: isUser ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-        background: isUser
-          ? "linear-gradient(135deg,#6366f1,#8b5cf6)"
-          : msg.error
-            ? "rgba(239,68,68,0.12)"
-            : "rgba(255,255,255,0.07)",
-        color: isUser ? "#fff" : msg.error ? "#fca5a5" : "rgba(255,255,255,0.9)",
-        fontSize: "0.875rem",
-        lineHeight: 1.55,
-        border: isUser ? "none" : msg.error ? "1px solid rgba(239,68,68,0.3)" : "1px solid rgba(255,255,255,0.1)",
-        boxShadow: isUser ? "0 4px 12px rgba(99,102,241,0.35)" : "none",
-        whiteSpace: "pre-wrap",
-        wordBreak: "break-word",
-        fontFamily: '"Inter", ui-sans-serif, system-ui, sans-serif',
-      }}>
+      <div
+        style={{
+          maxWidth: "80%",
+          padding: "10px 14px",
+          borderRadius: isUser ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
+          background: isUser
+            ? "linear-gradient(135deg,#6366f1,#8b5cf6)"
+            : msg.error
+              ? "rgba(239,68,68,0.12)"
+              : "rgba(255,255,255,0.07)",
+          color: isUser ? "#fff" : msg.error ? "#fca5a5" : "rgba(255,255,255,0.9)",
+          fontSize: "0.875rem",
+          lineHeight: 1.55,
+          border: isUser
+            ? "none"
+            : msg.error
+              ? "1px solid rgba(239,68,68,0.3)"
+              : "1px solid rgba(255,255,255,0.1)",
+          boxShadow: isUser ? "0 4px 12px rgba(99,102,241,0.35)" : "none",
+          whiteSpace: "pre-wrap",
+          wordBreak: "break-word",
+          fontFamily: '"Inter", ui-sans-serif, system-ui, sans-serif',
+        }}
+      >
         {msg.text}
       </div>
     </div>
@@ -145,28 +298,44 @@ function MessageBubble({ msg }: { msg: ChatMessage }) {
 function TypingDots() {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-      <div style={{
-        width: 28, height: 28, borderRadius: "50%",
-        background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        flexShrink: 0, boxShadow: "0 2px 8px rgba(99,102,241,0.4)",
-      }}>
+      <div
+        style={{
+          width: 28,
+          height: 28,
+          borderRadius: "50%",
+          background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+          boxShadow: "0 2px 8px rgba(99,102,241,0.4)",
+        }}
+      >
         <SparkleIcon size={14} />
       </div>
-      <div style={{
-        padding: "10px 16px",
-        borderRadius: "18px 18px 18px 4px",
-        background: "rgba(255,255,255,0.07)",
-        border: "1px solid rgba(255,255,255,0.1)",
-        display: "flex", gap: 5, alignItems: "center",
-      }}>
+      <div
+        style={{
+          padding: "10px 16px",
+          borderRadius: "18px 18px 18px 4px",
+          background: "rgba(255,255,255,0.07)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          display: "flex",
+          gap: 5,
+          alignItems: "center",
+        }}
+      >
         {[0, 0.2, 0.4].map((delay, i) => (
-          <span key={i} style={{
-            width: 6, height: 6, borderRadius: "50%",
-            background: "rgba(139,92,246,0.8)",
-            display: "inline-block",
-            animation: `iipTypingBounce 1.2s ${delay}s ease-in-out infinite`,
-          }} />
+          <span
+            key={i}
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "rgba(139,92,246,0.8)",
+              display: "inline-block",
+              animation: `iipTypingBounce 1.2s ${delay}s ease-in-out infinite`,
+            }}
+          />
         ))}
       </div>
     </div>
@@ -177,11 +346,18 @@ function TypingDots() {
 
 function ErrorFallback({ onRetry }: { onRetry: () => void }) {
   return (
-    <div style={{
-      flex: 1, display: "flex", flexDirection: "column",
-      alignItems: "center", justifyContent: "center",
-      gap: "1rem", padding: "2rem", textAlign: "center",
-    }}>
+    <div
+      style={{
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "1rem",
+        padding: "2rem",
+        textAlign: "center",
+      }}
+    >
       <div style={{ fontSize: "2.5rem" }}>⚠️</div>
       <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.9rem", lineHeight: 1.6 }}>
         Sorry, our AI Assistant is temporarily unavailable.
@@ -190,10 +366,14 @@ function ErrorFallback({ onRetry }: { onRetry: () => void }) {
         <button
           onClick={onRetry}
           style={{
-            padding: "0.5rem 1.2rem", borderRadius: "999px",
+            padding: "0.5rem 1.2rem",
+            borderRadius: "999px",
             background: "linear-gradient(135deg,#6366f1,#8b5cf6)",
-            color: "#fff", fontWeight: 600, fontSize: "0.85rem",
-            border: "none", cursor: "pointer",
+            color: "#fff",
+            fontWeight: 600,
+            fontSize: "0.85rem",
+            border: "none",
+            cursor: "pointer",
           }}
         >
           Try Again
@@ -201,10 +381,14 @@ function ErrorFallback({ onRetry }: { onRetry: () => void }) {
         <a
           href="/contact"
           style={{
-            padding: "0.5rem 1.2rem", borderRadius: "999px",
+            padding: "0.5rem 1.2rem",
+            borderRadius: "999px",
             background: "rgba(255,255,255,0.08)",
-            color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "0.85rem",
-            border: "1px solid rgba(255,255,255,0.15)", textDecoration: "none",
+            color: "rgba(255,255,255,0.8)",
+            fontWeight: 600,
+            fontSize: "0.85rem",
+            border: "1px solid rgba(255,255,255,0.15)",
+            textDecoration: "none",
           }}
         >
           Contact Us
@@ -227,12 +411,18 @@ export function ChatBot() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [ripple, setRipple] = useState(false);
+  const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const launchBtnRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const isOpenRef = useRef(isOpen);
   const inputId = useId();
+
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
 
   /* Scroll to bottom on new messages */
   useEffect(() => {
@@ -259,6 +449,7 @@ export function ChatBot() {
   /* Focus input when chat opens */
   useEffect(() => {
     if (isOpen) {
+      setHasUnreadMessages(false);
       setTimeout(() => inputRef.current?.focus(), 50);
     }
   }, [isOpen]);
@@ -278,16 +469,22 @@ export function ChatBot() {
     if (!isOpen || !panelRef.current) return;
     const panel = panelRef.current;
     const focusable = panel.querySelectorAll<HTMLElement>(
-      "button, input, textarea, a[href], [tabindex]:not([tabindex='-1'])"
+      "button, input, textarea, a[href], [tabindex]:not([tabindex='-1'])",
     );
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
     const handler = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return;
       if (e.shiftKey) {
-        if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
       } else {
-        if (document.activeElement === last) { e.preventDefault(); first?.focus(); }
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
       }
     };
     panel.addEventListener("keydown", handler);
@@ -297,7 +494,12 @@ export function ChatBot() {
   const toggle = useCallback(() => {
     setRipple(true);
     setTimeout(() => setRipple(false), 600);
-    setIsOpen(v => !v);
+    setIsOpen((v) => !v);
+  }, []);
+
+  const appendBotMessage = useCallback((message: ChatMessage) => {
+    setMessages((prev) => [...prev, message]);
+    if (!isOpenRef.current) setHasUnreadMessages(true);
   }, []);
 
   const sendMessage = useCallback(async () => {
@@ -319,7 +521,7 @@ export function ChatBot() {
       ts: Date.now(),
     };
 
-    setMessages(prev => [...prev, userMsg, initialBotMsg]);
+    setMessages((prev) => [...prev, userMsg, initialBotMsg]);
     setInput("");
     setIsLoading(true);
     setHasError(false);
@@ -329,7 +531,7 @@ export function ChatBot() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "text/event-stream, application/json, text/plain, */*",
+          Accept: "text/event-stream, application/json, text/plain, */*",
         },
         body: JSON.stringify({
           chatInput: text,
@@ -347,8 +549,8 @@ export function ChatBot() {
       const updateBotText = (chunkText: string) => {
         accumulatedText += chunkText;
         const currentText = accumulatedText;
-        setMessages(prev =>
-          prev.map(m => (m.id === botMsgId ? { ...m, text: currentText } : m))
+        setMessages((prev) =>
+          prev.map((m) => (m.id === botMsgId ? { ...m, text: currentText } : m)),
         );
       };
 
@@ -448,18 +650,20 @@ export function ChatBot() {
 
       // If no text was accumulated, show fallback message
       if (!accumulatedText.trim()) {
-        setMessages(prev =>
-          prev.map(m =>
+        setMessages((prev) =>
+          prev.map((m) =>
             m.id === botMsgId
               ? { ...m, text: "I received your message! How can I help you further?" }
-              : m
-          )
+              : m,
+          ),
         );
       }
+
+      if (!isOpenRef.current) setHasUnreadMessages(true);
     } catch (error) {
       console.error("Chat error:", error);
       // Remove empty bot placeholder on true network failure
-      setMessages(prev => prev.filter(m => m.id !== botMsgId || m.text.length > 0));
+      setMessages((prev) => prev.filter((m) => m.id !== botMsgId || m.text.length > 0));
       // Append real error message
       const errMsg: ChatMessage = {
         id: crypto.randomUUID(),
@@ -468,18 +672,21 @@ export function ChatBot() {
         ts: Date.now(),
         error: true,
       };
-      setMessages(prev => [...prev, errMsg]);
+      appendBotMessage(errMsg);
     } finally {
       setIsLoading(false);
     }
-  }, [input, isLoading]);
+  }, [appendBotMessage, input, isLoading]);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  }, [sendMessage]);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    },
+    [sendMessage],
+  );
 
   const handleRetry = useCallback(() => {
     setHasError(false);
@@ -490,10 +697,22 @@ export function ChatBot() {
     <>
       {/* ── Global styles ── */}
       <style>{`
-        @keyframes iipLaunchPulse {
-          0%   { box-shadow: 0 0 0 0 rgba(99,102,241,0.5), 0 8px 32px rgba(99,102,241,0.4); }
-          70%  { box-shadow: 0 0 0 12px rgba(99,102,241,0), 0 8px 32px rgba(99,102,241,0.4); }
-          100% { box-shadow: 0 0 0 0 rgba(99,102,241,0), 0 8px 32px rgba(99,102,241,0.4); }
+        @keyframes iipRobotFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
+        @keyframes iipRobotPulse {
+          0%, 100% { filter: drop-shadow(0 5px 11px rgba(51, 126, 255, 0.3)); }
+          50% { filter: drop-shadow(0 5px 17px rgba(53, 241, 106, 0.52)); }
+        }
+        @keyframes iipRobotBounce {
+          0% { transform: translateY(0) scale(1); }
+          45% { transform: translateY(-5px) scale(0.96); }
+          100% { transform: translateY(0) scale(1); }
+        }
+        @keyframes iipNotificationPulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(53, 241, 106, 0.55); }
+          50% { box-shadow: 0 0 0 5px rgba(53, 241, 106, 0); }
         }
         @keyframes iipPanelIn {
           from { opacity:0; transform:translateY(16px) scale(0.97); }
@@ -521,29 +740,19 @@ export function ChatBot() {
           bottom: max(1.5rem, calc(1rem + env(safe-area-inset-bottom, 0px)));
           right: max(1.5rem, calc(1rem + env(safe-area-inset-right, 0px)));
           z-index: 9999;
-          width: 58px;
-          height: 58px;
-          border-radius: 50%;
+          width: 72px;
+          height: 72px;
+          border-radius: 0;
           border: none;
           cursor: pointer;
           padding: 0;
           outline: none;
-          overflow: hidden;
-
-          /* Premium blue/purple gradient */
-          background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
-
-          /* Glassmorphism border */
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,0.2),
-            0 8px 32px rgba(99,102,241,0.45),
-            0 2px 8px rgba(0,0,0,0.3),
-            inset 0 1px 0 rgba(255,255,255,0.25);
-
-          animation: iipLaunchPulse 2.4s cubic-bezier(0.4,0,0.6,1) infinite;
+          overflow: visible;
+          background: transparent;
+          animation: iipRobotFloat 4s ease-in-out infinite;
           transition:
-            transform 220ms cubic-bezier(0.34,1.56,0.64,1),
-            box-shadow 220ms ease;
+            transform 280ms ease,
+            filter 280ms ease;
 
           /* Glassmorphism pseudo-overlay handled via inner div */
           display: flex;
@@ -551,33 +760,43 @@ export function ChatBot() {
           justify-content: center;
         }
 
-        #iip-launch-btn::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(145deg, rgba(255,255,255,0.18) 0%, transparent 60%);
-          border-radius: 50%;
-          pointer-events: none;
+        #iip-launch-btn.iip-has-unread {
+          animation: iipRobotFloat 4s ease-in-out infinite, iipRobotPulse 2.8s ease-in-out infinite;
         }
 
         #iip-launch-btn:hover {
-          transform: scale(1.08);
+          transform: translateY(-3px) scale(1.08);
           animation-play-state: paused;
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,0.3),
-            0 12px 40px rgba(99,102,241,0.6),
-            0 4px 16px rgba(0,0,0,0.4),
-            inset 0 1px 0 rgba(255,255,255,0.3);
+          filter: drop-shadow(0 6px 16px rgba(79, 177, 255, 0.7));
         }
 
         #iip-launch-btn:focus-visible {
-          outline: 2px solid #a78bfa;
+          outline: 2px solid #35f16a;
           outline-offset: 3px;
           animation-play-state: paused;
         }
 
-        #iip-launch-btn:active {
-          transform: scale(0.95);
+        #iip-launch-btn.iip-launch-clicked {
+          animation: iipRobotBounce 180ms ease-out;
+        }
+
+        .iip-robot-mascot {
+          display: block;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+
+        .iip-unread-dot {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          width: 10px;
+          height: 10px;
+          border-radius: 999px;
+          background: #35f16a;
+          border: 2px solid #07100a;
+          animation: iipNotificationPulse 2s ease-in-out infinite;
         }
 
         .iip-ripple {
@@ -796,12 +1015,19 @@ export function ChatBot() {
           letter-spacing: 0.03em;
         }
 
+        @media (max-width: 767px) {
+          #iip-launch-btn {
+            width: 64px;
+            height: 64px;
+          }
+        }
+
         @media (max-width: 480px) {
           #iip-launch-btn {
             bottom: max(1.25rem, calc(1rem + env(safe-area-inset-bottom, 0px)));
             right: max(1rem, calc(0.75rem + env(safe-area-inset-right, 0px)));
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
           }
           #iip-chat-panel {
             bottom: max(4.75rem, calc(4.25rem + env(safe-area-inset-bottom, 0px)));
@@ -820,17 +1046,20 @@ export function ChatBot() {
         ref={launchBtnRef}
         type="button"
         onClick={toggle}
-        aria-label={isOpen ? "Close iinteliProX AI Assistant" : "Open iinteliProX AI Assistant"}
+        aria-label={isOpen ? "Close AI Assistant" : "Open AI Assistant"}
         aria-expanded={isOpen}
         aria-controls="iip-chat-panel"
         aria-haspopup="dialog"
+        className={`${hasUnreadMessages && !isOpen ? "iip-has-unread " : ""}${ripple ? "iip-launch-clicked" : ""}`}
       >
         {ripple && <span className="iip-ripple" />}
 
-        {/* Sparkle icon (closed state) */}
+        {/* Custom robot mascot (closed state) */}
         <span className="iip-icon-spark" aria-hidden="true">
-          <SparkleIcon size={24} />
+          <RobotMascotIcon />
         </span>
+
+        {hasUnreadMessages && !isOpen && <span className="iip-unread-dot" aria-hidden="true" />}
 
         {/* Close icon (open state) */}
         <span className="iip-icon-close" aria-hidden="true">
@@ -867,7 +1096,10 @@ export function ChatBot() {
             <button
               type="button"
               className="iip-close-btn"
-              onClick={() => { setIsOpen(false); launchBtnRef.current?.focus(); }}
+              onClick={() => {
+                setIsOpen(false);
+                launchBtnRef.current?.focus();
+              }}
               aria-label="Close chat"
             >
               <CloseXIcon />
@@ -879,7 +1111,7 @@ export function ChatBot() {
             <ErrorFallback onRetry={handleRetry} />
           ) : (
             <div className="iip-messages" aria-live="polite" aria-atomic="false" role="log">
-              {messages.map(msg => (
+              {messages.map((msg) => (
                 <MessageBubble key={msg.id} msg={msg} />
               ))}
               {isLoading && <TypingDots />}
@@ -900,7 +1132,7 @@ export function ChatBot() {
                 rows={1}
                 placeholder="Type your message…"
                 value={input}
-                onChange={e => setInput(e.target.value)}
+                onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={isLoading}
                 aria-label="Message input"

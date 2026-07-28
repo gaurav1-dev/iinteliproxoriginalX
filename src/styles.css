@@ -81,7 +81,8 @@
   }
 
   body {
-    background: radial-gradient(circle at 76% 6%, rgba(18, 131, 55, 0.16), transparent 29rem), #030704;
+    background:
+      radial-gradient(circle at 76% 6%, rgba(18, 131, 55, 0.16), transparent 29rem), #030704;
     color: var(--foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -118,7 +119,9 @@
 }
 
 .bg-grid {
-  background-image: linear-gradient(rgba(95, 255, 128, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(95, 255, 128, 0.035) 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(95, 255, 128, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 255, 128, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -139,13 +142,18 @@
   color: var(--brand-foreground);
   border: 1px solid rgba(185, 255, 196, 0.55);
   box-shadow: var(--shadow-btn);
-  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    background 200ms ease;
 }
 
 .btn-primary:hover {
   background: var(--brand-strong);
   transform: translateY(-2px);
-  box-shadow: 0 0 0 1px rgba(115, 255, 153, 0.45), 0 18px 42px -10px rgba(53, 241, 106, 0.75);
+  box-shadow:
+    0 0 0 1px rgba(115, 255, 153, 0.45),
+    0 18px 42px -10px rgba(53, 241, 106, 0.75);
 }
 
 .btn-ghost {
@@ -161,7 +169,10 @@
   color: var(--foreground);
   border: 1px solid var(--hairline);
   backdrop-filter: blur(14px);
-  transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
 }
 
 .btn-ghost:hover {
@@ -170,19 +181,46 @@
   transform: translateY(-2px);
 }
 
+.portfolio-link {
+  transition:
+    background 280ms ease,
+    border-color 280ms ease,
+    transform 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.portfolio-link-arrow {
+  display: inline-block;
+  transition: transform 280ms ease;
+}
+
+.portfolio-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px -8px rgba(53, 241, 106, 0.7);
+}
+
+.portfolio-link:hover .portfolio-link-arrow {
+  transform: translateX(3px);
+}
+
 .card-surface {
   background: linear-gradient(145deg, rgba(19, 39, 24, 0.72), rgba(5, 13, 8, 0.8));
   border: 1px solid var(--hairline);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(14px);
-  transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+  transition:
+    transform 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease;
 }
 
 .card-surface:hover {
   transform: translateY(-4px);
   border-color: rgba(91, 255, 125, 0.35);
-  box-shadow: 0 28px 75px -36px rgba(0, 0, 0, 0.95), 0 0 40px -25px rgba(53, 241, 106, 0.45);
+  box-shadow:
+    0 28px 75px -36px rgba(0, 0, 0, 0.95),
+    0 0 40px -25px rgba(53, 241, 106, 0.45);
 }
 
 .hairline-t {
@@ -211,7 +249,9 @@ section:not(#top)::before {
   height: 34rem;
   border-radius: 50%;
   border: 1px solid rgba(79, 255, 111, 0.16);
-  box-shadow: 0 0 0 62px rgba(71, 255, 107, 0.03), 0 0 0 124px rgba(71, 255, 107, 0.018);
+  box-shadow:
+    0 0 0 62px rgba(71, 255, 107, 0.03),
+    0 0 0 124px rgba(71, 255, 107, 0.018);
 }
 
 .rocket-stage {
@@ -229,7 +269,12 @@ section:not(#top)::before {
   width: 22rem;
   height: 22rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(41, 244, 96, 0.45), rgba(11, 101, 38, 0.2) 36%, transparent 68%);
+  background: radial-gradient(
+    circle,
+    rgba(41, 244, 96, 0.45),
+    rgba(11, 101, 38, 0.2) 36%,
+    transparent 68%
+  );
   filter: blur(12px);
   animation: pulseGlow 4s ease-in-out infinite;
 }
@@ -256,9 +301,19 @@ section:not(#top)::before {
   width: 92px;
   height: 300px;
   border-radius: 55% 55% 18% 18%;
-  background: linear-gradient(90deg, #142219 0%, #4c6554 17%, #e6eee8 48%, #203327 69%, #09150d 100%);
+  background: linear-gradient(
+    90deg,
+    #142219 0%,
+    #4c6554 17%,
+    #e6eee8 48%,
+    #203327 69%,
+    #09150d 100%
+  );
   border: 1px solid rgba(214, 255, 222, 0.7);
-  box-shadow: inset -16px 0 23px rgba(0, 0, 0, 0.55), inset 12px 0 20px rgba(255, 255, 255, 0.16), 0 0 38px rgba(53, 241, 106, 0.48);
+  box-shadow:
+    inset -16px 0 23px rgba(0, 0, 0, 0.55),
+    inset 12px 0 20px rgba(255, 255, 255, 0.16),
+    0 0 38px rgba(53, 241, 106, 0.48);
   animation: rocketFloat 5s ease-in-out infinite;
 }
 
@@ -270,8 +325,16 @@ section:not(#top)::before {
   width: 44px;
   height: 70px;
   border-radius: 50% 50% 44% 44%;
-  background: radial-gradient(circle at 45% 35%, #4aff7e 0 5%, #0a2113 14%, #152e1d 42%, #020704 70%);
-  box-shadow: 0 0 17px #35f16a, inset 0 0 14px #35f16a;
+  background: radial-gradient(
+    circle at 45% 35%,
+    #4aff7e 0 5%,
+    #0a2113 14%,
+    #152e1d 42%,
+    #020704 70%
+  );
+  box-shadow:
+    0 0 17px #35f16a,
+    inset 0 0 14px #35f16a;
 }
 
 .rocket-body::after {
@@ -392,7 +455,8 @@ section:not(#top)::before {
 
 /* Responsive Mobile Overrides */
 @media (max-width: 767px) {
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
     width: 100%;
   }
@@ -402,13 +466,16 @@ section:not(#top)::before {
     touch-action: none;
   }
 
-  .btn-primary, .btn-ghost {
+  .btn-primary,
+  .btn-ghost {
     min-height: 48px;
     white-space: nowrap;
   }
 
   /* Prevent iOS Safari input zoom */
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     font-size: 16px !important;
   }
 
@@ -466,7 +533,9 @@ section:not(#top)::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

@@ -25,7 +25,10 @@ const VISHAL_EXPERTISE = [
     title: "Data Visualization",
     desc: "Clear, honest charts that tell the story hidden inside the data.",
   },
-  { title: "SQL & Data Modeling", desc: "Data warehousing, transformations and analytical modeling." },
+  {
+    title: "SQL & Data Modeling",
+    desc: "Data warehousing, transformations and analytical modeling.",
+  },
   {
     title: "Market Analysis",
     desc: "Competitive intelligence and market sizing for strategic decisions.",
@@ -328,11 +331,11 @@ function TeamPage() {
                   ))}
                 </div>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  I lead data analytics at iinteliProX — designing dashboards, reporting systems
-                  and business intelligence infrastructures that turn scattered operational data
-                  into confident decisions. From SQL and Power BI to Tableau and Google Colab,
-                  my job is making the numbers make sense — and translating insights into
-                  growth through lead generation, brand building and product strategy.
+                  I lead data analytics at iinteliProX — designing dashboards, reporting systems and
+                  business intelligence infrastructures that turn scattered operational data into
+                  confident decisions. From SQL and Power BI to Tableau and Google Colab, my job is
+                  making the numbers make sense — and translating insights into growth through lead
+                  generation, brand building and product strategy.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-3">
                   <a href={`mailto:${SITE.email.business}`} className="btn-primary">
@@ -437,6 +440,17 @@ function TeamPage() {
                   <a href={SITE.calendly} target="_blank" rel="noreferrer" className="btn-ghost">
                     <Calendar className="h-4 w-4" />
                     Book a Meeting
+                  </a>
+                  <a
+                    href="https://gauravdev1.netlify.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-ghost portfolio-link"
+                  >
+                    View Portfolio{" "}
+                    <span className="portfolio-link-arrow" aria-hidden="true">
+                      ↗
+                    </span>
                   </a>
                 </div>
               </div>
