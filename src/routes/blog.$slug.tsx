@@ -86,7 +86,10 @@ export const Route = createFileRoute("/blog/$slug")({
         { name: "twitter:description", content: article.description },
         { name: "twitter:image", content: absoluteUrl("/og-image.svg") },
       ],
-      links: [{ rel: "canonical", href: url }],
+      links: [
+        { rel: "canonical", href: url },
+        ...(article.featuredImage ? [{ rel: "preload", as: "image", href: article.featuredImage.src }] : []),
+      ],
       scripts: [{ type: "application/ld+json", children: JSON.stringify(articleSchema) }],
     };
   },
@@ -113,6 +116,12 @@ function BlogArticlePage() {
   const services = article.relatedServices
     .map((slug) => SERVICES_DATA.find((service) => service.slug === slug))
     .filter((service): service is (typeof SERVICES_DATA)[number] => Boolean(service));
+  const relatedArticles = BLOGS.filter(
+    (candidate) =>
+      candidate.slug !== article.slug &&
+      (candidate.category === article.category ||
+        candidate.relatedServices.some((slug) => article.relatedServices.includes(slug))),
+  ).slice(0, 3);
 
   return (
     <div className="min-h-screen">
@@ -136,12 +145,25 @@ function BlogArticlePage() {
             </div>
           </header>
 
-          <div
-            role="img"
-            aria-label={`Featured illustration placeholder for ${article.title}`}
-            className="mx-auto mt-12 flex aspect-[2/1] max-w-6xl items-end rounded-2xl border border-hairline bg-[radial-gradient(circle_at_70%_25%,rgba(20,186,63,.36),transparent_32%),linear-gradient(135deg,#0c1710,#07100a)] p-8 sm:mt-16 sm:p-12"
-          >
-            <span className="font-mono text-xs uppercase tracking-[0.28em] text-white/70">iinteliprox insights</span>
+          <div className="mx-auto mt-12 aspect-[16/9] max-w-6xl overflow-hidden rounded-2xl border border-hairline bg-[radial-gradient(circle_at_70%_25%,rgba(20,186,63,.36),transparent_32%),linear-gradient(135deg,#0c1710,#07100a)] sm:mt-16">
+            {article.featuredImage ? (
+              <img
+                src={article.featuredImage.src}
+                srcSet={article.featuredImage.srcSet}
+                sizes="(min-width: 1280px) 1152px, (min-width: 768px) calc(100vw - 48px), 100vw"
+                alt={article.featuredImage.alt}
+                width={960}
+                height={540}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <div role="img" aria-label={`Featured illustration placeholder for ${article.title}`} className="flex h-full items-end p-8 sm:p-12">
+                <span className="font-mono text-xs uppercase tracking-[0.28em] text-white/70">iinteliprox insights</span>
+              </div>
+            )}
           </div>
 
           <div className="mx-auto mt-14 grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[15rem_minmax(0,1fr)]">
@@ -225,6 +247,27 @@ function BlogArticlePage() {
               </li>
             </ul>
           </section>
+
+          {relatedArticles.length > 0 && (
+            <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
+              <div className="eyebrow">Related insights</div>
+              <h2 className="mt-4 font-display text-3xl tracking-tight sm:text-4xl">Keep learning</h2>
+              <ul className="mt-8 grid gap-4 md:grid-cols-3">
+                {relatedArticles.map((relatedArticle) => (
+                  <li key={relatedArticle.slug}>
+                    <Link
+                      to="/blog/$slug"
+                      params={{ slug: relatedArticle.slug }}
+                      className="group flex h-full items-center justify-between rounded-xl border border-hairline bg-background p-5 transition-colors hover:border-brand/40"
+                    >
+                      <span className="font-medium">{relatedArticle.title}</span>
+                      <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-brand" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </article>
       </main>
       <SiteFooter />

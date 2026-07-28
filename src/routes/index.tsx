@@ -5,7 +5,6 @@ import { Portfolio } from "@/components/sections/portfolio";
 import { Contact } from "@/components/sections/contact";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
-import { LoadingSplash } from "@/components/loading-splash";
 import { Toaster } from "sonner";
 import { absoluteUrl } from "@/lib/site";
 
@@ -40,7 +39,6 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <div className="min-h-screen">
-      <LoadingSplash />
       <SiteNav />
       <main>
         <Hero />

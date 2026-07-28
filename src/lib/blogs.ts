@@ -12,6 +12,11 @@ export type BlogArticle = {
   readTime: string;
   category: string;
   keywords: string[];
+  featuredImage?: {
+    src: string;
+    srcSet: string;
+    alt: string;
+  };
   intro: string;
   sections: BlogSection[];
   faqs: { question: string; answer: string }[];
@@ -32,6 +37,7 @@ export const BLOGS: BlogArticle[] = [
     readTime: "11 min read",
     category: "AI Automation",
     keywords: ["AI automation", "AI automation services", "AI business automation", "AI workflow automation", "AI agents", "business automation solutions", "intelligent automation", "AI consulting", "OpenAI integration", "AI integration services", "workflow automation agency", "CRM automation", "WhatsApp automation", "process automation", "digital transformation"],
+    featuredImage: { src: "/blog/traditional-vs-ai-automation-960.webp", srcSet: "/blog/traditional-vs-ai-automation-480.webp 480w, /blog/traditional-vs-ai-automation-960.webp 960w", alt: "Traditional automation robot and AI automation visual comparison" },
     intro:
       "AI automation is moving from isolated experiments to a practical operating model for growing businesses. The important question is no longer whether a team can use an AI tool. It is whether the business can connect trustworthy data, clear decisions and accountable people into an AI-enabled workflow that saves time without creating new risk. For companies in Lucknow, across India and globally, the opportunity is to make routine work faster while keeping the human judgment that customers and teams rely on.",
     sections: [
@@ -106,6 +112,7 @@ export const BLOGS: BlogArticle[] = [
     readTime: "10 min read",
     category: "Web Development",
     keywords: ["website development", "website development company", "professional website design", "custom website development", "business website development", "corporate website design", "responsive website development", "SEO friendly website development", "website redesign services", "landing page design", "lead generation website", "web application development", "frontend development", "full stack development", "digital marketing company"],
+    featuredImage: { src: "/blog/why-business-needs-website-960.webp", srcSet: "/blog/why-business-needs-website-480.webp 480w, /blog/why-business-needs-website-960.webp 960w", alt: "Why every business needs a professional website in 2026" },
     intro:
       "A professional website is no longer a digital brochure that can be left unchanged for years. It is the place where a prospective customer verifies your credibility, understands your offer and decides whether to start a conversation. Social channels and marketplaces can introduce a business, but a fast, accessible and well-structured website is where the brand controls the experience, captures qualified demand and builds a durable search presence.",
     sections: [
@@ -180,6 +187,7 @@ export const BLOGS: BlogArticle[] = [
     readTime: "9 min read",
     category: "Customer Experience",
     keywords: ["AI chatbots", "AI chatbot development", "WhatsApp automation", "customer support automation", "AI agents", "conversational AI", "customer engagement", "AI for businesses", "support workflow automation", "CRM integration", "human support", "help desk automation", "lead qualification", "OpenAI integration", "business messaging"],
+    featuredImage: { src: "/blog/ai-chatbots-vs-human-support-960.webp", srcSet: "/blog/ai-chatbots-vs-human-support-480.webp 480w, /blog/ai-chatbots-vs-human-support-960.webp 960w", alt: "AI chatbot and human customer support comparison" },
     intro:
       "The choice between AI chatbots and human support is often framed as a contest, but the most effective customer experience combines both. Customers want fast answers to simple questions and thoughtful help when the situation is personal, complex or high-stakes. A well-designed support model uses AI to remove waiting and repetition, then makes it effortless to reach a capable person when judgment and empathy matter.",
     sections: [
@@ -254,6 +262,7 @@ export const BLOGS: BlogArticle[] = [
     readTime: "10 min read",
     category: "Web Strategy",
     keywords: ["custom web development", "website builders", "React development", "Next.js development", "frontend development", "full stack development", "web application development", "website performance", "technical SEO", "scalable website", "ecommerce website development", "website redesign services", "professional website design", "business website development", "corporate website design"],
+    featuredImage: { src: "/blog/website-builder-vs-custom-960.webp", srcSet: "/blog/website-builder-vs-custom-480.webp 480w, /blog/website-builder-vs-custom-960.webp 960w", alt: "Website builder and custom website comparison" },
     intro:
       "Website builders and custom web development are both valid ways to publish online. The better option depends on what the business needs the site to do. A simple service page may benefit from the speed of a builder, while a company with a complex sales journey, performance requirements or integrated business process may need a purpose-built platform. The useful comparison is not which option is universally superior; it is which one fits the required outcome over the next few years.",
     sections: [
@@ -328,6 +337,7 @@ export const BLOGS: BlogArticle[] = [
     readTime: "10 min read",
     category: "Mobile App Development",
     keywords: ["mobile app development", "Android app development", "iOS app development", "Flutter development", "React Native development", "cross platform apps", "mobile application development", "business app development", "startup app development", "custom mobile apps", "enterprise mobility", "mobile app strategy", "customer engagement app", "field service app", "digital transformation"],
+    featuredImage: { src: "/blog/mobile-apps-transform-business-960.webp", srcSet: "/blog/mobile-apps-transform-business-480.webp 480w, /blog/mobile-apps-transform-business-960.webp 960w", alt: "How mobile apps can transform a modern business" },
     intro:
       "A mobile app can give a business a direct, useful place in a customer's day or make an internal team dramatically more effective in the field. It is not automatically the right answer for every service, but it can create a stronger experience when people need frequent access, personalised information, camera or location features, notifications or offline capability. The best mobile application development begins with a real user problem and a clear reason an app is better than a website, spreadsheet or messaging thread.",
     sections: [
@@ -402,6 +412,7 @@ export const BLOGS: BlogArticle[] = [
     readTime: "12 min read",
     category: "Digital Transformation",
     keywords: ["digital transformation", "AI automation", "business process automation", "CRM integration", "process optimisation", "intelligent automation", "enterprise solutions", "AI consulting", "workflow automation", "business automation solutions", "customer engagement", "operational efficiency", "data integration", "automation strategy", "AI for businesses"],
+    featuredImage: { src: "/blog/digital-transformation-guide-960.webp", srcSet: "/blog/digital-transformation-guide-480.webp 480w, /blog/digital-transformation-guide-960.webp 960w", alt: "Complete guide to digital transformation and AI automation" },
     intro:
       "Digital transformation is not the act of buying more software. It is the ongoing work of making customer experiences, decisions and operations more useful through better processes and connected technology. AI automation can accelerate that work, but only when it is attached to clear outcomes and reliable data. A successful transformation programme gives people better tools, removes repetitive effort and creates a practical way to improve—not a collection of platforms that each solve a small problem in isolation.",
     sections: [

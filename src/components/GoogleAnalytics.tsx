@@ -116,7 +116,7 @@ export function GoogleAnalytics() {
     // Extract string primitives explicitly — NEVER pass the ParsedLocation
     // object itself to gtag. This is what caused the original crash.
     const pathname: string = location.pathname;
-    const search: string = location.search;
+    const search: string = window.location.search;
 
     const pagePath: string = pathname + search;
     // window.location.href gives the full canonical URL including origin.

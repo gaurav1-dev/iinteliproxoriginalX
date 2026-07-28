@@ -70,14 +70,24 @@ function BlogIndexPage() {
             {BLOGS.map((article) => (
               <li key={article.slug}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-hairline bg-background transition-colors hover:border-brand/40">
-                  <div
-                    role="img"
-                    aria-label={`Featured illustration placeholder for ${article.title}`}
-                    className="flex aspect-[16/9] items-end bg-[radial-gradient(circle_at_75%_20%,rgba(20,186,63,.32),transparent_34%),linear-gradient(135deg,#0b160e,#07100a)] p-6"
-                  >
-                    <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/70">
-                      {article.category}
-                    </span>
+                  <div className="aspect-[16/9] overflow-hidden bg-[radial-gradient(circle_at_75%_20%,rgba(20,186,63,.32),transparent_34%),linear-gradient(135deg,#0b160e,#07100a)]">
+                    {article.featuredImage ? (
+                      <img
+                        src={article.featuredImage.src}
+                        srcSet={article.featuredImage.srcSet}
+                        sizes="(min-width: 1024px) 32vw, (min-width: 768px) 50vw, 100vw"
+                        alt={article.featuredImage.alt}
+                        width={960}
+                        height={540}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div role="img" aria-label={`Featured illustration placeholder for ${article.title}`} className="flex h-full items-end p-6">
+                        <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/70">{article.category}</span>
+                      </div>
+                    )}
                   </div>
                   <div className="flex flex-1 flex-col p-7">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
