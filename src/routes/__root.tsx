@@ -163,7 +163,6 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <GoogleAnalytics />
         {children}
         <CookieConsent />
         <ChatBot />
@@ -178,6 +177,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/*
+        GoogleAnalytics lives here (inside RootComponent, not RootShell) so it
+        only ever executes on the client after React hydration. Placing it in
+        RootShell would run it during SSR where window/document don't exist,
+        which caused the "Cannot convert object to primitive value" crash.
+      */}
+      <GoogleAnalytics />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
