@@ -6,6 +6,15 @@ export const SITE = {
   tagline: "Intelligence, in motion.",
   description:
     "iinteliProX helps businesses grow with AI automation, custom website development, mobile app development, digital marketing, SEO and business software. Based in Lucknow, India — serving clients across India and worldwide.",
+  /** Branded 1200×630 Open Graph image */
+  ogImage: "/og-image.png",
+  /** Twitter/X handle — update when account is created */
+  twitterHandle: "@iinteliprox",
+  /** Approx. center of Lucknow for LocalBusiness schema */
+  geo: {
+    latitude: "26.8467",
+    longitude: "80.9462",
+  },
   phone: {
     primary: "+91 78304 34069",
     primaryHref: "tel:+917830434069",

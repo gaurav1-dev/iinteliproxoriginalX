@@ -34,16 +34,25 @@ export const Route = createFileRoute("/services/$slug")({
       meta: [
         { title: s.seoTitle },
         { name: "description", content: s.seoDescription },
+        { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
         { name: "keywords", content: s.keywords.join(", ") },
         { property: "og:title", content: s.seoTitle },
         { property: "og:description", content: s.seoDescription },
         { property: "og:type", content: "website" },
         { property: "og:url", content: absoluteUrl(`/services/${s.slug}`) },
-        { property: "og:image", content: absoluteUrl("/og-image.svg") },
+        { property: "og:image", content: absoluteUrl(SITE.ogImage) },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:type", content: "image/png" },
+        { property: "og:image:alt", content: `${s.name} Services — iinteliprox` },
+        { property: "og:locale", content: "en_IN" },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:site", content: SITE.twitterHandle },
         { name: "twitter:title", content: s.seoTitle },
         { name: "twitter:description", content: s.seoDescription },
-        { name: "twitter:image", content: absoluteUrl("/og-image.svg") },
+        { name: "twitter:image", content: absoluteUrl(SITE.ogImage) },
+        { name: "twitter:image:alt", content: `${s.name} Services — iinteliprox` },
+        ...s.keywords.map((kw) => ({ property: "article:tag", content: kw })),
       ],
       links: [{ rel: "canonical", href: absoluteUrl(`/services/${s.slug}`) }],
       scripts: [
@@ -52,6 +61,16 @@ export const Route = createFileRoute("/services/$slug")({
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@graph": [
+              {
+                "@type": "WebPage",
+                "@id": `${absoluteUrl(`/services/${s.slug}`)}#webpage`,
+                url: absoluteUrl(`/services/${s.slug}`),
+                name: s.seoTitle,
+                description: s.seoDescription,
+                inLanguage: "en-IN",
+                isPartOf: { "@id": `${SITE.url}/#website` },
+                breadcrumb: { "@id": `${absoluteUrl(`/services/${s.slug}`)}#breadcrumb` },
+              },
               {
                 "@type": "Service",
                 name: s.name,
@@ -70,9 +89,16 @@ export const Route = createFileRoute("/services/$slug")({
                   },
                 },
                 areaServed: ["Lucknow", "Uttar Pradesh", "India", "Worldwide"],
+                offers: {
+                  "@type": "Offer",
+                  availability: "https://schema.org/InStock",
+                  priceCurrency: "INR",
+                  seller: { "@type": "Organization", name: "iinteliprox", url: SITE.url },
+                },
               },
               {
                 "@type": "BreadcrumbList",
+                "@id": `${absoluteUrl(`/services/${s.slug}`)}#breadcrumb`,
                 itemListElement: [
                   { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
                   { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },

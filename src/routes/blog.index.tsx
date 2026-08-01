@@ -3,26 +3,39 @@ import { ArrowUpRight, Clock3 } from "lucide-react";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { BLOGS } from "@/lib/blogs";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, SITE } from "@/lib/site";
 
-const TITLE = "Insights | AI Automation, Web Development & Digital Growth | iinteliprox";
+const TITLE = "AI Automation & Business Growth Blog | Insights & Guides | iinteliprox";
 const DESCRIPTION =
-  "Practical insights on AI automation, business workflows, professional websites, mobile apps, customer experience and digital transformation from iinteliprox.";
+  "Practical insights on AI automation, AI agents, n8n workflows, business automation, professional website development, mobile apps, lead generation and digital transformation from iinteliprox.";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+      {
+        name: "keywords",
+        content:
+          "AI Automation Blog, n8n Tutorials, AI Agents Guide, Business Automation Tips, Web Development Blog, Digital Marketing Insights, SEO Guide India, Workflow Automation, Lead Generation Strategies, AI Consulting Blog",
+      },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { property: "og:url", content: absoluteUrl("/blog") },
-      { property: "og:image", content: absoluteUrl("/og-image.svg") },
+      { property: "og:image", content: absoluteUrl(SITE.ogImage) },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:alt", content: "iinteliprox Insights — AI Automation & Business Growth Blog" },
+      { property: "og:locale", content: "en_IN" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: SITE.twitterHandle },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: absoluteUrl("/og-image.svg") },
+      { name: "twitter:image", content: absoluteUrl(SITE.ogImage) },
+      { name: "twitter:image:alt", content: "iinteliprox Insights — AI Automation & Business Growth Blog" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/blog") }],
     scripts: [
@@ -30,19 +43,38 @@ export const Route = createFileRoute("/blog/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "iinteliprox Insights",
-          description: DESCRIPTION,
-          url: absoluteUrl("/blog"),
-          mainEntity: {
-            "@type": "ItemList",
-            itemListElement: BLOGS.map((article, position) => ({
-              "@type": "ListItem",
-              position: position + 1,
-              url: absoluteUrl(`/blog/${article.slug}`),
-              name: article.title,
-            })),
-          },
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": `${SITE.url}/blog#webpage`,
+              url: absoluteUrl("/blog"),
+              name: TITLE,
+              description: DESCRIPTION,
+              inLanguage: "en-IN",
+              isPartOf: { "@id": `${SITE.url}/#website` },
+              breadcrumb: { "@id": `${SITE.url}/blog#breadcrumb` },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": `${SITE.url}/blog#breadcrumb`,
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+                { "@type": "ListItem", position: 2, name: "Insights", item: absoluteUrl("/blog") },
+              ],
+            },
+            {
+              "@type": "ItemList",
+              name: "iinteliprox Insights",
+              description: DESCRIPTION,
+              url: absoluteUrl("/blog"),
+              itemListElement: BLOGS.map((article, position) => ({
+                "@type": "ListItem",
+                position: position + 1,
+                url: absoluteUrl(`/blog/${article.slug}`),
+                name: article.title,
+              })),
+            },
+          ],
         }),
       },
     ],
@@ -56,7 +88,7 @@ function BlogIndexPage() {
       <SiteNav />
       <main className="animate-fade-in pb-24 pt-32 sm:pb-32 sm:pt-40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="eyebrow">Insights & Guides</div>
+          <div className="eyebrow">Insights &amp; Guides</div>
           <h1 className="mt-6 max-w-4xl font-display text-4xl leading-[1.02] tracking-tight sm:text-6xl md:text-7xl">
             Practical thinking for <span className="text-brand italic">durable growth.</span>
           </h1>

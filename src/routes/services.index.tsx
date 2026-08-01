@@ -5,18 +5,24 @@ import { SectionCTA } from "@/components/section-cta";
 import { SERVICES_DATA } from "@/lib/services-data";
 import { ArrowUpRight } from "lucide-react";
 import { Toaster } from "sonner";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Services | AI Automation, Web Development, Digital Marketing — iinteliprox" },
+      { title: "AI Automation, Web Development & Digital Marketing Services | iinteliprox" },
       {
         name: "description",
         content:
-          "Explore iinteliprox services — AI automation, custom website development, mobile app development, digital marketing, SEO, UI/UX design, branding and business automation. Lucknow, India — serving worldwide.",
+          "Explore all iinteliprox services — AI automation, AI agents, n8n workflow automation, custom website development, mobile app development, digital marketing, SEO, UI/UX design, branding and lead generation. Based in Lucknow, India — serving worldwide.",
       },
-      { property: "og:title", content: "Services — iinteliprox" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+      {
+        name: "keywords",
+        content:
+          "AI Automation Services, AI Agents Development, n8n Automation, Web Development Services, Mobile App Development, Digital Marketing Services, SEO Services, UI UX Design, Business Automation, Lead Generation Services, Branding Services, Graphic Design, Lucknow IT Company",
+      },
+      { property: "og:title", content: "Services — AI Automation, Web Development & Digital Marketing | iinteliprox" },
       {
         property: "og:description",
         content:
@@ -24,11 +30,63 @@ export const Route = createFileRoute("/services/")({
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: absoluteUrl("/services") },
+      { property: "og:image", content: absoluteUrl(SITE.ogImage) },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:alt", content: "iinteliprox Services — AI Automation & Digital Growth" },
+      { property: "og:locale", content: "en_IN" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: SITE.twitterHandle },
+      { name: "twitter:title", content: "Services — AI Automation, Web Development & Digital Marketing | iinteliprox" },
+      { name: "twitter:description", content: "AI automation, web development, mobile apps, digital marketing, SEO, UI/UX, branding and business automation services from iinteliprox." },
+      { name: "twitter:image", content: absoluteUrl(SITE.ogImage) },
+      { name: "twitter:image:alt", content: "iinteliprox Services — AI Automation & Digital Growth" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/services") }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": `${SITE.url}/services#webpage`,
+              url: absoluteUrl("/services"),
+              name: "AI Automation, Web Development & Digital Marketing Services | iinteliprox",
+              description: "Explore all iinteliprox services — AI automation, web development, mobile apps, digital marketing, SEO, UI/UX and business automation.",
+              inLanguage: "en-IN",
+              isPartOf: { "@id": `${SITE.url}/#website` },
+              breadcrumb: { "@id": `${SITE.url}/services#breadcrumb` },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": `${SITE.url}/services#breadcrumb`,
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+                { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              ],
+            },
+            {
+              "@type": "ItemList",
+              name: "iinteliprox Services",
+              itemListElement: SERVICES_DATA.map((s, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                name: s.name,
+                url: absoluteUrl(`/services/${s.slug}`),
+                description: s.short,
+              })),
+            },
+          ],
+        }),
+      },
+    ],
   }),
   component: ServicesIndexPage,
 });
+
 
 function ServicesIndexPage() {
   return (

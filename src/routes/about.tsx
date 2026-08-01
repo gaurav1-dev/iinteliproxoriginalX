@@ -5,7 +5,7 @@ import { SectionCTA } from "@/components/section-cta";
 import { SERVICES_DATA } from "@/lib/services-data";
 import { ArrowUpRight } from "lucide-react";
 import { Toaster } from "sonner";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, SITE } from "@/lib/site";
 
 const VALUES = [
   { t: "Client-first", d: "We win when you win. Every decision is filtered through the outcome for your business." },
@@ -29,13 +29,19 @@ const STACK = [
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About iinteliprox | AI Automation & Digital Growth Agency in Lucknow" },
+      { title: "About iinteliprox | AI-First Agency — Lucknow, India | Story, Mission & Team" },
       {
         name: "description",
         content:
-          "iinteliprox is an AI automation, web development and digital marketing agency based in Lucknow, India. Learn about our story, mission, values, team and technology stack.",
+          "iinteliprox is an AI-first automation and digital growth agency based in Lucknow, India. Learn about our story, mission, values, founding team, technology stack and industries we serve.",
       },
-      { property: "og:title", content: "About iinteliprox — AI Automation & Digital Growth Agency" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+      {
+        name: "keywords",
+        content:
+          "iinteliprox About, AI Agency India, AI Automation Company Lucknow, Web Development Agency Story, Digital Marketing Agency Mission, AI Consulting India, Technology Agency Lucknow, AI Company Founders, Vishal Srivastava, Gaurav Tiwari",
+      },
+      { property: "og:title", content: "About iinteliprox — AI-First Agency in Lucknow, India" },
       {
         property: "og:description",
         content:
@@ -43,6 +49,18 @@ export const Route = createFileRoute("/about")({
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: absoluteUrl("/about") },
+      { property: "og:image", content: absoluteUrl(SITE.ogImage) },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:alt", content: "About iinteliprox — AI Agency in Lucknow" },
+      { property: "og:locale", content: "en_IN" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: SITE.twitterHandle },
+      { name: "twitter:title", content: "About iinteliprox — AI-First Agency in Lucknow, India" },
+      { name: "twitter:description", content: "Story, mission, values, team and technology behind iinteliprox — an AI-first agency based in Lucknow, India serving clients worldwide." },
+      { name: "twitter:image", content: absoluteUrl(SITE.ogImage) },
+      { name: "twitter:image:alt", content: "About iinteliprox — AI Agency in Lucknow" },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/about") }],
     scripts: [
@@ -50,16 +68,67 @@ export const Route = createFileRoute("/about")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "AboutPage",
-          name: "About iinteliprox",
-          description:
-            "AI automation, web development and digital marketing agency based in Lucknow, India.",
+          "@graph": [
+            {
+              "@type": "AboutPage",
+              "@id": `${SITE.url}/about#webpage`,
+              url: absoluteUrl("/about"),
+              name: "About iinteliprox | AI-First Agency — Lucknow, India",
+              description: "Story, mission, values, team and technology behind iinteliprox — an AI-first agency based in Lucknow, India.",
+              inLanguage: "en-IN",
+              isPartOf: { "@id": `${SITE.url}/#website` },
+              about: { "@id": `${SITE.url}/#organization` },
+              breadcrumb: { "@id": `${SITE.url}/about#breadcrumb` },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": `${SITE.url}/about#breadcrumb`,
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+                { "@type": "ListItem", position: 2, name: "About", item: absoluteUrl("/about") },
+              ],
+            },
+            {
+              "@type": "Organization",
+              "@id": `${SITE.url}/#organization`,
+              name: "iinteliProX",
+              alternateName: "iinteliprox",
+              url: SITE.url,
+              logo: absoluteUrl("/ip-logo.png"),
+              foundingDate: "2023",
+              description: "AI automation, web development and digital marketing agency based in Lucknow, India. Helping businesses grow with AI agents, n8n automation, custom websites and performance marketing.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Lucknow",
+                addressRegion: "Uttar Pradesh",
+                addressCountry: "IN",
+              },
+              founder: [
+                {
+                  "@type": "Person",
+                  name: "Vishal Srivastava",
+                  jobTitle: "Founder & CEO",
+                  url: absoluteUrl("/team"),
+                },
+                {
+                  "@type": "Person",
+                  name: "Gaurav Tiwari",
+                  jobTitle: "Co-Founder & CTO",
+                  url: absoluteUrl("/team"),
+                },
+              ],
+              mission: "To ship growth systems — not deliverables — that keep producing value long after engagement ends.",
+              sameAs: ["https://instagram.com/iinteliprox"],
+              areaServed: ["India", "Worldwide"],
+            },
+          ],
         }),
       },
     ],
   }),
   component: AboutPage,
 });
+
 
 function AboutPage() {
   return (
