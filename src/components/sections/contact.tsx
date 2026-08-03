@@ -115,9 +115,6 @@ export function Contact() {
                 <a href={`mailto:${SITE.email.business}`} className="block mt-1 hover:text-brand text-sm sm:text-base font-medium">
                   {SITE.email.business}
                 </a>
-                <a href={`mailto:${SITE.email.team}`} className="block text-xs sm:text-sm text-muted-foreground hover:text-foreground">
-                  {SITE.email.team}
-                </a>
               </div>
             </li>
             <li className="flex items-start gap-4">

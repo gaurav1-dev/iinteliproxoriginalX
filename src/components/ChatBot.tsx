@@ -702,8 +702,8 @@ export function ChatBot() {
           50% { transform: translateY(-6px); }
         }
         @keyframes iipRobotPulse {
-          0%, 100% { filter: drop-shadow(0 5px 11px rgba(51, 126, 255, 0.3)); }
-          50% { filter: drop-shadow(0 5px 17px rgba(53, 241, 106, 0.52)); }
+          0%, 100% { filter: drop-shadow(0 5px 11px rgba(22, 163, 74, 0.25)); }
+          50% { filter: drop-shadow(0 5px 17px rgba(22, 163, 74, 0.45)); }
         }
         @keyframes iipRobotBounce {
           0% { transform: translateY(0) scale(1); }
@@ -711,8 +711,8 @@ export function ChatBot() {
           100% { transform: translateY(0) scale(1); }
         }
         @keyframes iipNotificationPulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(53, 241, 106, 0.55); }
-          50% { box-shadow: 0 0 0 5px rgba(53, 241, 106, 0); }
+          0%, 100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.45); }
+          50% { box-shadow: 0 0 0 5px rgba(22, 163, 74, 0); }
         }
         @keyframes iipPanelIn {
           from { opacity:0; transform:translateY(16px) scale(0.97); }

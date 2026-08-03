@@ -41,22 +41,22 @@ export function SiteNav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "backdrop-blur-xl bg-background/90 border-b border-hairline"
-          : "bg-background/60 backdrop-blur-sm"
+          ? "backdrop-blur-xl bg-[#050505]/95 border-b border-[rgba(255,255,255,0.08)] shadow-lg"
+          : "bg-[#050505]/70 backdrop-blur-md"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link to="/" className="flex items-center shrink-0 min-h-[44px] min-w-[44px]" aria-label="iinteliprox — home">
+        <Link to="/" className="flex items-center shrink-0 min-h-[44px] min-w-[44px]" aria-label="iinteliproX AI — home">
           <BrandLogo size={32} />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-0.5">
+        <nav className="hidden lg:flex items-center gap-1">
           {NAV.map((n) => (
             <Link
               key={n.label}
               to={n.to}
               activeOptions={{ exact: n.to === "/" }}
-              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors data-[status=active]:text-foreground data-[status=active]:font-medium relative"
+              className="px-3.5 py-2 text-sm text-[#94a3b8] hover:text-[#f8fafc] transition-colors data-[status=active]:text-[#f8fafc] data-[status=active]:font-semibold relative"
             >
               {n.label}
             </Link>
@@ -68,7 +68,7 @@ export function SiteNav() {
             href={SITE.calendly}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex btn-primary !py-2 !px-4 !text-xs"
+            className="hidden lg:inline-flex btn-primary !py-2 !px-4 !text-xs"
           >
             <Calendar className="h-3.5 w-3.5" />
             Book Appointment
@@ -79,7 +79,7 @@ export function SiteNav() {
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle navigation menu"
             aria-expanded={open}
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-hairline bg-surface/80 text-foreground transition-colors hover:bg-surface-2 active:scale-95"
+            className="lg:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-hairline bg-surface/80 text-foreground transition-colors hover:bg-surface-2 active:scale-95"
           >
             <span className="sr-only">Toggle navigation</span>
             <div className="flex flex-col gap-1.5 items-center justify-center">

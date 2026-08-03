@@ -5,47 +5,59 @@ import { ArrowUpRight } from "lucide-react";
 
 export function Services() {
   return (
-    <section id="services" className="relative py-24 sm:py-32 hairline-t">
+    <section id="services" className="relative py-24 sm:py-32 border-t border-[rgba(255,255,255,0.08)] bg-[#050505]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid gap-6 md:grid-cols-12 items-end">
           <div className="md:col-span-8">
             <div className="eyebrow">Our Capabilities</div>
-            <h2 className="font-display text-3xl sm:text-5xl mt-4 tracking-tight max-w-3xl">
-              The intelligent service ecosystem
+            <h2 className="font-display text-3xl sm:text-5xl mt-4 tracking-tight text-[#f8fafc]">
+              The enterprise <span className="text-[#16a34a]">technology ecosystem</span>
             </h2>
           </div>
-          <p className="md:col-span-4 text-muted-foreground leading-relaxed">
-            Nine deeply-integrated practice areas — from AI automation and
-            custom software to digital marketing — orchestrated as one growth
-            system. Click any service to explore.
+          <p className="md:col-span-4 text-[#94a3b8] leading-relaxed">
+            12 deeply-integrated practice areas — from AI automation and software engineering to global marketplace management — orchestrated as one growth engine. Click any card to explore.
           </p>
         </div>
 
-        <ul className="mt-14 grid gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-3 rounded-2xl overflow-hidden border border-hairline">
+        <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES_DATA.map((s, i) => (
-            <li key={s.slug}>
+            <li key={s.slug} className="h-full">
               <Link
                 to="/services/$slug"
                 params={{ slug: s.slug }}
-                className="group relative block bg-background p-8 transition-colors hover:bg-surface h-full"
+                className="group relative flex flex-col justify-between card-surface p-8 h-full border border-[rgba(255,255,255,0.08)] hover:border-[#16a34a] transition-all duration-300"
               >
-                <div className="font-mono text-xs text-muted-foreground">
-                  {String(i + 1).padStart(2, "0")}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs text-[#16a34a]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 text-[#94a3b8] group-hover:text-[#16a34a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </div>
+                  <h3 className="font-display text-2xl mt-4 text-[#f8fafc] group-hover:text-[#16a34a] transition-colors">
+                    {s.name}
+                  </h3>
+                  <p className="mt-3 text-sm text-[#94a3b8] leading-relaxed">
+                    {s.short}
+                  </p>
                 </div>
-                <h3 className="font-display text-2xl mt-4">{s.name}</h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                  {s.short}
-                </p>
-                <ArrowUpRight className="absolute right-6 top-6 h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="mt-6 pt-4 border-t border-[rgba(255,255,255,0.08)] flex items-center justify-between">
+                  <span className="text-xs font-mono tracking-wider uppercase text-[#16a34a] group-hover:underline">
+                    Explore Solution
+                  </span>
+                  <span className="text-xs text-[#94a3b8] font-mono">
+                    {s.pricing[0]?.price.split(" ")[0]}
+                  </span>
+                </div>
               </Link>
             </li>
           ))}
         </ul>
 
-        <div className="mt-10 text-center">
+        <div className="mt-12 text-center">
           <Link to="/services" className="btn-ghost">
-            View all services
-            <ArrowUpRight className="h-4 w-4" />
+            Explore All 12 Practice Areas
+            <ArrowUpRight className="h-4 w-4 text-[#16a34a]" />
           </Link>
         </div>
       </div>

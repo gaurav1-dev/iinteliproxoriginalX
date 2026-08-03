@@ -90,44 +90,51 @@ export const Route = createFileRoute("/services/")({
 
 function ServicesIndexPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#050505] text-[#f8fafc]">
       <SiteNav />
       <main className="pt-32 pb-24 sm:pt-40 sm:pb-32 animate-fade-in">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="eyebrow">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand mr-2 align-middle" />
-            Our Capabilities
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#16a34a] mr-2 align-middle" />
+            Our Practice Areas
           </div>
-          <h1 className="font-display mt-6 text-4xl sm:text-6xl md:text-7xl leading-[1.02] tracking-tight max-w-4xl">
-            Services engineered for
-            <br />
-            <span className="text-brand italic">growth.</span>
+          <h1 className="font-display mt-6 text-4xl sm:text-6xl md:text-7xl leading-[1.02] tracking-tight max-w-4xl text-[#f8fafc]">
+            Enterprise solutions engineered for <span className="text-[#16a34a]">exponential growth.</span>
           </h1>
-          <p className="mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-            AI automation, web development, mobile apps, digital marketing, SEO,
-            UI/UX design, branding and business automation — each service is a
-            production-grade capability, not a checkbox on a portfolio.
+          <p className="mt-8 max-w-2xl text-lg text-[#94a3b8] leading-relaxed">
+            AI automation, web development, mobile apps, digital marketing, SEO, UI/UX redesign, branding, business automation, social media management, and global marketplace expansion.
           </p>
 
-          <ul className="mt-16 grid gap-px bg-hairline sm:grid-cols-2 lg:grid-cols-3 rounded-2xl overflow-hidden border border-hairline">
+          <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES_DATA.map((s, i) => (
-              <li key={s.slug}>
+              <li key={s.slug} className="h-full">
                 <Link
                   to="/services/$slug"
                   params={{ slug: s.slug }}
-                  className="group relative block bg-background p-8 transition-colors hover:bg-surface h-full"
+                  className="group relative flex flex-col justify-between card-surface p-8 h-full border border-[rgba(255,255,255,0.08)] hover:border-[#16a34a] transition-all duration-300"
                 >
-                  <div className="font-mono text-xs text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-[#16a34a]">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <ArrowUpRight className="h-4 w-4 text-[#94a3b8] group-hover:text-[#16a34a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    </div>
+                    <h2 className="font-display text-2xl mt-4 text-[#f8fafc] group-hover:text-[#16a34a] transition-colors">
+                      {s.name}
+                    </h2>
+                    <p className="mt-3 text-sm text-[#94a3b8] leading-relaxed">
+                      {s.short}
+                    </p>
                   </div>
-                  <h2 className="font-display text-2xl mt-4">{s.name}</h2>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                    {s.short}
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-xs font-mono tracking-wider uppercase text-brand">
-                    Explore
-                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
+                  <div className="mt-6 pt-4 border-t border-[rgba(255,255,255,0.08)] flex items-center justify-between">
+                    <span className="text-xs font-mono tracking-wider uppercase text-[#16a34a] group-hover:underline">
+                      Explore Solution
+                    </span>
+                    <span className="text-xs text-[#94a3b8] font-mono">
+                      {s.pricing[0]?.price.split(" ")[0]}
+                    </span>
+                  </div>
                 </Link>
               </li>
             ))}

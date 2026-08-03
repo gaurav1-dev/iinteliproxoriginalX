@@ -145,7 +145,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "dns-prefetch", href: "https://cdn.jsdelivr.net" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
     scripts: [
@@ -213,13 +213,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 "Lead Generation",
                 "Branding",
               ],
-              founder: {
-                "@type": "Person",
-                name: "Vishal Srivastava",
-                jobTitle: "Founder & CEO",
-                email: SITE.email.business,
-                url: absoluteUrl("/team"),
-              },
+              founder: [
+                {
+                  "@type": "Person",
+                  name: "Vishal Srivastava",
+                  jobTitle: "Founder & CEO",
+                  email: SITE.email.business,
+                  url: absoluteUrl("/team"),
+                },
+                {
+                  "@type": "Person",
+                  name: "Gaurav Tiwari",
+                  jobTitle: "Co-Founder & CTO",
+                  email: SITE.email.business,
+                  url: absoluteUrl("/team"),
+                },
+              ],
               contactPoint: [
                 {
                   "@type": "ContactPoint",

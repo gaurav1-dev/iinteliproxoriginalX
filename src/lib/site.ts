@@ -26,9 +26,9 @@ export const SITE = {
     display: "+91 78304 34069",
   },
   email: {
-    business: "vsrivastava315@gmail.com",
-    backup: "vsrivastava315@gmail.com",
-    team: "gauravdev11@outlook.com",
+    business: "iinteliprox@gmail.com",
+    backup: "iinteliprox@gmail.com",
+    team: "iinteliprox@gmail.com",
   },
   address: {
     line1: "Lucknow, Uttar Pradesh",

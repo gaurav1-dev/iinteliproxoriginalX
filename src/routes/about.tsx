@@ -231,12 +231,20 @@ function AboutPage() {
             <h2 className="font-display text-3xl sm:text-5xl mt-4 tracking-tight max-w-3xl">
               Leadership
             </h2>
-            <div className="mt-14">
-              <Link to="/team" className="group card-surface p-8 hover:border-brand/40 transition-colors flex items-center justify-between gap-6">
+            <div className="mt-14 grid gap-6 md:grid-cols-2">
+              <Link to="/team/$slug" params={{ slug: "vishal-srivastava" }} className="group card-surface p-8 hover:border-brand/40 transition-colors flex items-center justify-between gap-6">
                 <div>
                   <div className="eyebrow">Founder & CEO</div>
                   <h3 className="font-display text-3xl mt-2">Vishal Srivastava</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Data analytics & business intelligence specialist.</p>
+                  <p className="mt-2 text-sm text-muted-foreground">Enterprise AI strategy, data intelligence & growth vision.</p>
+                </div>
+                <ArrowUpRight className="h-6 w-6 text-muted-foreground group-hover:text-brand transition-colors shrink-0" />
+              </Link>
+              <Link to="/team/$slug" params={{ slug: "gaurav-tiwari" }} className="group card-surface p-8 hover:border-brand/40 transition-colors flex items-center justify-between gap-6">
+                <div>
+                  <div className="eyebrow">Co-Founder & CTO</div>
+                  <h3 className="font-display text-3xl mt-2">Gaurav Tiwari</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">AI software architecture, cloud platforms & engineering excellence.</p>
                 </div>
                 <ArrowUpRight className="h-6 w-6 text-muted-foreground group-hover:text-brand transition-colors shrink-0" />
               </Link>
