@@ -17,6 +17,7 @@ export function Hero() {
             </div>
 
             <h1 className="font-display mt-5 sm:mt-8 text-[2.6rem] xs:text-[3.4rem] sm:text-6xl lg:text-[4.6rem] xl:text-[5.4rem] leading-[1.08] sm:leading-[1.04] tracking-tight font-extrabold text-[#f8fafc] max-w-3xl">
+              <span className="block text-[0.42em] uppercase tracking-[0.16em] text-[#94a3b8]">iinteliProX</span>
               Transform Businesses with <span className="text-[#16a34a]">AI</span>
             </h1>
 
@@ -64,4 +65,3 @@ export function Hero() {
     </section>
   );
 }
-

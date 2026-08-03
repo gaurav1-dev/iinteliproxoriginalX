@@ -252,6 +252,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@type": "WebSite",
               "@id": `${SITE.url}/#website`,
               name: "iinteliProX",
+              alternateName: ["iinteliprox", "iinteliprox.com"],
               url: SITE.url,
               description: SITE.description,
               inLanguage: "en-IN",

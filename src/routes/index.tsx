@@ -9,9 +9,9 @@ import { Toaster } from "sonner";
 import { absoluteUrl, SITE } from "@/lib/site";
 
 const HOME_TITLE =
-  "AI Automation Agency India | n8n Automation, AI Agents & Web Development | iinteliprox";
+  "iinteliProX | AI Automation Agency in India";
 const HOME_DESC =
-  "iinteliprox is India's leading AI automation agency — building AI agents, n8n automation workflows, custom websites, mobile apps and digital marketing systems for businesses worldwide. Based in Lucknow.";
+  "iinteliProX is an AI automation and digital growth agency in Lucknow, India, building AI agents, n8n workflows, websites, mobile apps and marketing systems worldwide.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
