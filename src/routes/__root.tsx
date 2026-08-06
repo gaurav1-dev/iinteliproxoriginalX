@@ -21,7 +21,9 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <img
           src="/ip-logo.png"
-          alt="iinteliprox"
+          alt="iinteliProX AI logo"
+          width={56}
+          height={56}
           className="mx-auto h-14 w-14"
         />
         <h1 className="mt-8 text-6xl font-semibold tracking-tight text-foreground">404</h1>

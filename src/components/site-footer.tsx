@@ -72,8 +72,8 @@ export function SiteFooter() {
             {SITE.address.line2}
           </p>
           <p className="mt-3 text-sm">
-            <a className="inline-block py-1 text-muted-foreground hover:text-foreground transition-colors" href="mailto:intelepro@gmail.com">
-              intelepro@gmail.com
+            <a className="inline-block py-1 text-muted-foreground hover:text-foreground transition-colors" href={`mailto:${SITE.email.business}`}>
+              {SITE.email.business}
             </a>
           </p>
           <p className="mt-1 text-sm">

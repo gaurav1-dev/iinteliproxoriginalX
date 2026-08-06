@@ -15,7 +15,11 @@ type SitemapEntry = {
 // Vite maintains this list as routes are added or removed. Dynamic detail routes
 // are expanded from their server-rendered data sources below.
 const ROUTE_FILES = Object.keys(import.meta.glob("./**/*.tsx"));
-const LAST_MODIFIED = new Date().toISOString().slice(0, 10);
+// Content release dates are intentionally stable: sitemap lastmod must reflect
+// real content changes rather than changing on every request or deployment.
+const STATIC_LAST_MODIFIED = "2026-07-22";
+const SERVICE_LAST_MODIFIED = "2026-08-06";
+const PORTFOLIO_LAST_MODIFIED = "2026-07-22";
 
 function pathFromRouteFile(file: string): string | null {
   const route = file.replace(/^\.\//, "").replace(/\.tsx$/, "");
@@ -49,10 +53,10 @@ function xmlEscape(value: string) {
 
 function buildEntries(): SitemapEntry[] {
   const staticPaths = ROUTE_FILES.map(pathFromRouteFile).filter((path): path is string => Boolean(path));
-  const paths = new Map<string, string>(staticPaths.map((path) => [path, LAST_MODIFIED]));
+  const paths = new Map<string, string>(staticPaths.map((path) => [path, STATIC_LAST_MODIFIED]));
 
-  for (const service of SERVICES_DATA) paths.set(`/services/${service.slug}`, LAST_MODIFIED);
-  for (const project of PROJECTS) paths.set(`/portfolio/${project.slug}`, LAST_MODIFIED);
+  for (const service of SERVICES_DATA) paths.set(`/services/${service.slug}`, SERVICE_LAST_MODIFIED);
+  for (const project of PROJECTS) paths.set(`/portfolio/${project.slug}`, PORTFOLIO_LAST_MODIFIED);
   for (const article of BLOGS) paths.set(`/blog/${article.slug}`, article.updatedAt);
 
   return [...paths]

@@ -48,7 +48,7 @@ export function Hero() {
           <div className="rocket-stage mt-4 sm:mt-0" aria-hidden="true">
             <div className="hero-orbit" />
             <div className="stat-float left"><span className="text-xs text-[#94a3b8]">Growth Impact</span><strong className="mt-1 block text-2xl font-bold text-[#f8fafc]">+320%</strong><div className="stat-bars"><i /><i /><i /><i /><i /><i /></div></div>
-            <div className="hero-rocket-shell"><img src="/hero/growthpilotx-rocket.webp" alt="iinteliproX AI Rocket" className="hero-rocket-image" loading="eager" decoding="async" /></div>
+            <div className="hero-rocket-shell"><img src="/hero/growthpilotx-rocket.webp" alt="AI automation rocket illustrating business growth with iinteliProX" width={1024} height={1024} className="hero-rocket-image" loading="eager" decoding="async" fetchPriority="high" /></div>
             <div className="stat-float right"><span className="text-xs text-[#94a3b8]">Systems Deployed</span><strong className="mt-1 block text-2xl font-bold text-[#f8fafc]">450+</strong><div className="stat-bars"><i /><i /><i /><i /><i /><i /></div></div>
           </div>
         </div>

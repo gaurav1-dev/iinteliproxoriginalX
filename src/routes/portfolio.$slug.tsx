@@ -5,6 +5,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter, FloatingWhatsApp } from "@/components/site-footer";
 import { ArrowLeft, ArrowUpRight, ExternalLink, MessageCircle } from "lucide-react";
 import { Toaster } from "sonner";
+import { breadcrumbSchema, createSeoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/portfolio/$slug")({
   loader: ({ params }) => {
@@ -14,18 +15,34 @@ export const Route = createFileRoute("/portfolio/$slug")({
   },
   head: ({ loaderData }) => {
     const p = loaderData?.project;
-    if (!p) return { meta: [{ title: "Project — iinteliprox" }] };
-    return {
-      meta: [
-        { title: `${p.title} — Case Study | iinteliprox` },
-        { name: "description", content: p.summary },
-        { property: "og:title", content: `${p.title} — iinteliprox Case Study` },
-        { property: "og:description", content: p.summary },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: absoluteUrl(`/portfolio/${p.slug}`) },
+    if (!p) return { meta: [{ title: "Project not found | iinteliProX AI" }, { name: "robots", content: "noindex, nofollow" }] };
+    const path = `/portfolio/${p.slug}`;
+    return createSeoHead({
+      title: `${p.title} Case Study | Web Development Portfolio | iinteliProX AI`,
+      description: p.summary,
+      path,
+      type: "article",
+      image: p.image,
+      imageAlt: `${p.title} website project by iinteliProX AI`,
+      schema: [
+        {
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          name: p.title,
+          description: p.description,
+          url: absoluteUrl(path),
+          image: absoluteUrl(p.image),
+          creator: { "@type": "Organization", name: SITE.name, url: SITE.url },
+          dateCreated: p.year,
+          keywords: p.tags.join(", "),
+        },
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Portfolio", path: "/portfolio" },
+          { name: p.title, path },
+        ]),
       ],
-      links: [{ rel: "canonical", href: absoluteUrl(`/portfolio/${p.slug}`) }],
-    };
+    });
   },
   notFoundComponent: NotFound,
   errorComponent: ErrorView,
@@ -76,8 +93,7 @@ function ProjectPage() {
         <article className="pt-32 pb-24">
           <div className="mx-auto max-w-5xl px-6">
             <Link
-              to="/"
-              hash="portfolio"
+              to="/portfolio"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" /> All work
@@ -203,7 +219,7 @@ function ProjectPage() {
                   <MessageCircle className="h-4 w-4" />
                   Message {SITE.whatsapp.display}
                 </a>
-                <Link to="/" hash="contact" className="btn-ghost">
+                <Link to="/contact" className="btn-ghost">
                   Fill out the form
                 </Link>
               </div>
