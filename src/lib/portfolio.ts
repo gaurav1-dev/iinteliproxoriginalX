@@ -14,6 +14,9 @@ export type Project = {
   challenges: string[];
   solutions: string[];
   outcomes: string[];
+  serviceSlugs?: string[];
+  subServiceSlugs?: string[];
+  industrySlugs?: string[];
 };
 
 const shot = (slug: string) => `/portfolio/${slug}.jpg`;

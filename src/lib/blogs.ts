@@ -22,6 +22,9 @@ export type BlogArticle = {
   faqs: { question: string; answer: string }[];
   conclusion: string;
   relatedServices: string[];
+  relatedSubServiceSlugs?: string[];
+  relatedPortfolioSlugs?: string[];
+  tags?: string[];
 };
 
 // This content model is deliberately the single source of truth for article pages,

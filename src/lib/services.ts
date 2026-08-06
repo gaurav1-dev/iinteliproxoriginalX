@@ -1,17 +1,6 @@
-export const SERVICES = [
-  { name: "Web Development", desc: "Custom websites, e-commerce, custom CMS, dashboards, and enterprise web applications." },
-  { name: "Mobile App Development", desc: "Native iOS, Android, React Native, and Flutter applications with fluid 60fps performance." },
-  { name: "Digital Marketing", desc: "Performance acquisition across Google Ads, Meta Ads, LinkedIn Ads, and funnel CRO." },
-  { name: "UI/UX Redesign & Product Experience", desc: "High-retention product design, SaaS dashboard redesigns, and component design systems." },
-  { name: "Search Engine Optimization", desc: "Technical SEO, Core Web Vitals, local GMB pack climbing, and content authority scaling." },
-  { name: "Branding", desc: "Complete visual identity systems, logos, positioning strategy, typography, and style guides." },
-  { name: "Business Automation", desc: "n8n workflows, CRM lead routing, HR processes, and operational efficiency pipelines." },
-  { name: "AI Solutions", desc: "Autonomous AI agents, RAG knowledge bases, voice calling agents, and custom LLMs." },
-  { name: "Graphic Design", desc: "Social creatives, investor pitch decks, brochures, packaging, and marketing collateral." },
-  { name: "Lead Generation", desc: "B2B prospect list building, multi-channel cold outreach, and outbound sales funnels." },
-  { name: "Social Media Management", desc: "End-to-end strategy, content scheduling, community moderation, and growth analytics." },
-  { name: "Manufacturer Support & Global Marketplace", desc: "Amazon Global, Alibaba, IndiaMART, export consultation, and international brand building." },
-] as const;
+import { SERVICES_DATA } from "@/lib/services-data";
+
+export const SERVICES = SERVICES_DATA.map((service) => ({ name: service.name, desc: service.short }));
 
 export const PROCESS = [
   { phase: "01", title: "Discovery & Infrastructure Audit", desc: "We analyze your existing workflows, database bottlenecks, and marketing tech stacks to find high-yield automation areas." },

@@ -36,6 +36,7 @@ function pathFromRouteFile(file: string): string | null {
 function metadataFor(path: string): Omit<SitemapEntry, "path" | "lastModified"> {
   if (path === "/") return { changefreq: "weekly", priority: "1.0" };
   if (path === "/services" || path === "/portfolio") return { changefreq: "monthly", priority: "0.9" };
+  if (path.startsWith("/services/") && path.split("/").filter(Boolean).length === 3) return { changefreq: "monthly", priority: "0.7" };
   if (path.startsWith("/services/")) return { changefreq: "monthly", priority: "0.8" };
   if (["/about", "/team", "/contact"].includes(path)) return { changefreq: "monthly", priority: "0.7" };
   if (path.startsWith("/portfolio/")) return { changefreq: "monthly", priority: "0.6" };
@@ -56,6 +57,11 @@ function buildEntries(): SitemapEntry[] {
   const paths = new Map<string, string>(staticPaths.map((path) => [path, STATIC_LAST_MODIFIED]));
 
   for (const service of SERVICES_DATA) paths.set(`/services/${service.slug}`, SERVICE_LAST_MODIFIED);
+  for (const service of SERVICES_DATA) {
+    for (const subService of service.subServices) {
+      paths.set(`/services/${service.slug}/${subService.slug}`, subService.updatedAt ?? service.updatedAt ?? SERVICE_LAST_MODIFIED);
+    }
+  }
   for (const project of PROJECTS) paths.set(`/portfolio/${project.slug}`, PORTFOLIO_LAST_MODIFIED);
   for (const article of BLOGS) paths.set(`/blog/${article.slug}`, article.updatedAt);
 

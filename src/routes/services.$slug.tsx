@@ -256,7 +256,7 @@ function ServiceDetailPage() {
             </h2>
             <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {s.subServices.map((sub, i) => (
-                <div key={sub.name} className="card-surface p-6 flex flex-col justify-between group">
+                <Link key={sub.slug} to="/services/$slug/$subSlug" params={{ slug: s.slug, subSlug: sub.slug }} aria-label={`Explore ${sub.name}`} className="card-surface p-6 flex flex-col justify-between group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#16a34a] hover:border-[#16a34a]/60 transition-colors">
                   <div>
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-xs text-[#16a34a]">{(i + 1).toString().padStart(2, "0")}</span>
@@ -283,7 +283,8 @@ function ServiceDetailPage() {
                       </span>
                     ))}
                   </div>
-                </div>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#16a34a]">Explore service <ArrowUpRight className="h-4 w-4" /></span>
+                </Link>
               ))}
             </div>
           </div>

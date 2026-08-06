@@ -2,12 +2,33 @@
 // One entry per slug. Kept as plain data so it renders on the server for SEO.
 
 export type SubService = {
+  slug: string;
   name: string;
+  short: string;
+  hero: string;
+  seoTitle: string;
+  seoDescription: string;
+  keywords: string[];
   desc: string;
   who: string;
   tech: string[];
   timeline: string;
+  overview: string;
+  problem: string;
+  solution: string;
+  benefits: string[];
+  features: string[];
+  useCases: string[];
+  process: string[];
+  deliverables: string[];
+  industries: string[];
+  faqs: { q: string; a: string }[];
+  relatedBlogSlugs?: string[];
+  relatedPortfolioSlugs?: string[];
+  updatedAt?: string;
 };
+
+type SubServiceSummary = Pick<SubService, "slug" | "name" | "desc" | "who" | "tech" | "timeline">;
 
 export type PricingTier = {
   title: string;
@@ -38,7 +59,10 @@ export type Service = {
   process: string[];
   whyUs: { title: string; desc: string }[];
   faqs: { q: string; a: string }[];
+  updatedAt?: string;
 };
+
+type ServiceSource = Omit<Service, "subServices"> & { subServices: SubServiceSummary[] };
 
 const SHARED_WHY_US = [
   { title: "Fast Sprint Delivery", desc: "Structured agile execution with weekly demo milestones and absolute code transparency." },
@@ -56,7 +80,7 @@ const SHARED_FAQS = [
   { q: "Do you offer post-launch support & maintenance?", a: "Yes, we provide flexible monthly maintenance retainers covering security updates, server monitoring, performance tuning, and feature iterations." },
 ];
 
-export const SERVICES_DATA: Service[] = [
+const SERVICE_SOURCES: ServiceSource[] = [
   {
     slug: "web-development",
     name: "Web Development",
@@ -69,18 +93,18 @@ export const SERVICES_DATA: Service[] = [
     why: "Your digital web platform is your core growth engine. A slow or outdated interface destroys trust and burns acquisition capital. High-performance engineering converts cold traffic into compounding revenue.",
     who: "Founders, e-commerce brands, SMBs, and scaling enterprise tech teams seeking high-conversion digital infrastructure.",
     subServices: [
-      { name: "Business Websites", desc: "Sleek, high-converting brand sites built to present services with clarity and trust.", who: "Local businesses, service providers, SMBs", tech: ["React", "Next.js", "Tailwind CSS"], timeline: "1–2 Weeks" },
-      { name: "Landing Pages", desc: "Conversion-optimized single page websites designed specifically for paid ads campaigns.", who: "Marketing campaigns, direct response brands", tech: ["Next.js", "Framer Motion", "Tailwind"], timeline: "3–5 Days" },
-      { name: "Corporate Websites", desc: "Enterprise-grade digital experiences built for brand authority, compliance, and global reach.", who: "Mid-market & enterprise organizations", tech: ["Next.js", "TypeScript", "Payload CMS"], timeline: "3–4 Weeks" },
-      { name: "Portfolio Websites", desc: "Visual interactive showcases designed for agencies, architects, executives, and creators.", who: "Creatives, agencies, consultants", tech: ["React", "Three.js", "Tailwind CSS"], timeline: "1–2 Weeks" },
-      { name: "Shopify Stores", desc: "Custom custom Shopify theme builds, app integrations, and conversion funnel optimization.", who: "E-commerce brands & DTC sellers", tech: ["Shopify Liquid", "Hydrogen", "GraphQL"], timeline: "2–3 Weeks" },
-      { name: "WordPress Websites", desc: "Bespoke WordPress theme architectures built for fast load times and effortless client editing.", who: "Content publishers, SMBs, agencies", tech: ["WordPress", "PHP", "MySQL"], timeline: "1–2 Weeks" },
-      { name: "Custom CMS Development", desc: "Bespoke content management systems built tailored strictly around your team's publishing workflow.", who: "Content teams & media companies", tech: ["Node.js", "React", "PostgreSQL"], timeline: "3–5 Weeks" },
-      { name: "Headless CMS", desc: "Decoupled frontend connected to Strapi, Sanity, or Contentful via GraphQL APIs.", who: "Omnichannel brands & multi-platform apps", tech: ["Next.js", "Sanity", "GraphQL"], timeline: "2–4 Weeks" },
-      { name: "Custom Dashboards", desc: "Real-time analytical and operational dashboards built with complex data visualization.", who: "SaaS companies & internal ops teams", tech: ["React", "Recharts", "Node.js"], timeline: "3–6 Weeks" },
-      { name: "E-commerce Websites", desc: "Custom multi-vendor marketplaces and custom cart platforms built for high volume transactions.", who: "Retail chains & multi-brand stores", tech: ["Next.js", "Node.js", "Stripe API"], timeline: "4–8 Weeks" },
-      { name: "Enterprise Web Applications", desc: "Scalable SaaS cloud applications with role-based auth, microservices, and high concurrency support.", who: "Enterprise SaaS & B2B Tech Platforms", tech: ["React", "TypeScript", "Node.js", "PostgreSQL"], timeline: "6–12 Weeks" },
-      { name: "Progressive Web Apps (PWA)", desc: "Web applications that work offline with app-like speed, push notifications, and home screen installability.", who: "Mobile-first web platforms", tech: ["React PWA", "Service Workers", "Workbox"], timeline: "3–5 Weeks" }
+      { slug: "business-websites", name: "Business Websites", desc: "Sleek, high-converting brand sites built to present services with clarity and trust.", who: "Local businesses, service providers, SMBs", tech: ["React", "Next.js", "Tailwind CSS"], timeline: "1–2 Weeks" },
+      { slug: "landing-pages", name: "Landing Pages", desc: "Conversion-optimized single page websites designed specifically for paid ads campaigns.", who: "Marketing campaigns, direct response brands", tech: ["Next.js", "Framer Motion", "Tailwind"], timeline: "3–5 Days" },
+      { slug: "corporate-websites", name: "Corporate Websites", desc: "Enterprise-grade digital experiences built for brand authority, compliance, and global reach.", who: "Mid-market & enterprise organizations", tech: ["Next.js", "TypeScript", "Payload CMS"], timeline: "3–4 Weeks" },
+      { slug: "portfolio-websites", name: "Portfolio Websites", desc: "Visual interactive showcases designed for agencies, architects, executives, and creators.", who: "Creatives, agencies, consultants", tech: ["React", "Three.js", "Tailwind CSS"], timeline: "1–2 Weeks" },
+      { slug: "shopify-stores", name: "Shopify Stores", desc: "Custom custom Shopify theme builds, app integrations, and conversion funnel optimization.", who: "E-commerce brands & DTC sellers", tech: ["Shopify Liquid", "Hydrogen", "GraphQL"], timeline: "2–3 Weeks" },
+      { slug: "wordpress-websites", name: "WordPress Websites", desc: "Bespoke WordPress theme architectures built for fast load times and effortless client editing.", who: "Content publishers, SMBs, agencies", tech: ["WordPress", "PHP", "MySQL"], timeline: "1–2 Weeks" },
+      { slug: "custom-cms-development", name: "Custom CMS Development", desc: "Bespoke content management systems built tailored strictly around your team's publishing workflow.", who: "Content teams & media companies", tech: ["Node.js", "React", "PostgreSQL"], timeline: "3–5 Weeks" },
+      { slug: "headless-cms", name: "Headless CMS", desc: "Decoupled frontend connected to Strapi, Sanity, or Contentful via GraphQL APIs.", who: "Omnichannel brands & multi-platform apps", tech: ["Next.js", "Sanity", "GraphQL"], timeline: "2–4 Weeks" },
+      { slug: "custom-dashboards", name: "Custom Dashboards", desc: "Real-time analytical and operational dashboards built with complex data visualization.", who: "SaaS companies & internal ops teams", tech: ["React", "Recharts", "Node.js"], timeline: "3–6 Weeks" },
+      { slug: "e-commerce-websites", name: "E-commerce Websites", desc: "Custom multi-vendor marketplaces and custom cart platforms built for high volume transactions.", who: "Retail chains & multi-brand stores", tech: ["Next.js", "Node.js", "Stripe API"], timeline: "4–8 Weeks" },
+      { slug: "enterprise-web-applications", name: "Enterprise Web Applications", desc: "Scalable SaaS cloud applications with role-based auth, microservices, and high concurrency support.", who: "Enterprise SaaS & B2B Tech Platforms", tech: ["React", "TypeScript", "Node.js", "PostgreSQL"], timeline: "6–12 Weeks" },
+      { slug: "progressive-web-apps", name: "Progressive Web Apps (PWA)", desc: "Web applications that work offline with app-like speed, push notifications, and home screen installability.", who: "Mobile-first web platforms", tech: ["React PWA", "Service Workers", "Workbox"], timeline: "3–5 Weeks" }
     ],
     benefits: [
       "Sub-second page load times maximizing Lighthouse 90+ scores",
@@ -119,12 +143,12 @@ export const SERVICES_DATA: Service[] = [
     why: "Mobile apps create direct, habit-forming touchpoints with customers. A fluid app unlocks continuous customer engagement, push notification pipelines, and recurring revenue.",
     who: "Consumer brands, SaaS products, logistics fleets, and enterprise teams needing custom iOS and Android solutions.",
     subServices: [
-      { name: "Android Apps", desc: "Native Kotlin Android applications optimized for diverse device form factors and tablet interfaces.", who: "Consumer Android platforms & hardware integrations", tech: ["Kotlin", "Jetpack Compose", "Android SDK"], timeline: "4–8 Weeks" },
-      { name: "iOS Apps", desc: "Bespoke Swift iOS applications built specifically for Apple ecosystem fluid standards.", who: "High-tier consumer apps & iOS-first SaaS", tech: ["Swift", "SwiftUI", "CoreData"], timeline: "4–8 Weeks" },
-      { name: "Cross-Platform Apps", desc: "Single codebase React Native or Flutter builds delivering 60fps performance across iOS and Android.", who: "Startups & scaling multi-platform products", tech: ["React Native", "Flutter", "TypeScript"], timeline: "4–6 Weeks" },
-      { name: "Internal Business Apps", desc: "Custom operational mobile software for field workers, delivery tracking, warehouse, and team approvals.", who: "Operations teams & enterprise logistics", tech: ["React Native", "Node.js", "PostgreSQL"], timeline: "3–6 Weeks" },
-      { name: "Customer Applications", desc: "High-retention loyalty, booking, purchasing, and community mobile apps built for end-users.", who: "Retail brands, fitness, services", tech: ["Flutter", "Firebase", "Stripe SDK"], timeline: "4–8 Weeks" },
-      { name: "Enterprise Apps", desc: "High-security corporate mobile applications with single sign-on (SSO), data encryption, and custom APIs.", who: "Enterprises & corporate operations", tech: ["Swift", "Kotlin", "Enterprise SSO"], timeline: "8–12 Weeks" }
+      { slug: "android-apps", name: "Android Apps", desc: "Native Kotlin Android applications optimized for diverse device form factors and tablet interfaces.", who: "Consumer Android platforms & hardware integrations", tech: ["Kotlin", "Jetpack Compose", "Android SDK"], timeline: "4–8 Weeks" },
+      { slug: "ios-apps", name: "iOS Apps", desc: "Bespoke Swift iOS applications built specifically for Apple ecosystem fluid standards.", who: "High-tier consumer apps & iOS-first SaaS", tech: ["Swift", "SwiftUI", "CoreData"], timeline: "4–8 Weeks" },
+      { slug: "cross-platform-apps", name: "Cross-Platform Apps", desc: "Single codebase React Native or Flutter builds delivering 60fps performance across iOS and Android.", who: "Startups & scaling multi-platform products", tech: ["React Native", "Flutter", "TypeScript"], timeline: "4–6 Weeks" },
+      { slug: "internal-business-apps", name: "Internal Business Apps", desc: "Custom operational mobile software for field workers, delivery tracking, warehouse, and team approvals.", who: "Operations teams & enterprise logistics", tech: ["React Native", "Node.js", "PostgreSQL"], timeline: "3–6 Weeks" },
+      { slug: "customer-applications", name: "Customer Applications", desc: "High-retention loyalty, booking, purchasing, and community mobile apps built for end-users.", who: "Retail brands, fitness, services", tech: ["Flutter", "Firebase", "Stripe SDK"], timeline: "4–8 Weeks" },
+      { slug: "enterprise-apps", name: "Enterprise Apps", desc: "High-security corporate mobile applications with single sign-on (SSO), data encryption, and custom APIs.", who: "Enterprises & corporate operations", tech: ["Swift", "Kotlin", "Enterprise SSO"], timeline: "8–12 Weeks" }
     ],
     benefits: [
       "Smooth 60fps animations and instant screen transitions",
@@ -159,14 +183,14 @@ export const SERVICES_DATA: Service[] = [
     why: "Unoptimized advertising burns capital on un-qualified clicks. We build creative matrix funnels and attribution models that multiply every dollar spent into high-value clients.",
     who: "Founders, e-commerce store owners, SaaS growth leads, and B2B services scaling revenue.",
     subServices: [
-      { name: "Performance Marketing", desc: "Omnichannel paid customer acquisition strategies engineered around strict CAC/LTV benchmarks.", who: "DTC brands, SaaS & scaling platforms", tech: ["GA4", "Mixpanel", "Meta Pixel"], timeline: "Ongoing" },
-      { name: "Meta Ads", desc: "High-scaling Facebook and Instagram ad campaigns powered by dynamic creative testing and custom lookalikes.", who: "E-commerce, consumer brands, B2C lead gen", tech: ["Meta Ads Manager", "Creative Matrix"], timeline: "Ongoing" },
-      { name: "Google Ads", desc: "High-intent Search, Performance Max, and YouTube ad funnels intercepting active buyer searches.", who: "B2B services, high-ticket products, local leads", tech: ["Google Ads Manager", "GTM"], timeline: "Ongoing" },
-      { name: "LinkedIn Ads", desc: "Account-based marketing (ABM) targeting decision-makers, executives, and enterprise buyers.", who: "B2B SaaS, enterprise consulting, corporate sales", tech: ["LinkedIn Campaign Manager"], timeline: "Ongoing" },
-      { name: "Conversion Optimization (CRO)", desc: "Landing page heatmapping, copy adjustments, and user funnel tweaks to maximize click-to-lead rates.", who: "Websites with high traffic & low conversion", tech: ["Hotjar", "VWO", "Google Optimize"], timeline: "Ongoing" },
-      { name: "Campaign Management", desc: "End-to-end bid management, creative asset production, budget reallocation, and scaling operations.", who: "Growth stage businesses without in-house marketing", tech: ["Ads Manager", "Custom Dashboards"], timeline: "Ongoing" },
-      { name: "Analytics & Attribution", desc: "Server-side tracking, multi-touch attribution setup, and real-time executive ROAS dashboards.", who: "Marketing teams needing clear ROI measurement", tech: ["GA4", "Google Tag Manager", "Looker"], timeline: "Setup + Retainer" },
-      { name: "Remarketing Funnels", desc: "Custom retargeting sequences re-engaging abandoned cart visitors and past lead prospects.", who: "E-commerce & high-ticket sales pipelines", tech: ["Meta Pixel", "Google Tag Manager"], timeline: "Ongoing" }
+      { slug: "performance-marketing", name: "Performance Marketing", desc: "Omnichannel paid customer acquisition strategies engineered around strict CAC/LTV benchmarks.", who: "DTC brands, SaaS & scaling platforms", tech: ["GA4", "Mixpanel", "Meta Pixel"], timeline: "Ongoing" },
+      { slug: "meta-ads", name: "Meta Ads", desc: "High-scaling Facebook and Instagram ad campaigns powered by dynamic creative testing and custom lookalikes.", who: "E-commerce, consumer brands, B2C lead gen", tech: ["Meta Ads Manager", "Creative Matrix"], timeline: "Ongoing" },
+      { slug: "google-ads", name: "Google Ads", desc: "High-intent Search, Performance Max, and YouTube ad funnels intercepting active buyer searches.", who: "B2B services, high-ticket products, local leads", tech: ["Google Ads Manager", "GTM"], timeline: "Ongoing" },
+      { slug: "linkedin-ads", name: "LinkedIn Ads", desc: "Account-based marketing (ABM) targeting decision-makers, executives, and enterprise buyers.", who: "B2B SaaS, enterprise consulting, corporate sales", tech: ["LinkedIn Campaign Manager"], timeline: "Ongoing" },
+      { slug: "conversion-optimization-cro", name: "Conversion Optimization (CRO)", desc: "Landing page heatmapping, copy adjustments, and user funnel tweaks to maximize click-to-lead rates.", who: "Websites with high traffic & low conversion", tech: ["Hotjar", "VWO", "Google Optimize"], timeline: "Ongoing" },
+      { slug: "campaign-management", name: "Campaign Management", desc: "End-to-end bid management, creative asset production, budget reallocation, and scaling operations.", who: "Growth stage businesses without in-house marketing", tech: ["Ads Manager", "Custom Dashboards"], timeline: "Ongoing" },
+      { slug: "analytics-and-attribution", name: "Analytics & Attribution", desc: "Server-side tracking, multi-touch attribution setup, and real-time executive ROAS dashboards.", who: "Marketing teams needing clear ROI measurement", tech: ["GA4", "Google Tag Manager", "Looker"], timeline: "Setup + Retainer" },
+      { slug: "remarketing-funnels", name: "Remarketing Funnels", desc: "Custom retargeting sequences re-engaging abandoned cart visitors and past lead prospects.", who: "E-commerce & high-ticket sales pipelines", tech: ["Meta Pixel", "Google Tag Manager"], timeline: "Ongoing" }
     ],
     benefits: [
       "Immediate acquisition of active, high-intent buyer traffic",
@@ -200,14 +224,14 @@ export const SERVICES_DATA: Service[] = [
     why: "Poor UI creates friction, increases churn, and devalues your technology. World-class visual design instills immediate trust and makes your product effortless to use.",
     who: "SaaS founders, mobile app platforms, enterprise web applications, and outdated sites needing complete visual modernization.",
     subServices: [
-      { name: "Website Redesign", desc: "Transforming dated website designs into modern, high-converting visual experiences.", who: "Businesses with low lead conversion rates", tech: ["Figma", "Framer", "Tailwind CSS"], timeline: "2–3 Weeks" },
-      { name: "SaaS Dashboard Redesign", desc: "Simplifying complex data interfaces into intuitive, beautiful SaaS product dashboards.", who: "SaaS platforms & cloud software products", tech: ["Figma", "Design Systems"], timeline: "3–5 Weeks" },
-      { name: "Mobile App Redesign", desc: "Modernizing native iOS and Android interface components for seamless mobile navigation.", who: "Mobile apps suffering from user churn", tech: ["Figma", "iOS / Android Guidelines"], timeline: "2–4 Weeks" },
-      { name: "Conversion Optimization", desc: "UI updates engineered specifically to remove user friction points and increase form fills.", who: "E-commerce & direct-to-consumer funnels", tech: ["Figma", "UX Audits"], timeline: "1–2 Weeks" },
-      { name: "User Research", desc: "User journey mapping, interview analysis, and heuristic evaluations guiding product decisions.", who: "Product leads validating new features", tech: ["User Testing", "Hotjar Analysis"], timeline: "1–2 Weeks" },
-      { name: "Wireframes", desc: "Low and mid-fidelity layout blueprints defining structural hierarchy before visual styling.", who: "New products & feature launches", tech: ["Figma", "Balsamiq"], timeline: "1 Week" },
-      { name: "High-Fidelity Designs", desc: "Pixel-perfect visual screens complete with modern typography, colors, and micro-interactions.", who: "Development teams ready to code", tech: ["Figma", "Adobe CC"], timeline: "2–4 Weeks" },
-      { name: "Prototypes", desc: "Clickable, interactive user prototypes for investor pitches and user testing validation.", who: "Founders seeking funding or user feedback", tech: ["Figma Interactive Components"], timeline: "1–2 Weeks" }
+      { slug: "website-redesign", name: "Website Redesign", desc: "Transforming dated website designs into modern, high-converting visual experiences.", who: "Businesses with low lead conversion rates", tech: ["Figma", "Framer", "Tailwind CSS"], timeline: "2–3 Weeks" },
+      { slug: "saas-dashboard-redesign", name: "SaaS Dashboard Redesign", desc: "Simplifying complex data interfaces into intuitive, beautiful SaaS product dashboards.", who: "SaaS platforms & cloud software products", tech: ["Figma", "Design Systems"], timeline: "3–5 Weeks" },
+      { slug: "mobile-app-redesign", name: "Mobile App Redesign", desc: "Modernizing native iOS and Android interface components for seamless mobile navigation.", who: "Mobile apps suffering from user churn", tech: ["Figma", "iOS / Android Guidelines"], timeline: "2–4 Weeks" },
+      { slug: "conversion-optimization", name: "Conversion Optimization", desc: "UI updates engineered specifically to remove user friction points and increase form fills.", who: "E-commerce & direct-to-consumer funnels", tech: ["Figma", "UX Audits"], timeline: "1–2 Weeks" },
+      { slug: "user-research", name: "User Research", desc: "User journey mapping, interview analysis, and heuristic evaluations guiding product decisions.", who: "Product leads validating new features", tech: ["User Testing", "Hotjar Analysis"], timeline: "1–2 Weeks" },
+      { slug: "wireframes", name: "Wireframes", desc: "Low and mid-fidelity layout blueprints defining structural hierarchy before visual styling.", who: "New products & feature launches", tech: ["Figma", "Balsamiq"], timeline: "1 Week" },
+      { slug: "high-fidelity-designs", name: "High-Fidelity Designs", desc: "Pixel-perfect visual screens complete with modern typography, colors, and micro-interactions.", who: "Development teams ready to code", tech: ["Figma", "Adobe CC"], timeline: "2–4 Weeks" },
+      { slug: "prototypes", name: "Prototypes", desc: "Clickable, interactive user prototypes for investor pitches and user testing validation.", who: "Founders seeking funding or user feedback", tech: ["Figma Interactive Components"], timeline: "1–2 Weeks" }
     ],
     benefits: [
       "Drastic reduction in user onboarding friction and support tickets",
@@ -241,14 +265,14 @@ export const SERVICES_DATA: Service[] = [
     why: "Paid ads stop working the second budget stops. Organic SEO builds compounding search equity, capturing qualified leads every single day without ongoing click costs.",
     who: "Local businesses, e-commerce stores, B2B service providers, and brands aiming to dominate organic search.",
     subServices: [
-      { name: "Technical SEO", desc: "Core Web Vitals acceleration, site crawlability repair, schema markup, and sitemap optimization.", who: "Websites facing indexing or speed penalties", tech: ["Screaming Frog", "Lighthouse", "Schema.org"], timeline: "2–4 Weeks" },
-      { name: "On-page SEO", desc: "Intent-based keyword placement, title tags, header structures, and internal linking strategies.", who: "Websites with unoptimized content pages", tech: ["SurferSEO", "Ahrefs"], timeline: "Ongoing" },
-      { name: "Off-page SEO", desc: "High-authority backlink acquisition, digital PR, and brand mention building.", who: "Competitive niches requiring Domain Authority boosts", tech: ["Outreach Engines", "Ahrefs"], timeline: "Ongoing" },
-      { name: "Keyword Research", desc: "Mapping commercial buyer intent keywords with volume analysis and competitor gap analysis.", who: "Businesses starting new SEO campaigns", tech: ["SEMrush", "Google Keyword Planner"], timeline: "1 Week" },
-      { name: "Local SEO", desc: "Google Business Profile optimization, local citation building, and map pack rank climbing.", who: "Physical businesses, clinics, regional services", tech: ["Google Business Profile", "BrightLocal"], timeline: "Ongoing" },
-      { name: "Content Optimization", desc: "Updating existing copy for semantic relevancy, featured snippets, and search intent alignment.", who: "Blogs & landing pages with stalled rankings", tech: ["Clearscope", "Frase"], timeline: "Ongoing" },
-      { name: "Performance Optimization", desc: "Speed optimization, image compression, script deferred execution, and TTFB reduction.", who: "Slow websites failing Core Web Vitals", tech: ["Vite", "Next.js", "WebPageTest"], timeline: "1–2 Weeks" },
-      { name: "Google Search Console & Analytics", desc: "Monitoring indexation health, impression trends, query mapping, and traffic reporting.", who: "All growth-focused websites", tech: ["GSC", "GA4", "Looker Studio"], timeline: "Continuous" }
+      { slug: "technical-seo", name: "Technical SEO", desc: "Core Web Vitals acceleration, site crawlability repair, schema markup, and sitemap optimization.", who: "Websites facing indexing or speed penalties", tech: ["Screaming Frog", "Lighthouse", "Schema.org"], timeline: "2–4 Weeks" },
+      { slug: "on-page-seo", name: "On-page SEO", desc: "Intent-based keyword placement, title tags, header structures, and internal linking strategies.", who: "Websites with unoptimized content pages", tech: ["SurferSEO", "Ahrefs"], timeline: "Ongoing" },
+      { slug: "off-page-seo", name: "Off-page SEO", desc: "High-authority backlink acquisition, digital PR, and brand mention building.", who: "Competitive niches requiring Domain Authority boosts", tech: ["Outreach Engines", "Ahrefs"], timeline: "Ongoing" },
+      { slug: "keyword-research", name: "Keyword Research", desc: "Mapping commercial buyer intent keywords with volume analysis and competitor gap analysis.", who: "Businesses starting new SEO campaigns", tech: ["SEMrush", "Google Keyword Planner"], timeline: "1 Week" },
+      { slug: "local-seo", name: "Local SEO", desc: "Google Business Profile optimization, local citation building, and map pack rank climbing.", who: "Physical businesses, clinics, regional services", tech: ["Google Business Profile", "BrightLocal"], timeline: "Ongoing" },
+      { slug: "content-optimization", name: "Content Optimization", desc: "Updating existing copy for semantic relevancy, featured snippets, and search intent alignment.", who: "Blogs & landing pages with stalled rankings", tech: ["Clearscope", "Frase"], timeline: "Ongoing" },
+      { slug: "performance-optimization", name: "Performance Optimization", desc: "Speed optimization, image compression, script deferred execution, and TTFB reduction.", who: "Slow websites failing Core Web Vitals", tech: ["Vite", "Next.js", "WebPageTest"], timeline: "1–2 Weeks" },
+      { slug: "google-search-console-analytics", name: "Google Search Console & Analytics", desc: "Monitoring indexation health, impression trends, query mapping, and traffic reporting.", who: "All growth-focused websites", tech: ["GSC", "GA4", "Looker Studio"], timeline: "Continuous" }
     ],
     benefits: [
       "Consistent inflow of organic, zero-acquisition-cost buyer traffic",
@@ -282,14 +306,14 @@ export const SERVICES_DATA: Service[] = [
     why: "A generic or weak brand identity forces you to compete purely on price. A strong, cohesive brand system commands immediate trust and premium pricing power.",
     who: "Startups launching new platforms, scaling SMBs, and established corporations seeking a modern brand refresh.",
     subServices: [
-      { name: "Logo Design", desc: "Distinctive, scalable vector logo marks and logotypes designed for digital and physical touchpoints.", who: "New startups & rebranding companies", tech: ["Adobe Illustrator", "Figma"], timeline: "1–2 Weeks" },
-      { name: "Brand Identity", desc: "Cohesive visual systems encompassing logo variations, patterns, iconography, and image styles.", who: "Companies standardizing their brand", tech: ["Figma", "Illustrator"], timeline: "2–3 Weeks" },
-      { name: "Visual Identity", desc: "Designing visual touchpoints across digital software, social media, and physical collateral.", who: "Brands growing across channels", tech: ["Figma", "Photoshop"], timeline: "2–4 Weeks" },
-      { name: "Brand Positioning", desc: "Crafting core messaging, value propositions, mission statements, and tone-of-voice frameworks.", who: "Companies entering competitive markets", tech: ["Brand Workshops"], timeline: "1–2 Weeks" },
-      { name: "Typography", desc: "Selecting and licensing custom font hierarchies engineered for legibility and aesthetic authority.", who: "Digital products & corporate identity", tech: ["Google Fonts", "Custom Type"], timeline: "1 Week" },
-      { name: "Brand Colors", desc: "Curating accessible, psychological color palettes optimized for dark and light modes.", who: "Websites & app product design", tech: ["Color Systems"], timeline: "1 Week" },
-      { name: "Brand Guidelines", desc: "Comprehensive brand manuals documenting exact rules for usage, spacing, colors, and fonts.", who: "Teams scaling marketing operations", tech: ["Figma", "PDF Manuals"], timeline: "2–3 Weeks" },
-      { name: "Business Cards & Marketing Assets", desc: "Designing print collateral, business cards, letterheads, email signatures, and pitch decks.", who: "Executive sales & corporate networking", tech: ["InDesign", "Illustrator"], timeline: "1 Week" }
+      { slug: "logo-design", name: "Logo Design", desc: "Distinctive, scalable vector logo marks and logotypes designed for digital and physical touchpoints.", who: "New startups & rebranding companies", tech: ["Adobe Illustrator", "Figma"], timeline: "1–2 Weeks" },
+      { slug: "brand-identity", name: "Brand Identity", desc: "Cohesive visual systems encompassing logo variations, patterns, iconography, and image styles.", who: "Companies standardizing their brand", tech: ["Figma", "Illustrator"], timeline: "2–3 Weeks" },
+      { slug: "visual-identity", name: "Visual Identity", desc: "Designing visual touchpoints across digital software, social media, and physical collateral.", who: "Brands growing across channels", tech: ["Figma", "Photoshop"], timeline: "2–4 Weeks" },
+      { slug: "brand-positioning", name: "Brand Positioning", desc: "Crafting core messaging, value propositions, mission statements, and tone-of-voice frameworks.", who: "Companies entering competitive markets", tech: ["Brand Workshops"], timeline: "1–2 Weeks" },
+      { slug: "typography", name: "Typography", desc: "Selecting and licensing custom font hierarchies engineered for legibility and aesthetic authority.", who: "Digital products & corporate identity", tech: ["Google Fonts", "Custom Type"], timeline: "1 Week" },
+      { slug: "brand-colors", name: "Brand Colors", desc: "Curating accessible, psychological color palettes optimized for dark and light modes.", who: "Websites & app product design", tech: ["Color Systems"], timeline: "1 Week" },
+      { slug: "brand-guidelines", name: "Brand Guidelines", desc: "Comprehensive brand manuals documenting exact rules for usage, spacing, colors, and fonts.", who: "Teams scaling marketing operations", tech: ["Figma", "PDF Manuals"], timeline: "2–3 Weeks" },
+      { slug: "business-cards-and-marketing-assets", name: "Business Cards & Marketing Assets", desc: "Designing print collateral, business cards, letterheads, email signatures, and pitch decks.", who: "Executive sales & corporate networking", tech: ["InDesign", "Illustrator"], timeline: "1 Week" }
     ],
     benefits: [
       "Instant market recognition and visual distinction from competitors",
@@ -323,14 +347,14 @@ export const SERVICES_DATA: Service[] = [
     why: "Manual copy-pasting and manual approvals waste hundreds of high-value employee hours. Automation cuts operational drag and executes tasks instantly with zero error.",
     who: "Operations directors, sales teams, HR departments, and growing businesses bogged down in manual admin work.",
     subServices: [
-      { name: "Workflow Automation", desc: "Connecting webhooks, n8n, Zapier, and APIs to execute multi-step workflows automatically.", who: "Operations teams with disconnected tools", tech: ["n8n", "Zapier", "Make"], timeline: "1–2 Weeks" },
-      { name: "CRM Automation", desc: "Automated lead routing, stage triggers, activity logging, and instant notification alerts.", who: "Sales teams using HubSpot, Salesforce, or Zoho", tech: ["HubSpot", "Salesforce", "n8n"], timeline: "1–3 Weeks" },
-      { name: "HR Automation", desc: "Streamlining employee onboarding, document generation, leave requests, and exit workflows.", who: "HR managers & corporate teams", tech: ["n8n", "Google Workspace", "Slack API"], timeline: "2–3 Weeks" },
-      { name: "Operations Automation", desc: "Automating reporting aggregation, task creation, database syncing, and alert pipelines.", who: "Operations leads managing high volume data", tech: ["PostgreSQL", "n8n", "Airtable"], timeline: "2–4 Weeks" },
-      { name: "Email Automation", desc: "Dynamic transactional email triggers, onboarding sequences, and automated follow-ups.", who: "Sales & customer support teams", tech: ["SendGrid", "Klaviyo", "Instantly"], timeline: "1–2 Weeks" },
-      { name: "Sales Automation", desc: "Instant lead qualification, meeting booking sync, and quote generation routines.", who: "B2B sales teams scaling outbound", tech: ["HubSpot", "Calendly", "n8n"], timeline: "1–3 Weeks" },
-      { name: "Approval Workflows", desc: "Multi-tiered manager approval routines via Slack/Email for purchase orders and leave.", who: "Mid-market & enterprise management", tech: ["n8n", "Slack Webhooks"], timeline: "1–2 Weeks" },
-      { name: "Inventory Automation", desc: "Syncing stock counts automatically across web stores, ERPs, and marketplace channels.", who: "E-commerce retailers & distributors", tech: ["Shopify API", "Custom Node.js"], timeline: "2–4 Weeks" }
+      { slug: "workflow-automation", name: "Workflow Automation", desc: "Connecting webhooks, n8n, Zapier, and APIs to execute multi-step workflows automatically.", who: "Operations teams with disconnected tools", tech: ["n8n", "Zapier", "Make"], timeline: "1–2 Weeks" },
+      { slug: "crm-automation", name: "CRM Automation", desc: "Automated lead routing, stage triggers, activity logging, and instant notification alerts.", who: "Sales teams using HubSpot, Salesforce, or Zoho", tech: ["HubSpot", "Salesforce", "n8n"], timeline: "1–3 Weeks" },
+      { slug: "hr-automation", name: "HR Automation", desc: "Streamlining employee onboarding, document generation, leave requests, and exit workflows.", who: "HR managers & corporate teams", tech: ["n8n", "Google Workspace", "Slack API"], timeline: "2–3 Weeks" },
+      { slug: "operations-automation", name: "Operations Automation", desc: "Automating reporting aggregation, task creation, database syncing, and alert pipelines.", who: "Operations leads managing high volume data", tech: ["PostgreSQL", "n8n", "Airtable"], timeline: "2–4 Weeks" },
+      { slug: "email-automation", name: "Email Automation", desc: "Dynamic transactional email triggers, onboarding sequences, and automated follow-ups.", who: "Sales & customer support teams", tech: ["SendGrid", "Klaviyo", "Instantly"], timeline: "1–2 Weeks" },
+      { slug: "sales-automation", name: "Sales Automation", desc: "Instant lead qualification, meeting booking sync, and quote generation routines.", who: "B2B sales teams scaling outbound", tech: ["HubSpot", "Calendly", "n8n"], timeline: "1–3 Weeks" },
+      { slug: "approval-workflows", name: "Approval Workflows", desc: "Multi-tiered manager approval routines via Slack/Email for purchase orders and leave.", who: "Mid-market & enterprise management", tech: ["n8n", "Slack Webhooks"], timeline: "1–2 Weeks" },
+      { slug: "inventory-automation", name: "Inventory Automation", desc: "Syncing stock counts automatically across web stores, ERPs, and marketplace channels.", who: "E-commerce retailers & distributors", tech: ["Shopify API", "Custom Node.js"], timeline: "2–4 Weeks" }
     ],
     benefits: [
       "Reduction of manual administrative labor by over 70%",
@@ -364,16 +388,16 @@ export const SERVICES_DATA: Service[] = [
     why: "Human customer support and manual sales outreach are expensive and hard to scale 24/7. AI agents respond instantly, qualify leads, and handle support requests in seconds.",
     who: "Companies aiming to automate customer support, lead qualification, appointment booking, and internal knowledge search with production AI.",
     subServices: [
-      { name: "AI Chatbots", desc: "High-intelligence conversational bots trained on your custom website and support documentation.", who: "Customer service teams & e-commerce sites", tech: ["OpenAI", "LangChain", "Pinecone"], timeline: "1–3 Weeks" },
-      { name: "AI Voice Agents", desc: "Natural-sounding voice agents capable of conducting human-like telephone conversations.", who: "Call centers & sales outreach operations", tech: ["Vapi", "Retell AI", "Twilio"], timeline: "2–4 Weeks" },
-      { name: "AI Calling Agents", desc: "Automated inbound and outbound phone agents for lead qualification and support triage.", who: "High-volume sales & service desks", tech: ["Bland AI", "Twilio API"], timeline: "2–4 Weeks" },
-      { name: "AI Sales Agents", desc: "Autonomous sales bots that answer prospect questions, handle objections, and close bookings.", who: "B2B SaaS & high-ticket agencies", tech: ["OpenAI", "HubSpot API"], timeline: "2–4 Weeks" },
-      { name: "AI Customer Support", desc: "24/7 autonomous support triage resolving up to 80% of routine tickets instantly.", who: "E-commerce stores & SaaS products", tech: ["Zendesk API", "Custom LLM"], timeline: "2–3 Weeks" },
-      { name: "HR Agents", desc: "Internal AI assistants answering employee questions regarding policies, benefits, and IT help.", who: "Corporate HR departments", tech: ["Pinecone", "OpenAI", "Slack Bot"], timeline: "2–3 Weeks" },
-      { name: "Product Management Agents", desc: "AI bots analyzing customer feedback and auto-generating feature specs and user stories.", who: "Product managers & dev leads", tech: ["Claude 3.5", "Jira API"], timeline: "2–3 Weeks" },
-      { name: "Appointment Booking Agents", desc: "Conversational bots that schedule appointments directly into Calendly or Google Calendar.", who: "Clinics, salons, consultants, real estate", tech: ["Google Calendar API", "n8n"], timeline: "1–2 Weeks" },
-      { name: "Knowledge Base Agents (RAG)", desc: "Retrieval Augmented Generation search engines trained on internal PDFs, Notion, and docs.", who: "Legal firms, research, enterprise ops", tech: ["Vector DB", "LlamaIndex"], timeline: "2–4 Weeks" },
-      { name: "Custom AI Assistants", desc: "Bespoke LLM application workflows engineered for specialized industry cognitive tasks.", who: "Specialized enterprise domain applications", tech: ["Python", "FastAPI", "OpenAI"], timeline: "3–6 Weeks" }
+      { slug: "ai-chatbots", name: "AI Chatbots", desc: "High-intelligence conversational bots trained on your custom website and support documentation.", who: "Customer service teams & e-commerce sites", tech: ["OpenAI", "LangChain", "Pinecone"], timeline: "1–3 Weeks" },
+      { slug: "ai-voice-agents", name: "AI Voice Agents", desc: "Natural-sounding voice agents capable of conducting human-like telephone conversations.", who: "Call centers & sales outreach operations", tech: ["Vapi", "Retell AI", "Twilio"], timeline: "2–4 Weeks" },
+      { slug: "ai-calling-agents", name: "AI Calling Agents", desc: "Automated inbound and outbound phone agents for lead qualification and support triage.", who: "High-volume sales & service desks", tech: ["Bland AI", "Twilio API"], timeline: "2–4 Weeks" },
+      { slug: "ai-sales-agents", name: "AI Sales Agents", desc: "Autonomous sales bots that answer prospect questions, handle objections, and close bookings.", who: "B2B SaaS & high-ticket agencies", tech: ["OpenAI", "HubSpot API"], timeline: "2–4 Weeks" },
+      { slug: "ai-customer-support", name: "AI Customer Support", desc: "24/7 autonomous support triage resolving up to 80% of routine tickets instantly.", who: "E-commerce stores & SaaS products", tech: ["Zendesk API", "Custom LLM"], timeline: "2–3 Weeks" },
+      { slug: "hr-agents", name: "HR Agents", desc: "Internal AI assistants answering employee questions regarding policies, benefits, and IT help.", who: "Corporate HR departments", tech: ["Pinecone", "OpenAI", "Slack Bot"], timeline: "2–3 Weeks" },
+      { slug: "product-management-agents", name: "Product Management Agents", desc: "AI bots analyzing customer feedback and auto-generating feature specs and user stories.", who: "Product managers & dev leads", tech: ["Claude 3.5", "Jira API"], timeline: "2–3 Weeks" },
+      { slug: "appointment-booking-agents", name: "Appointment Booking Agents", desc: "Conversational bots that schedule appointments directly into Calendly or Google Calendar.", who: "Clinics, salons, consultants, real estate", tech: ["Google Calendar API", "n8n"], timeline: "1–2 Weeks" },
+      { slug: "knowledge-base-agents-rag", name: "Knowledge Base Agents (RAG)", desc: "Retrieval Augmented Generation search engines trained on internal PDFs, Notion, and docs.", who: "Legal firms, research, enterprise ops", tech: ["Vector DB", "LlamaIndex"], timeline: "2–4 Weeks" },
+      { slug: "custom-ai-assistants", name: "Custom AI Assistants", desc: "Bespoke LLM application workflows engineered for specialized industry cognitive tasks.", who: "Specialized enterprise domain applications", tech: ["Python", "FastAPI", "OpenAI"], timeline: "3–6 Weeks" }
     ],
     benefits: [
       "Instant 24/7 customer support coverage with zero queue waiting times",
@@ -407,13 +431,13 @@ export const SERVICES_DATA: Service[] = [
     why: "Design is the primary visual signal of product quality. Striking graphics capture attention in busy feeds and communicate professionalism in executive boardrooms.",
     who: "Marketing teams needing constant creative output, founders raising capital, and brands launching products.",
     subServices: [
-      { name: "Social Media Creatives", desc: "High-engaging post designs, story kits, and carousel sets formatted for Instagram, LinkedIn, and Facebook.", who: "Brands building social presence", tech: ["Figma", "Photoshop"], timeline: "2–4 Days" },
-      { name: "Brochures", desc: "Elegant multi-page PDF and print product catalogs and corporate sales brochures.", who: "B2B sales teams & real estate", tech: ["InDesign", "Illustrator"], timeline: "3–6 Days" },
-      { name: "Pitch Decks", desc: "Investor-ready presentation slides crafted for high visual impact and clear storytelling.", who: "Startups raising seed or Series A", tech: ["Figma", "PowerPoint"], timeline: "4–7 Days" },
-      { name: "Packaging", desc: "Die-line product packaging design and label layouts for DTC consumer retail items.", who: "E-commerce & retail brands", tech: ["Illustrator", "3D Mockups"], timeline: "1–2 Weeks" },
-      { name: "Banners", desc: "High-resolution digital display ad banners and large format print event trade show banners.", who: "Event organizers & ad campaigns", tech: ["Photoshop", "Illustrator"], timeline: "2–4 Days" },
-      { name: "Marketing Material", desc: "Flyers, posters, email headers, infographics, and promotional print collateral.", who: "Marketing teams launching promos", tech: ["Figma", "Illustrator"], timeline: "2–5 Days" },
-      { name: "Brand Assets", desc: "Icon packs, custom illustrations, badges, and visual marketing elements.", who: "Design teams standardizing assets", tech: ["Illustrator", "Figma"], timeline: "3–6 Days" }
+      { slug: "social-media-creatives", name: "Social Media Creatives", desc: "High-engaging post designs, story kits, and carousel sets formatted for Instagram, LinkedIn, and Facebook.", who: "Brands building social presence", tech: ["Figma", "Photoshop"], timeline: "2–4 Days" },
+      { slug: "brochures", name: "Brochures", desc: "Elegant multi-page PDF and print product catalogs and corporate sales brochures.", who: "B2B sales teams & real estate", tech: ["InDesign", "Illustrator"], timeline: "3–6 Days" },
+      { slug: "pitch-decks", name: "Pitch Decks", desc: "Investor-ready presentation slides crafted for high visual impact and clear storytelling.", who: "Startups raising seed or Series A", tech: ["Figma", "PowerPoint"], timeline: "4–7 Days" },
+      { slug: "packaging", name: "Packaging", desc: "Die-line product packaging design and label layouts for DTC consumer retail items.", who: "E-commerce & retail brands", tech: ["Illustrator", "3D Mockups"], timeline: "1–2 Weeks" },
+      { slug: "banners", name: "Banners", desc: "High-resolution digital display ad banners and large format print event trade show banners.", who: "Event organizers & ad campaigns", tech: ["Photoshop", "Illustrator"], timeline: "2–4 Days" },
+      { slug: "marketing-material", name: "Marketing Material", desc: "Flyers, posters, email headers, infographics, and promotional print collateral.", who: "Marketing teams launching promos", tech: ["Figma", "Illustrator"], timeline: "2–5 Days" },
+      { slug: "brand-assets", name: "Brand Assets", desc: "Icon packs, custom illustrations, badges, and visual marketing elements.", who: "Design teams standardizing assets", tech: ["Illustrator", "Figma"], timeline: "3–6 Days" }
     ],
     benefits: [
       "Consistent, visual brand presentation across all digital and print mediums",
@@ -447,12 +471,12 @@ export const SERVICES_DATA: Service[] = [
     why: "Waiting passively for inbound leads creates unpredictable revenue spikes. Outbound lead engines systematically generate sales meetings with ideal decision-makers every week.",
     who: "B2B SaaS companies, IT consultancies, high-ticket agencies, and corporate service providers.",
     subServices: [
-      { name: "B2B Lead Generation", desc: "Data-driven outbound prospecting campaigns targeting decision-makers matching your ideal client profile (ICP).", who: "B2B service providers & SaaS", tech: ["Apollo.io", "Sales Navigator"], timeline: "Ongoing" },
-      { name: "Qualified Prospect Lists", desc: "Extracting and manually verifying clean email addresses, phone numbers, and LinkedIn profiles.", who: "Sales teams needing fresh lead lists", tech: ["Clay", "NeverBounce"], timeline: "1 Week" },
-      { name: "Email Outreach", desc: "Automated multi-domain cold email sequences written for high deliverability and response rates.", who: "B2B outbound sales teams", tech: ["Instantly", "Smartlead"], timeline: "Ongoing" },
-      { name: "LinkedIn Outreach", desc: "Automated connection requests, personal messages, and content touchpoints targeting decision-makers.", who: "Executives & enterprise sales leads", tech: ["LinkedIn Sales Navigator"], timeline: "Ongoing" },
-      { name: "CRM Integration", desc: "Automatic routing of interested prospects straight into your CRM with meeting booking alerts.", who: "Sales reps managing pipelines", tech: ["HubSpot", "n8n"], timeline: "1 Week" },
-      { name: "Sales Funnel Creation", desc: "High-converting outbound landing pages and calendar booking funnels optimized for sales calls.", who: "Outbound campaigns needing booking pages", tech: ["Next.js", "Calendly"], timeline: "1–2 Weeks" }
+      { slug: "b2b-lead-generation", name: "B2B Lead Generation", desc: "Data-driven outbound prospecting campaigns targeting decision-makers matching your ideal client profile (ICP).", who: "B2B service providers & SaaS", tech: ["Apollo.io", "Sales Navigator"], timeline: "Ongoing" },
+      { slug: "qualified-prospect-lists", name: "Qualified Prospect Lists", desc: "Extracting and manually verifying clean email addresses, phone numbers, and LinkedIn profiles.", who: "Sales teams needing fresh lead lists", tech: ["Clay", "NeverBounce"], timeline: "1 Week" },
+      { slug: "email-outreach", name: "Email Outreach", desc: "Automated multi-domain cold email sequences written for high deliverability and response rates.", who: "B2B outbound sales teams", tech: ["Instantly", "Smartlead"], timeline: "Ongoing" },
+      { slug: "linkedin-outreach", name: "LinkedIn Outreach", desc: "Automated connection requests, personal messages, and content touchpoints targeting decision-makers.", who: "Executives & enterprise sales leads", tech: ["LinkedIn Sales Navigator"], timeline: "Ongoing" },
+      { slug: "crm-integration", name: "CRM Integration", desc: "Automatic routing of interested prospects straight into your CRM with meeting booking alerts.", who: "Sales reps managing pipelines", tech: ["HubSpot", "n8n"], timeline: "1 Week" },
+      { slug: "sales-funnel-creation", name: "Sales Funnel Creation", desc: "High-converting outbound landing pages and calendar booking funnels optimized for sales calls.", who: "Outbound campaigns needing booking pages", tech: ["Next.js", "Calendly"], timeline: "1–2 Weeks" }
     ],
     benefits: [
       "Consistent weekly delivery of qualified B2B sales discovery calls",
@@ -486,14 +510,14 @@ export const SERVICES_DATA: Service[] = [
     why: "An inactive social media presence destroys brand credibility. Consistent, strategic content builds market authority, nurtures warm prospects, and drives organic traffic.",
     who: "Founders, consumer brands, corporate enterprises, and SMBs wanting a high-caliber social presence without spending internal hours.",
     subServices: [
-      { name: "Facebook Management", desc: "Engaging page posts, video reels, group management, and audience growth strategies.", who: "Consumer brands & local SMBs", tech: ["Meta Suite", "Canva Pro"], timeline: "Ongoing" },
-      { name: "Instagram Growth", desc: "Aesthetic grid layouts, trending Reels creation, carousel graphics, and story campaigns.", who: "DTC brands, lifestyle, creators", tech: ["CapCut", "Figma"], timeline: "Ongoing" },
-      { name: "LinkedIn Leadership", desc: "Executive thought leadership posts, company page updates, and B2B engagement strategies.", who: "B2B founders & corporate brands", tech: ["Figma", "Taplio"], timeline: "Ongoing" },
-      { name: "X (Twitter) Strategy", desc: "High-impact thread creation, industry commentary, and community engagement.", who: "Tech startups, web3, AI platforms", tech: ["Typefully"], timeline: "Ongoing" },
-      { name: "Pinterest & Threads", desc: "Visual pin boards and conversational thread posts driving backlink traffic.", who: "Visual brands & e-commerce", tech: ["Pinterest Ads API"], timeline: "Ongoing" },
-      { name: "YouTube Operations", desc: "Shorts creation, video SEO title/description tags, and custom thumbnail designs.", who: "Brands creating video content", tech: ["Adobe Premiere", "Photoshop"], timeline: "Ongoing" },
-      { name: "Content Planning & Strategy", desc: "Monthly content calendars, topic pillars, scriptwriting, and visual asset scheduling.", who: "All social accounts", tech: ["Notion", "Buffer"], timeline: "Monthly" },
-      { name: "Community & Analytics", desc: "Daily comment monitoring, inbox reply management, and comprehensive monthly growth reports.", who: "All social accounts", tech: ["GA4", "Metrcs"], timeline: "Monthly" }
+      { slug: "facebook-management", name: "Facebook Management", desc: "Engaging page posts, video reels, group management, and audience growth strategies.", who: "Consumer brands & local SMBs", tech: ["Meta Suite", "Canva Pro"], timeline: "Ongoing" },
+      { slug: "instagram-growth", name: "Instagram Growth", desc: "Aesthetic grid layouts, trending Reels creation, carousel graphics, and story campaigns.", who: "DTC brands, lifestyle, creators", tech: ["CapCut", "Figma"], timeline: "Ongoing" },
+      { slug: "linkedin-leadership", name: "LinkedIn Leadership", desc: "Executive thought leadership posts, company page updates, and B2B engagement strategies.", who: "B2B founders & corporate brands", tech: ["Figma", "Taplio"], timeline: "Ongoing" },
+      { slug: "x-twitter-strategy", name: "X (Twitter) Strategy", desc: "High-impact thread creation, industry commentary, and community engagement.", who: "Tech startups, web3, AI platforms", tech: ["Typefully"], timeline: "Ongoing" },
+      { slug: "pinterest-and-threads", name: "Pinterest & Threads", desc: "Visual pin boards and conversational thread posts driving backlink traffic.", who: "Visual brands & e-commerce", tech: ["Pinterest Ads API"], timeline: "Ongoing" },
+      { slug: "youtube-operations", name: "YouTube Operations", desc: "Shorts creation, video SEO title/description tags, and custom thumbnail designs.", who: "Brands creating video content", tech: ["Adobe Premiere", "Photoshop"], timeline: "Ongoing" },
+      { slug: "content-planning-and-strategy", name: "Content Planning & Strategy", desc: "Monthly content calendars, topic pillars, scriptwriting, and visual asset scheduling.", who: "All social accounts", tech: ["Notion", "Buffer"], timeline: "Monthly" },
+      { slug: "community-and-analytics", name: "Community & Analytics", desc: "Daily comment monitoring, inbox reply management, and comprehensive monthly growth reports.", who: "All social accounts", tech: ["GA4", "Metrcs"], timeline: "Monthly" }
     ],
     benefits: [
       "Consistent, active posting schedule across all major social networks",
@@ -527,14 +551,14 @@ export const SERVICES_DATA: Service[] = [
     why: "Manufacturers make world-class products but often struggle with international e-commerce listings, export compliance, and digital marketing. We build the entire global sales bridge.",
     who: "Manufacturers, exporters, industrial brands, and OEM suppliers aiming to export products worldwide.",
     subServices: [
-      { name: "Amazon Global Selling", desc: "Setting up Amazon US, UK, EU, and UAE seller accounts, FBA logistics, and international PPC campaigns.", who: "Exporters selling consumer products globally", tech: ["Amazon Seller Central", "Helium10"], timeline: "3–6 Weeks" },
-      { name: "Alibaba & IndiaMART", desc: "B2B seller storefront creation, verified supplier badge setup, catalog ranking, and RFQ response systems.", who: "Industrial manufacturers seeking B2B export buyers", tech: ["Alibaba Supplier Portal"], timeline: "2–4 Weeks" },
-      { name: "ThomasNet & Global B2B Portals", desc: "Industrial directory setup, technical specification catalogs, and OEM inquiry capture.", who: "Precision machinery & component makers", tech: ["ThomasNet"], timeline: "2–3 Weeks" },
-      { name: "Amazon India & Flipkart", desc: "Domestic e-commerce expansion on India's top marketplaces with catalog optimization and brand registry.", who: "Indian brands scaling domestically", tech: ["Flipkart Seller Hub"], timeline: "2–3 Weeks" },
-      { name: "WooCommerce & Shopify Stores", desc: "Direct-to-consumer (DTC) international e-commerce web stores with multi-currency and global shipping wiring.", who: "Brands creating owned export sales channels", tech: ["Shopify", "WooCommerce"], timeline: "3–5 Weeks" },
-      { name: "Export Consultation & Readiness", desc: "Guidance on international shipping, HS codes, customs documentation, and regional compliance.", who: "First-time exporting manufacturers", tech: ["Export Documentation"], timeline: "2–3 Weeks" },
-      { name: "Catalog & Product Listing Optimization", desc: "A+ content design, technical spec formatting, SEO keywords, and multi-lingual translations.", who: "Brands with low marketplace sales", tech: ["Figma", "Helium10"], timeline: "2–4 Weeks" },
-      { name: "Product Photography Guidance", desc: "Directing white-background studio shots, 3D renders, and infographic lifestyle images.", who: "Manufacturers launching new SKUs", tech: ["Studio Guidelines"], timeline: "1–2 Weeks" }
+      { slug: "amazon-global-selling", name: "Amazon Global Selling", desc: "Setting up Amazon US, UK, EU, and UAE seller accounts, FBA logistics, and international PPC campaigns.", who: "Exporters selling consumer products globally", tech: ["Amazon Seller Central", "Helium10"], timeline: "3–6 Weeks" },
+      { slug: "alibaba-and-indiamart", name: "Alibaba & IndiaMART", desc: "B2B seller storefront creation, verified supplier badge setup, catalog ranking, and RFQ response systems.", who: "Industrial manufacturers seeking B2B export buyers", tech: ["Alibaba Supplier Portal"], timeline: "2–4 Weeks" },
+      { slug: "thomasnet-and-global-b2b-portals", name: "ThomasNet & Global B2B Portals", desc: "Industrial directory setup, technical specification catalogs, and OEM inquiry capture.", who: "Precision machinery & component makers", tech: ["ThomasNet"], timeline: "2–3 Weeks" },
+      { slug: "amazon-india-and-flipkart", name: "Amazon India & Flipkart", desc: "Domestic e-commerce expansion on India's top marketplaces with catalog optimization and brand registry.", who: "Indian brands scaling domestically", tech: ["Flipkart Seller Hub"], timeline: "2–3 Weeks" },
+      { slug: "woocommerce-and-shopify-stores", name: "WooCommerce & Shopify Stores", desc: "Direct-to-consumer (DTC) international e-commerce web stores with multi-currency and global shipping wiring.", who: "Brands creating owned export sales channels", tech: ["Shopify", "WooCommerce"], timeline: "3–5 Weeks" },
+      { slug: "export-consultation-and-readiness", name: "Export Consultation & Readiness", desc: "Guidance on international shipping, HS codes, customs documentation, and regional compliance.", who: "First-time exporting manufacturers", tech: ["Export Documentation"], timeline: "2–3 Weeks" },
+      { slug: "catalog-and-product-listing-optimization", name: "Catalog & Product Listing Optimization", desc: "A+ content design, technical spec formatting, SEO keywords, and multi-lingual translations.", who: "Brands with low marketplace sales", tech: ["Figma", "Helium10"], timeline: "2–4 Weeks" },
+      { slug: "product-photography-guidance", name: "Product Photography Guidance", desc: "Directing white-background studio shots, 3D renders, and infographic lifestyle images.", who: "Manufacturers launching new SKUs", tech: ["Studio Guidelines"], timeline: "1–2 Weeks" }
     ],
     benefits: [
       "Direct international export sales channels established across top global portals",
@@ -558,6 +582,49 @@ export const SERVICES_DATA: Service[] = [
   }
 ];
 
+function expandSubService(service: ServiceSource, sub: SubServiceSummary): SubService {
+  const tools = sub.tech.join(", ");
+  return {
+    ...sub,
+    short: sub.desc,
+    hero: `${sub.name} built around your business workflow`,
+    seoTitle: `${sub.name} | ${service.name} | iinteliproX AI`,
+    seoDescription: `${sub.name} services for ${sub.who}. iinteliproX AI plans and delivers ${sub.desc.charAt(0).toLowerCase()}${sub.desc.slice(1)}`,
+    keywords: [sub.name, `${sub.name} services`, service.name, ...sub.tech],
+    overview: `${sub.name} is a specialised ${service.name.toLowerCase()} capability for ${sub.who.toLowerCase()}. ${sub.desc}`,
+    problem: `${sub.who} often need this capability without adding disconnected tools or creating a system their team cannot maintain. ${service.why}`,
+    solution: `We begin with the real workflow, define the required integrations and acceptance criteria, then implement ${sub.name.toLowerCase()} using ${tools}. The result is documented, tested and ready for the people who operate it.` ,
+    benefits: service.benefits,
+    features: service.features,
+    useCases: [
+      `${sub.name} for ${sub.who}`,
+      `Connecting ${sub.name.toLowerCase()} with existing business systems`,
+      `Replacing fragmented manual work with a maintainable ${service.name.toLowerCase()} workflow`,
+    ],
+    process: service.process,
+    deliverables: [
+      `Discovery and requirements specification for ${sub.name}`,
+      `Production implementation using ${tools}`,
+      "Quality assurance, accessibility and responsive testing",
+      "Deployment documentation and team handover",
+    ],
+    industries: service.industries,
+    faqs: [
+      { q: `What is included in ${sub.name}?`, a: `${sub.desc} The final scope documents features, integrations, testing, deployment and handover requirements before implementation begins.` },
+      { q: `Who is ${sub.name} best suited for?`, a: `This service is designed for ${sub.who.toLowerCase()}. We adapt the architecture and delivery plan to the organisation's existing systems and internal capabilities.` },
+      { q: `How long does ${sub.name} take?`, a: `A typical delivery window is ${sub.timeline}. Complexity, content readiness, approvals and third-party integrations can affect the confirmed schedule.` },
+      { q: `Which technologies are used for ${sub.name}?`, a: `The current capability set includes ${tools}. We confirm the final stack after reviewing security, maintainability, integration and hosting requirements.` },
+    ],
+    updatedAt: "2026-08-06",
+  };
+}
+
+export const SERVICES_DATA: Service[] = SERVICE_SOURCES.map((service) => ({
+  ...service,
+  updatedAt: service.updatedAt ?? "2026-08-06",
+  subServices: service.subServices.map((sub) => expandSubService(service, sub)),
+}));
+
 export const serviceBySlug = (slug: string): Service | undefined => {
   // Support both ui-ux-design and ui-ux-redesign
   if (slug === "ui-ux-redesign") {
@@ -565,3 +632,40 @@ export const serviceBySlug = (slug: string): Service | undefined => {
   }
   return SERVICES_DATA.find((s) => s.slug === slug);
 };
+
+export const subServiceBySlug = (serviceSlug: string, subServiceSlug: string): SubService | undefined =>
+  serviceBySlug(serviceSlug)?.subServices.find((sub) => sub.slug === subServiceSlug);
+
+export const allSubServices = () =>
+  SERVICES_DATA.flatMap((service) => service.subServices.map((subService) => ({ service, subService })));
+
+export const subServicePath = (serviceSlug: string, subServiceSlug: string) =>
+  `/services/${serviceSlug}/${subServiceSlug}` as const;
+
+export const relatedSubServices = (serviceSlug: string, currentSubServiceSlug: string, limit = 5) =>
+  serviceBySlug(serviceSlug)?.subServices.filter((sub) => sub.slug !== currentSubServiceSlug).slice(0, limit) ?? [];
+
+export const serviceClusterBySlug = (serviceSlug: string) => {
+  const service = serviceBySlug(serviceSlug);
+  return service ? { service, subServices: service.subServices } : undefined;
+};
+
+function validateServiceCatalog() {
+  const paths = new Set<string>();
+  const titles = new Set<string>();
+  const descriptions = new Set<string>();
+  for (const { service, subService } of allSubServices()) {
+    const path = subServicePath(service.slug, subService.slug);
+    if (paths.has(path)) throw new Error(`Duplicate sub-service path: ${path}`);
+    if (titles.has(subService.seoTitle)) throw new Error(`Duplicate sub-service title: ${subService.seoTitle}`);
+    if (descriptions.has(subService.seoDescription)) throw new Error(`Duplicate sub-service description: ${path}`);
+    if (!subService.slug || !subService.overview || !subService.solution || subService.faqs.length === 0) {
+      throw new Error(`Incomplete sub-service content: ${path}`);
+    }
+    paths.add(path);
+    titles.add(subService.seoTitle);
+    descriptions.add(subService.seoDescription);
+  }
+}
+
+validateServiceCatalog();
